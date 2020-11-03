@@ -56,10 +56,10 @@ async def variable(var):
                 await var.client.send_message(
                     BOTLOG_CHATID, "#CONFIGVARS\n\n" "**ConfigVars**:\n" f"{msg}"
                 )
-                await var.edit("`Received to BOTLOG_CHATID...`")
+                await var.edit("`Diterima ke BOTLOG_CHATID...`")
                 return True
             else:
-                await var.edit("`Please set BOTLOG to True...`")
+                await var.edit("`Harap setel BOTLOG ke True...`")
                 return False
     elif exe == "del":
         await var.edit("`Deleting information...`")
@@ -73,10 +73,10 @@ async def variable(var):
                     BOTLOG_CHATID,
                     "#DELCONFIGVAR\n\n" "**Delete ConfigVar**:\n" f"`{variable}`",
                 )
-            await var.edit("`Information deleted...`")
+            await var.edit("`Informasi dihapus...`")
             del heroku_var[variable]
         else:
-            await var.edit("`Information don't exists...`")
+            await var.edit("`Informasi tidak ada...`")
             return True
 
 
@@ -154,12 +154,12 @@ async def dyno_usage(dyno):
             AppMinutes = math.floor(AppQuotaUsed % 60)
 
             await dyno.edit(
-                "**Dyno Usage**:\n\n"
-                f"-> `Dyno usage for`  **{app.name}**:\n"
+                "**Penggunaan Dyno**:\n\n"
+                f"-> `Penggunaan Dyno untuk`  **{app.name}**:\n"
                 f"     •  **{AppHours} hour(s), "
                 f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
                 "\n\n"
-                "-> `Dyno hours quota remaining this month`:\n"
+                "-> `Sisa Dyno bulan ini`:\n"
                 f"     •  **{hours} hour(s), {minutes} minute(s)  "
                 f"-  {percentage}%**"
             )
@@ -194,17 +194,17 @@ async def _(dyno):
 CMD_HELP.update(
     {
         "heroku": ">.`usage`"
-        "\nUsage: Check your heroku dyno hours remaining"
+        "\nUsage: Periksa dyno Anda yang tersisa"
         "\n\n>`.set var <NEW VAR> <VALUE>`"
-        "\nUsage: add new variable or update existing value variable"
-        "\n!!! WARNING !!!, after setting a variable the bot will restarted"
+        "\nUsage: tambahkan variabel baru atau perbarui variabel nilai yang ada"
+        "\n!!! PERINGATAN !!!, setelah mengatur variabel, bot akan dimulai ulang"
         "\n\n>`.get var or .get var <VAR>`"
-        "\nUsage: get your existing varibles, use it only on your private group!"
-        "\nThis returns all of your private information, please be caution..."
+        "\nUsage: dapatkan variabel yang tersedia, gunakan hanya di grup pribadi Anda!"
+        "\nIni mengambil informasi pribadi, harap berhati-hati..."
         "\n\n>`.del var <VAR>`"
-        "\nUsage: delete existing variable"
-        "\n!!! WARNING !!!, after deleting variable the bot will restarted"
+        "\nUsage: hapus variabel yang ada"
+        "\n!!! PERINGATAN !!!, setelah menghapus variabel, bot akan dimulai ulang"
         "\n\n>`.logs`"
-        "\nUsage: Get heroku dyno logs"
+        "\nUsage: Dapatkan log dyno heroku"
     }
 )
