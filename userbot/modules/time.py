@@ -57,10 +57,10 @@ async def time_func(tdata):
         tz_num = TZ_NUMBER
         timezones = await get_tz(COUNTRY)
     else:
-        return await tdata.edit(f"`It's`  **{dt.now().strftime(t_form)}**  `here.`")
+        return await tdata.edit(f"`sekarang`  **{dt.now().strftime(t_form)}**  `disini.`")
 
     if not timezones:
-        return await tdata.edit("`Invaild country.`")
+        return await tdata.edit("`Negara tidak valid.`")
 
     if len(timezones) == 1:
         time_zone = timezones[0]
@@ -84,11 +84,11 @@ async def time_func(tdata):
 
     if c_name != COUNTRY:
         return await tdata.edit(
-            f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`"
+            f"`Sekarang`  **{dtnow}**  `di {c_name}({time_zone} timezone).`"
         )
     elif COUNTRY:
         return await tdata.edit(
-            f"`It's`  **{dtnow}**  `here, in {COUNTRY}" f"({time_zone} timezone).`"
+            f"`Sekarang`  **{dtnow}**  `disini, di {COUNTRY}" f"({time_zone} zona waktu).`"
         )
 
 
@@ -111,10 +111,10 @@ async def date_func(dat):
         tz_num = TZ_NUMBER
         timezones = await get_tz(COUNTRY)
     else:
-        return await dat.edit(f"`It's`  **{dt.now().strftime(d_form)}**  `here.`")
+        return await dat.edit(f"`Sekarang`  **{dt.now().strftime(d_form)}**  `disini.`")
 
     if not timezones:
-        return await dat.edit("`Invaild country.`")
+        return await dat.edit("`Negara tidak valid.`")
 
     if len(timezones) == 1:
         time_zone = timezones[0]
@@ -138,21 +138,21 @@ async def date_func(dat):
 
     if c_name != COUNTRY:
         return await dat.edit(
-            f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`"
+            f"`Sekarang`  **{dtnow}**  `di {c_name}({time_zone} zona waktu).`"
         )
     elif COUNTRY:
         return await dat.edit(
-            f"`It's`  **{dtnow}**  `here, in {COUNTRY}" f"({time_zone} timezone).`"
+            f"`Sekarang`  **{dtnow}**  `disini, di {COUNTRY}" f"({time_zone} zona waktu).`"
         )
 
 
 CMD_HELP.update(
     {
-        "time": ">`.time <country name/code> <timezone number>`"
-        "\nUsage: Get the time of a country. If a country has "
-        "multiple timezones, it will list all of them and let you select one.",
-        "date": ">`.date <country name/code> <timezone number>`"
-        "\nUsage: Get the date of a country. If a country has "
-        "multiple timezones, it will list all of them and let you select one.",
+        "time": ">`.time <nama/kode negara> <nomor zona waktu>`"
+        "\nUsage: Dapatkan waktu sebuah negara. Jika suatu negara memiliki "
+        "beberapa zona waktu, itu akan mencantumkan semuanya dan membiarkan Anda memilih satu.",
+        "date": ">`.date <nama/kode negara> <nomor zona waktu>`"
+        "\nUsage: Dapatkan tanggal suatu negara. Jika suatu negara memiliki "
+        "beberapa zona waktu, itu akan mencantumkan semuanya dan membiarkan Anda memilih satu.",
     }
 )
