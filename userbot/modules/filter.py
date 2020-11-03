@@ -92,9 +92,7 @@ async def remove_a_filter(r_handler):
     if not remove_filter(r_handler.chat_id, filt):
         await r_handler.edit("`Filter`  **{}**  `doesn't exist`.".format(filt))
     else:
-        await r_handler.edit(
-            "`Filter`  **{}**  `berhasil dihapus`.".format(filt)
-        )
+        await r_handler.edit("`Filter`  **{}**  `berhasil dihapus`.".format(filt))
 
 
 @register(outgoing=True, pattern=r"^\.rmbotfilters (.*)")
