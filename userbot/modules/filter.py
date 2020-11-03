@@ -59,7 +59,7 @@ async def add_new_filter(new_handler):
             await new_handler.client.send_message(
                 BOTLOG_CHATID,
                 f"#FILTER\nCHAT ID: {new_handler.chat_id}\nTRIGGER: {keyword}"
-                "\n\nThe following message is saved as the filter's reply data for the chat, please do NOT delete it !!",
+                "\n\nPesan berikut disimpan sebagai data balasan filter untuk obrolan, tolong JANGAN hapus !!",
             )
             msg_o = await new_handler.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -75,7 +75,7 @@ async def add_new_filter(new_handler):
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = "`Filter`  **{}**  `{} successfully`."
+    success = "`Filter`  **{}**  `{} sukses ditambahkan`."
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         await new_handler.edit(success.format(keyword, "added"))
     else:
@@ -93,7 +93,7 @@ async def remove_a_filter(r_handler):
         await r_handler.edit("`Filter`  **{}**  `doesn't exist`.".format(filt))
     else:
         await r_handler.edit(
-            "`Filter`  **{}**  `was deleted successfully`.".format(filt)
+            "`Filter`  **{}**  `berhasil dihapus`.".format(filt)
         )
 
 
@@ -114,7 +114,7 @@ async def kick_marie_filter(event):
             i = i.replace("`", "")
             await event.reply("/stop %s" % (i.strip()))
         await sleep(0.3)
-    await event.respond("```Successfully purged bots filters yaay!```\n Gimme cookies!")
+    await event.respond("```Berhasil membersihkan filter bot yaay!```\n Gimme cookies!")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, "I cleaned all filters at " + str(event.chat_id)
@@ -139,14 +139,14 @@ async def filters_active(event):
 CMD_HELP.update(
     {
         "filter": ">`.filters`"
-        "\nUsage: Lists all active userbot filters in a chat."
-        "\n\n>`.filter <keyword> <reply text>` or reply to a message with >`.filter <keyword>`"
-        "\nUsage: Saves the replied message as a reply to the 'keyword'."
-        "\nThe bot will reply to the message whenever 'keyword' is mentioned."
-        "\nWorks with everything from files to stickers."
+        "\nUsage: Mencantumkan semua filter bot pengguna aktif dalam obrolan."
+        "\n\n>`.filter <keyword> <reply text>` atau membalas pesan dengan >`.filter <keyword>`"
+        "\nUsage: Menyimpan pesan balasan sebagai balasan untuk 'kata kunci'."
+        "\nBot akan membalas pesan kapan pun ketika 'kata kunci' disebutkan."
+        "\nBekerja dengan segala hal mulai dari file hingga stiker."
         "\n\n>`.stop <filter>`"
-        "\nUsage: Stops the specified filter."
+        "\nUsage: Menghentikan filter yang ditentukan."
         "\n\n>`.rmbotfilters <marie/rose>`"
-        "\nUsage: Removes all filters of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
+        "\nUsage: Menghapus semua filter bot admin (Saat ini didukung: Marie, Rose, dan klonnya.) Dalam obrolan."
     }
 )
