@@ -283,7 +283,9 @@ with bot:
                     "I'm [ProjectAlf](https://github.com/alfianandaa/ProjectAlf) modules helper...\nplease make your own bot, don't use mine 😋"
                 )
             else:
-                await event.reply(f"`Hei yang disana {ALIVE_NAME}\n\nAku bekerja untukmu :)`")
+                await event.reply(
+                    f"`Hei yang disana {ALIVE_NAME}\n\nAku bekerja untukmu :)`"
+                )
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
