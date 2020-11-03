@@ -19,8 +19,8 @@ async def hep(event):
             await asyncio.sleep(15)
             await event.delete()
         else:
-            await event.edit("Please specify a valid module name.")
-            await asyncio.sleep(5)
+            await event.edit("Masukin module yang bener ngab.")
+            await asyncio.sleep(10)
             await event.delete()
     else:
         string1 = "Harap tentukan modul mana yang Anda ingin bantuannya !!\nUsage: .help <nama modul>\n\n"
