@@ -20,9 +20,7 @@ from userbot.events import register
 @register(pattern=r"^\.whois(?: |$)(.*)", outgoing=True)
 async def who(event):
 
-    await event.edit(
-        "`Tunggu saya sedang mencuri data dari Emak...`"
-    )
+    await event.edit("`Tunggu saya sedang mencuri data dari Emak...`")
 
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
