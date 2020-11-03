@@ -176,9 +176,7 @@ async def mim(event):
             reply_message,
             "meme.png",
         )
-    await event.edit(
-        "```Waktu Transfigurasi! Mwahaha Mengubah gambar ini! (」ﾟﾛﾟ)｣ ```"
-    )
+    await event.edit("```Waktu Transfigurasi! Mwahaha Mengubah gambar ini! (」ﾟﾛﾟ)｣ ```")
     await asyncio.sleep(5)
     text = event.pattern_match.group(1)
     webp_file = await draw_meme_text(dls_loc, text)

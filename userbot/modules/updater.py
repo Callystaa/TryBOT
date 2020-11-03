@@ -59,7 +59,9 @@ async def print_changelogs(event, ac_br, changelog):
             reply_to=event.id,
         )
         await event.delete()
-        msg = await event.respond('ketik "`.update now` atau `.update deploy`" untuk memperbaharui.')
+        msg = await event.respond(
+            'ketik "`.update now` atau `.update deploy`" untuk memperbaharui.'
+        )
         await asyncio.sleep(15)
         await cl.delete()
         await msg.delete()
@@ -127,7 +129,9 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
             await asyncio.sleep(5)
             return await event.delete()
         else:
-            await event.edit("`Berhasil diterapkan!\n" "Sedang memulai ulang, harap tunggu...`")
+            await event.edit(
+                "`Berhasil diterapkan!\n" "Sedang memulai ulang, harap tunggu...`"
+            )
             await asyncio.sleep(15)
             await event.delete()
     else:
@@ -142,7 +146,8 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     await event.edit(
-        "`Berhasil diperbarui!\n" "ProjectDark sedang memulai ulang... Tunggu sebentar!`"
+        "`Berhasil diperbarui!\n"
+        "ProjectDark sedang memulai ulang... Tunggu sebentar!`"
     )
     await asyncio.sleep(15)
     await event.delete()
@@ -212,7 +217,8 @@ async def upstream(event):
 
     if changelog == "" and not force_update:
         await event.edit(
-            "\n`ProjectDark sudah`  **up-to-date**  `dengan`  " f"**{UPSTREAM_REPO_BRANCH}**\n"
+            "\n`ProjectDark sudah`  **up-to-date**  `dengan`  "
+            f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         await asyncio.sleep(15)
         await event.delete()

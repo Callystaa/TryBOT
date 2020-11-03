@@ -25,8 +25,7 @@ load_dotenv("config.env")
 StartTime = time.time()
 
 # Bot Logs setup:
-CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
-    "CONSOLE_LOGGER_VERBOSE") or "False")
+CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE") or "False")
 
 if CONSOLE_LOGGER_VERBOSE:
     basicConfig(
@@ -35,8 +34,8 @@ if CONSOLE_LOGGER_VERBOSE:
     )
 else:
     basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        level=INFO)
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=INFO
+    )
 LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 8:
@@ -48,8 +47,9 @@ if version_info[0] < 3 or version_info[1] < 8:
 
 # Check if the config was edited by using the already used variable.
 # Basically, its the 'virginity check' for the config file ;)
-CONFIG_CHECK = (os.environ.get(
-    "___________PLOX_______REMOVE_____THIS_____LINE__________") or None)
+CONFIG_CHECK = (
+    os.environ.get("___________PLOX_______REMOVE_____THIS_____LINE__________") or None
+)
 
 if CONFIG_CHECK:
     LOGS.info(
@@ -93,15 +93,15 @@ GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME") or None
 GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 
 # Custom (forked) repo URL for updater.
-UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
-                     or "https://github.com/Ajibcdefgh/ProjectYrzzr")
+UPSTREAM_REPO_URL = (
+    os.environ.get("UPSTREAM_REPO_URL") or "https://github.com/Ajibcdefgh/ProjectYrzzr"
+)
 
 # UPSTREAM_REPO_URL branch, the default is master
 UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "master"
 
 # Console verbose logging
-CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
-    "CONSOLE_LOGGER_VERBOSE") or "False")
+CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE") or "False")
 
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL") or None
@@ -114,8 +114,7 @@ REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY") or None
 
 # Chrome Driver and Headless Google Chrome Binaries
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER") or "/usr/bin/chromedriver"
-GOOGLE_CHROME_BIN = os.environ.get(
-    "GOOGLE_CHROME_BIN") or "/usr/bin/google-chrome"
+GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN") or "/usr/bin/google-chrome"
 
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID") or None
@@ -163,8 +162,7 @@ G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID") or None
 G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET") or None
 G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA") or None
 G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID") or None
-TEMP_DOWNLOAD_DIRECTORY = os.environ.get(
-    "TMP_DOWNLOAD_DIRECTORY") or "./downloads"
+TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY") or "./downloads"
 
 # Terminal Alias
 TERM_ALIAS = os.environ.get("TERM_ALIAS") or "ProjectAlf"
@@ -233,7 +231,8 @@ async def check_botlog_chatid():
     if entity.default_banned_rights.send_messages:
         LOGS.info(
             "Your account doesn't have rights to send messages to BOTLOG_CHATID "
-            "group. Check if you typed the Chat ID correctly.")
+            "group. Check if you typed the Chat ID correctly."
+        )
         sys.exit(1)
 
 
@@ -253,7 +252,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     modulo_page = page_number % max_num_pages
     if len(pairs) > number_of_rows:
         pairs = pairs[
-            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
+            modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
         ] + [
             (
                 custom.Button.inline(
@@ -269,11 +268,9 @@ def paginate_help(page_number, loaded_modules, prefix):
 
 with bot:
     try:
-        tgbot = TelegramClient(
-            "TG_BOT_TOKEN",
-            api_id=API_KEY,
-            api_hash=API_HASH).start(
-            bot_token=BOT_TOKEN)
+        tgbot = TelegramClient("TG_BOT_TOKEN", api_id=API_KEY, api_hash=API_HASH).start(
+            bot_token=BOT_TOKEN
+        )
 
         dugmeler = CMD_HELP
         me = bot.get_me()
@@ -321,9 +318,7 @@ with bot:
                                 "GitHub Repo",
                                 "https://github.com/alfianandaa/ProjectAlf",
                             ),
-                            custom.Button.url(
-                                "Support",
-                                "https://t.me/UserBotIndo"),
+                            custom.Button.url("Support", "https://t.me/UserBotIndo"),
                         ],
                     ],
                     link_preview=False,
@@ -337,10 +332,8 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
-                current_page_number = int(
-                    event.data_match.group(1).decode("UTF-8"))
-                buttons = paginate_help(
-                    current_page_number + 1, dugmeler, "helpme")
+                current_page_number = int(event.data_match.group(1).decode("UTF-8"))
+                buttons = paginate_help(current_page_number + 1, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
@@ -354,8 +347,7 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
-                current_page_number = int(
-                    event.data_match.group(1).decode("UTF-8"))
+                current_page_number = int(event.data_match.group(1).decode("UTF-8"))
                 buttons = paginate_help(
                     current_page_number - 1, dugmeler, "helpme"  # pylint:disable=E0602
                 )
@@ -402,7 +394,8 @@ with bot:
         LOGS.info(
             "Support for inline is disabled on your bot. "
             "To enable it, define a bot token and enable inline mode on your bot. "
-            "If you think there is a problem other than this, contact us.")
+            "If you think there is a problem other than this, contact us."
+        )
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except BaseException:
