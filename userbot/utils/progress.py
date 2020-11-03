@@ -42,8 +42,8 @@ async def progress(
         else:
             status = "Unknown"
         progress_str = "[{0}{1}] `{2}%`".format(
-            "".join("█" for i in range(math.floor(percentage / 10))),
-            "".join("░" for i in range(10 - math.floor(percentage / 10))),
+            "".join("▰" for i in range(math.floor(percentage / 10))),
+            "".join("▱" for i in range(10 - math.floor(percentage / 10))),
             round(percentage, 2),
         )
         tmp = (
