@@ -1,7 +1,7 @@
 {
   "name": "Telegram ProjectDark",
   "description": "[ProjectDark] A modular Telegram userbot running on Python 3.7+ with an sqlalchemy database.",
-  "logo": "https://telegra.ph/file/77b9040acaf9ea7cfb3d4.jpg",
+  "logo": "https://telegra.ph/file/66ca2d9d7e9e96fccf2c1.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/Ajibcdefgh/ProjectYrzzr",
+  "repository": "https://github.com/Ajibcdefgh/ProjectDark",
   "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02",
   "success_url": "https://t.me/userbotindo",
   "stack": "container",
@@ -54,11 +54,11 @@
     },
     "BOTLOG": {
       "description": "Incase you want to turn off logging, put this to false",
-      "value": "False"
+      "value": "True"
     },
     "BOTLOG_CHATID": {
       "description": "ChatID of the Log group. Set it to '0' if BOTLOG = False and/or if LOGSPAMMER = False.",
-      "value": "0"
+      "value": ""
     },
     "CONSOLE_LOGGER_VERBOSE": {
       "description": "If you need verbosity on the console logging",
@@ -149,7 +149,7 @@
       "required": false 
     },
     "IMG_LIMIT": {
-      "description": "Set limit for .img module",
+      "description": "Tetapkan limit untuk modul .img,maksimal 10",
       "value": "6",
       "required": true
     },
@@ -177,7 +177,7 @@
     },
     "ALIVE_LOGO": {
       "description": "Image in .alive message. the value MUST A DIRECT LINK or Will Crash!",
-      "value": "https://telegra.ph/file/09b16d6627c5dfe47342e.jpg",
+      "value": "https://telegra.ph/file/b2c599b59fe46303cb8cf.jpg",
       "required": false
     },
     "USR_TOKEN_UPTOBOX": {
