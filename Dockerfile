@@ -4,7 +4,7 @@ FROM alfianandaa/alf:groovy
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b master https://github.com/Ajibcdefgh/ProjectYrzzr /home/projectalf/
+RUN git clone -b master https://github.com/Ajibcdefgh/ProjectDark /home/projectalf/
 RUN mkdir /home/projectalf/bin/
 WORKDIR /home/projectalf/
 
