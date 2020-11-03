@@ -1,7 +1,8 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
+from userbot import CMD_HELP, bot
 from userbot.events import register
-from userbot import bot, CMD_HELP
 
 
 @register(outgoing=True, pattern=r"^\.gid(?: |$)(.*)")
@@ -24,9 +25,8 @@ async def _(event):
     async with bot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=186675376))
+                events.NewMessage(incoming=True, from_users=186675376)
+            )
             await bot.forward_messages(chat, reply_message)
             response = await response
         except YouBlockedUserError:
@@ -38,8 +38,6 @@ async def _(event):
             await event.edit(f"{response.message.message}")
 
 
-CMD_HELP.update({
-    "get_uid":
-    "`.gid`"
-    "\nUsage: Balas dalam pesan untuk mendapatkan ID pengguna."
-})
+CMD_HELP.update(
+    {"get_uid": "`.gid`" "\nUsage: Balas dalam pesan untuk mendapatkan ID pengguna."}
+)
