@@ -96,10 +96,10 @@ async def sticker_to_png(sticker):
 
     img = await sticker.get_reply_message()
     if not img.document:
-        await sticker.edit("Ini Bukan sticker Goblok!!!...`")
+        await sticker.edit("Ini Bukan sticker ngab!!!...`")
         return False
 
-    await sticker.edit("`Stiker Berhasil Di Colong!`")
+    await sticker.edit("`Stiker berhasil di ubah!`")
     image = io.BytesIO()
     await sticker.client.download_media(img, image)
     image.name = "sticker.png"
@@ -114,10 +114,10 @@ async def sticker_to_png(sticker):
 CMD_HELP.update(
     {
         "stickers_v2": ">`.itos`"
-        "\nUsage: Reply .itos to a sticker or an image to kang it to your userbot no pack "
+        "\nUsage: Reply .itos ke stiker atau gambar untuk di-kang ke userbot no pack Anda "
         "\n\n>`.get`"
-        "\nUsage: reply to a sticker to get 'PNG' file of sticker."
+        "\nUsage: balas ke stiker untuk mendapatkan preview stiker."
         "\n\n>`.stoi`"
-        "\nUsage: reply to a sticker to get 'PNG' file of sticker."
+        "\nUsage: balas ke stiker untuk mendapatkan file 'PNG' stiker."
     }
 )
