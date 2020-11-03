@@ -283,7 +283,7 @@ with bot:
                     "I'm [ProjectAlf](https://github.com/alfianandaa/ProjectAlf) modules helper...\nplease make your own bot, don't use mine 😋"
                 )
             else:
-                await event.reply(f"`Hey there {ALIVE_NAME}\n\nI work for you :)`")
+                await event.reply(f"`Hei yang disana {ALIVE_NAME}\n\nAku bekerja untukmu :)`")
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
@@ -295,7 +295,7 @@ with bot:
                 result = builder.article(
                     "Please Use Only With .help Command",
                     text="{}\nTotal loaded modules: {}".format(
-                        "[ProjectAlf](https://github.com/alfianandaa/ProjectAlf) modules helper.\n",
+                        "[ProjectDark](https://github.com/Ajibcdefgh/ProjectDark) modules helper.\n",
                         len(dugmeler),
                     ),
                     buttons=buttons,
@@ -310,13 +310,13 @@ with bot:
                 )
             else:
                 result = builder.article(
-                    "ProjectAlf",
+                    "ProjectDark",
                     text="""You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
                     buttons=[
                         [
                             custom.Button.url(
                                 "GitHub Repo",
-                                "https://github.com/alfianandaa/ProjectAlf",
+                                "https://github.com/Ajibcdefgh/ProjectDark",
                             ),
                             custom.Button.url("Support", "https://t.me/UserBotIndo"),
                         ],
@@ -354,7 +354,7 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Please make for yourself, don't use my bot!"
+                reply_pop_up_alert = "Silakan buat sendiri, jangan gunakan bot saya!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(
