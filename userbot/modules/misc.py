@@ -95,7 +95,7 @@ async def repeat(rep):
 @register(outgoing=True, pattern=r"^\.repo$")
 async def repo_is_here(wannasee):
     await wannasee.edit(
-        "[👉🤖👈](https://github.com/Ajibcdefgh/ProjectYrzzr) is ProjectAlf repo."
+        "[👉🤖👈](https://github.com/Ajibcdefgh/ProjectYrzzr) ini ProjectDark."
     )
 
 
