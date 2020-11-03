@@ -94,7 +94,7 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 
 # Custom (forked) repo URL for updater.
 UPSTREAM_REPO_URL = (
-    os.environ.get("UPSTREAM_REPO_URL") or "https://github.com/Ajibcdefgh/ProjectYrzzr"
+    os.environ.get("UPSTREAM_REPO_URL") or "https://github.com/Ajibcdefgh/ProjectDark"
 )
 
 # UPSTREAM_REPO_URL branch, the default is master
@@ -165,7 +165,7 @@ G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID") or None
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY") or "./downloads"
 
 # Terminal Alias
-TERM_ALIAS = os.environ.get("TERM_ALIAS") or "ProjectAlf"
+TERM_ALIAS = os.environ.get("TERM_ALIAS") or "ProjectDark"
 
 # Genius Lyrics API
 GENIUS = os.environ.get("GENIUS_ACCESS_TOKEN") or None
@@ -256,10 +256,10 @@ def paginate_help(page_number, loaded_modules, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "⬅️", data="{}_prev({})".format(prefix, modulo_page)
+                    "👈", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "➡️", data="{}_next({})".format(prefix, modulo_page)
+                    "👉", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]
@@ -280,7 +280,7 @@ with bot:
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
-                    "I'm [ProjectAlf](https://github.com/alfianandaa/ProjectAlf) modules helper...\nplease make your own bot, don't use mine 😋"
+                    "Aku [ProjectDark](https://github.com/Ajibcdefgh/ProjectDark) modul pembantu...\ntolong buat bot Anda sendiri, jangan gunakan bot saya 😋"
                 )
             else:
                 await event.reply(
