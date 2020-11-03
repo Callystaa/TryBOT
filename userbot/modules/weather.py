@@ -114,13 +114,13 @@ async def get_weather(weather):
         return datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
 
     await weather.edit(
-        f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
-        + f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
-        + f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
-        + f"**Humidity:** `{humidity}%`\n"
-        + f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n"
-        + f"**Sunrise:** `{sun(sunrise)}`\n"
-        + f"**Sunset:** `{sun(sunset)}`\n\n"
+        f"**Suhu🌡️:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
+        + f"**Min. Suhu❄️.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+        + f"**Maks. Suhu🔆.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+        + f"**Kelembaban🍄:** `{humidity}%`\n"
+        + f"**Angin🎏:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n"
+        + f"**Matahari terbit🌄:** `{sun(sunrise)}`\n"
+        + f"**Matahari terbenam🌅:** `{sun(sunset)}`\n\n"
         + f"**{desc}**\n"
         + f"`{cityname}, {fullc_n}`\n"
         + f"`{time}`"
@@ -129,7 +129,7 @@ async def get_weather(weather):
 
 CMD_HELP.update(
     {
-        "weather": ">`.weather <city> or .weather <city>, <country name/code>`"
-        "\nUsage: Gets the weather of a city."
+        "weather": ">`.weather <kota> atay .weather <kota>, <nama kota/kode>`"
+        "\nUsage: Mendapatkan informasi cuaca."
     }
 )
