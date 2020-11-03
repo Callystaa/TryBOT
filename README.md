@@ -24,7 +24,7 @@ Based on RaphielGang's [Telegram-Paperplane](https://github.com/RaphielGang/Tele
 
 ## How To Host
 The easiest way to deploy this userbot
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Ajibcdefgh/ProjectYrzzr/tree/master"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="210" height="34.45"/></a></p>
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Ajibcdefgh/ProjectDark/tree/master"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="210" height="34.45"/></a></p>
 
 ## Generate String
 Generate string using repl.it
@@ -48,6 +48,7 @@ Join [Userbotindo Support Group](https://t.me/userbotindo) for discussion, bug r
 *   [MoveAngel](https://github.com/MoveAngel) - One4uBot
 *   [AidilAryanto](https://github.com/aidilaryanto) - ProjectDils 
 *   [AnggaR69s](https://github.com/GengKapak/DCLXVI) - DCLXVI
+*   [X-Newbie](https://github.com/X-Newbie) - Xbot-Remix
 *   [others](https://github.com/alfianandaa/ProjectAlf/graphs/contributors) that help to make this userbot awesome.
 
 ## License
