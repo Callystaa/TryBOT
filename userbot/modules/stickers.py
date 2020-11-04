@@ -23,16 +23,16 @@ from userbot import CMD_HELP, bot
 from userbot.events import register
 
 KANGING_STR = [
-    "Bentar nyeduh Kopi Dulu...",
-    "Ngeliatin ini sticker...",
-    "Masukin ni Sticker ke pack stickerku...",
-    "Ngekang Ni Sticker...",
-    "Hey Ini Sticker Bagus!\nGimana Jika Aku kang?!..",
-    "Tak kang yo stickermu.",
-    "Ay Coba liat stickermu (☉｡☉)!→\nApa Luu...",
-    "Bapac Toing ke Mekkah, Di mekkah eh masuk angin, Bisa ini gw kangin?!",
-    "Compile This Sticker \nHehe...",
-    "Mr.Cabul Sticker mu bagus ni, minta yakk... ",
+    "Stiker lu bagus,gua colong yak...",
+    "Mantau stiker lu...",
+    "Eh kasihan stiker lu kesepian,gua culik yak...",
+    "Izin ngekang stiker lu ngab...",
+    "Bagus banget!\nBoleh gua colong?!..",
+    "Ku kang ya stikermu.",
+    "Eh coba lihat stiker lu (☉｡☉)!→\nTapi boong...",
+    "Ada motor lampunya merah,boleh kan stiker ini aku kang?!",
+    "Mengclone stiker inj \nMuehehe...",
+    "Ngab stiker lu bagus bagus,minta ya... ",
 ]
 
 
@@ -78,12 +78,12 @@ async def kang(args):
         else:
             return await args.edit("`Unsupported File!`")
     else:
-        return await args.edit("`I can't kang that...`")
+        return await args.edit("`Itu ga bisa dicolong...`")
 
     if photo:
         splat = args.text.split()
         if not emojibypass:
-            emoji = "🤔"
+            emoji = "⚫"
         pack = 1
         if len(splat) == 3:
             pack = splat[2]  # User sent both
@@ -247,7 +247,7 @@ async def kang(args):
 
         await args.edit(
             "`Sticker Sukses Tercolong!`"
-            f"\nKlik [disini](t.me/addstickers/{packname}) kalo mau liat stickerku",
+            f"\nKlik [disini](t.me/addstickers/{packname}) kalo mau pake pack stikerku",
             parse_mode="md",
         )
 
