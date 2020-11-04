@@ -77,7 +77,7 @@ async def add_new_filter(new_handler):
         string = rep_msg.text
     success = "`Filter`  **{}**  `{} sukses ditambahkan`."
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
-        await new_handler.edit(success.format(keyword, "added"))
+        await new_handler.edit(success.format(keyword, "sukses"))
     else:
         await new_handler.edit(success.format(keyword, "updated"))
 
@@ -90,7 +90,7 @@ async def remove_a_filter(r_handler):
         return await r_handler.edit("`Running on Non-SQL mode!`")
     filt = r_handler.pattern_match.group(1)
     if not remove_filter(r_handler.chat_id, filt):
-        await r_handler.edit("`Filter`  **{}**  `doesn't exist`.".format(filt))
+        await r_handler.edit("`Filter`  **{}**  `tidak ada`.".format(filt))
     else:
         await r_handler.edit("`Filter`  **{}**  `berhasil dihapus`.".format(filt))
 
@@ -112,7 +112,7 @@ async def kick_marie_filter(event):
             i = i.replace("`", "")
             await event.reply("/stop %s" % (i.strip()))
         await sleep(0.3)
-    await event.respond("```Berhasil membersihkan filter bot yaay!```\n Gimme cookies!")
+    await event.respond("```Berhasil membersihkan filter bot yaay!```\n Beri aku kue!")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, "I cleaned all filters at " + str(event.chat_id)
