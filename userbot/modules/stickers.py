@@ -31,7 +31,7 @@ KANGING_STR = [
     "Ku kang ya stikermu.",
     "Eh coba lihat stiker lu (☉｡☉)!→\nTapi boong...",
     "Ada motor lampunya merah,boleh kan stiker ini aku kang?!",
-    "Mengclone stiker inj \nMuehehe...",
+    "Mengclone stiker ini \nMuehehe...",
     "Ngab stiker lu bagus bagus,minta ya... ",
 ]
 
