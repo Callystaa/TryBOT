@@ -192,7 +192,7 @@ async def upload(u_event):
                 progress(d, t, u_event, c_time, "[UPLOAD]", input_str)
             ),
         )
-        await u_event.edit("Uploaded successfully !!")
+        await u_event.edit("Berhasil diunggah !!")
     else:
         await u_event.edit("404: File Not Found")
 
@@ -331,7 +331,7 @@ async def uploadas(uas_event):
             elif spam_big_messages:
                 return await uas_event.edit("TBD: Not (yet) Implemented")
             os.remove(thumb)
-            await uas_event.edit("Uploaded successfully !!")
+            await uas_event.edit("Berhasil diunggah !!")
         except FileNotFoundError as err:
             await uas_event.edit(str(err))
     else:
@@ -340,9 +340,9 @@ async def uploadas(uas_event):
 
 CMD_HELP.update(
     {
-        "download": ">`.dl <link|filename> or reply to media`"
-        "\nUsage: Downloads file to the server."
-        "\n\n>`.upl <path in server>`"
-        "\nUsage: Uploads a locally stored file to the chat."
+        "download": ">`.dl <link|filename> atau balas media`"
+        "\nUsage: Unduh file ke server."
+        "\n\n>`.upl <jalur di server>`"
+        "\nUsage: Mengunggah file yang disimpan secara lokal ke obrolan."
     }
 )
