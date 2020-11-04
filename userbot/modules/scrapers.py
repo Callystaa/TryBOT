@@ -237,7 +237,9 @@ async def urban_dict(ud_e):
     try:
         define(query)
     except HTTPError:
-        return await ud_e.edit(f"Maaf, tidak dapat menemukan hasil apa pun untuk: {query}")
+        return await ud_e.edit(
+            f"Maaf, tidak dapat menemukan hasil apa pun untuk: {query}"
+        )
     mean = define(query)
     deflen = sum(len(i) for i in mean[0]["def"])
     exalen = sum(len(i) for i in mean[0]["example"])
@@ -584,7 +586,9 @@ async def download_video(v_url):
                 )
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Mengupload..", f"{rip_data['title']}.mp3")
+                progress(
+                    d, t, v_url, c_time, "Mengupload..", f"{rip_data['title']}.mp3"
+                )
             ),
         )
         os.remove(f"{rip_data['id']}.mp3")
@@ -597,7 +601,9 @@ async def download_video(v_url):
             supports_streaming=True,
             caption=rip_data["title"],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Mengupload..", f"{rip_data['title']}.mp4")
+                progress(
+                    d, t, v_url, c_time, "Mengupload..", f"{rip_data['title']}.mp4"
+                )
             ),
         )
         os.remove(f"{rip_data['id']}.mp4")
@@ -648,7 +654,8 @@ CMD_HELP.update(
         "\nUsage: Menerjemahkan teks ke bahasa yang diatur."
         "\nUse >`.lang trt <language code>` to set language for trt. (Default-nya adalah bahasa Inggris)",
         "yt": ">`.yt <text>`" "\nUsage: melakukan pencarian YouTube.",
-        "imdb": ">`.imdb <movie-name>`" "\nUsage: Menampilkan info film dan hal lainnya.",
+        "imdb": ">`.imdb <movie-name>`"
+        "\nUsage: Menampilkan info film dan hal lainnya.",
         "rip": ">`.aud <url> or vid <url>`"
         "\nUsage: Unduh video dan lagu dari YouTube "
         "(and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).",
