@@ -75,11 +75,11 @@ async def add_new_filter(new_handler):
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = "`Filter`  **{}**  `{} sukses ditambahkan`."
+    success = "`Filter`  **{}**  `{} ditambahkan`."
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         await new_handler.edit(success.format(keyword, "sukses"))
     else:
-        await new_handler.edit(success.format(keyword, "updated"))
+        await new_handler.edit(success.format(keyword, "diperbarui"))
 
 
 @register(outgoing=True, pattern=r"^\.stop (.*)")
