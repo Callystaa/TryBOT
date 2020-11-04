@@ -59,7 +59,7 @@ TRT_LANG = "en"
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
-    await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
+    await prog.edit(f"Bahasa untuk carbon.now.sh disetel ke {CARBONLANG}")
 
 
 @register(outgoing=True, pattern=r"^\.carbon")
@@ -95,8 +95,8 @@ async def carbon_api(e):
         e.chat_id,
         file_path,
         caption=(
-            "Made using [Carbon](https://carbon.now.sh/about/),"
-            "\na project by [Dawn Labs](https://dawnlabs.io/)"
+            "Dibuat menggunakan [Carbon](https://carbon.now.sh/about/),"
+            "\nsebuah proyek oleh [Dawn Labs](https://dawnlabs.io/)"
         ),
         force_document=True,
         reply_to=e.message.reply_to_msg_id,
@@ -223,10 +223,10 @@ async def wiki(wiki_q):
         )
         if os.path.exists("output.txt"):
             return os.remove("output.txt")
-    await wiki_q.edit("**Search:**\n`" + match + "`\n\n**Result:**\n" + result)
+    await wiki_q.edit("**Cari:**\n`" + match + "`\n\n**Hasil:**\n" + result)
     if BOTLOG:
         await wiki_q.client.send_message(
-            BOTLOG_CHATID, f"Wiki query `{match}` was executed successfully"
+            BOTLOG_CHATID, f"Kueri wiki `{match}` berhasil dieksekusi"
         )
 
 
@@ -237,7 +237,7 @@ async def urban_dict(ud_e):
     try:
         define(query)
     except HTTPError:
-        return await ud_e.edit(f"Sorry, couldn't find any results for: {query}")
+        return await ud_e.edit(f"Maaf, tidak dapat menemukan hasil apa pun untuk: {query}")
     mean = define(query)
     deflen = sum(len(i) for i in mean[0]["def"])
     exalen = sum(len(i) for i in mean[0]["example"])
@@ -279,7 +279,7 @@ async def urban_dict(ud_e):
                 BOTLOG_CHATID, "ud query `" + query + "` executed successfully."
             )
     else:
-        await ud_e.edit("No result found for **" + query + "**")
+        await ud_e.edit("Tidak ada hasil untuk **" + query + "**")
 
 
 @register(outgoing=True, pattern=r"^\.tts(?: |$)([\s\S]*)")
@@ -488,9 +488,9 @@ async def yt_search(video_q):
         results = json.loads(YoutubeSearch(query, max_results=7).to_json())
     except KeyError:
         return await video_q.edit(
-            "`Youtube Search gone retard.\nCan't search this query!`"
+            "`Pencarian Youtube menjadi lambat.\nTidak dapat mencari kueri ini!`"
         )
-    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
+    output = f"**Kueri Pencarian:**\n`{query}`\n\n**Hasil:**\n\n"
     for i in results["videos"]:
         output += f"● `{i['title']}`\nhttps://www.youtube.com{i['url_suffix']}\n\n"
     await video_q.edit(output, link_preview=False)
@@ -501,7 +501,7 @@ async def download_video(v_url):
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("`Preparing to download...`")
+    await v_url.edit("`Bersiap untuk mengunduh...`")
 
     if type == "aud":
         opts = {
@@ -545,7 +545,7 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("`Fetching data, please wait..`")
+        await v_url.edit("`Mengambil data, harap tunggu..`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
@@ -571,7 +571,7 @@ async def download_video(v_url):
         return await v_url.edit(f"{str(type(e)): {str(e)}}")
     c_time = time.time()
     if song:
-        await v_url.edit(f"`Preparing to upload song:`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Bersiap mengunggah lagu:`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
@@ -584,20 +584,20 @@ async def download_video(v_url):
                 )
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
+                progress(d, t, v_url, c_time, "Mengupload..", f"{rip_data['title']}.mp3")
             ),
         )
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`Preparing to upload video:`\n**{rip_data['title']}**")
+        await v_url.edit(f"`Bersiap mengupload video:`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
             supports_streaming=True,
             caption=rip_data["title"],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
+                progress(d, t, v_url, c_time, "Mengupload..", f"{rip_data['title']}.mp4")
             ),
         )
         os.remove(f"{rip_data['id']}.mp4")
@@ -632,27 +632,27 @@ async def wolfram(wvent):
 CMD_HELP.update(
     {
         "img": ">`.img <search_query>`"
-        "\nUsage: Does an image search on Google and shows 5 images.",
+        "\nUsage: Melakukan pencarian gambar di Google dan menampilkan 5 gambar.",
         "currency": ">`.currency <amount> <from> <to>`"
-        "\nUsage: Converts various currencies for you.",
+        "\nUsage: Mengonversi berbagai mata uang untuk Anda.",
         "carbon": ">`.carbon <text> [or reply]`"
-        "\nUsage: Beautify your code using carbon.now.sh\n"
-        "Use .crblang <text> to set language for your code.",
-        "google": ">`.google <query>`" "\nUsage: Does a search on Google.",
-        "wiki": ">`.wiki <query>`" "\nUsage: Does a search on Wikipedia.",
-        "ud": ">`.ud <query>`" "\nUsage: Does a search on Urban Dictionary.",
+        "\nUsage: Mempercantik kode Anda menggunakan carbon.now.sh\n"
+        "Use .crblang <text> untuk mengatur bahasa untuk kode Anda.",
+        "google": ">`.google <query>`" "\nUsage: Melakukan pencarian di Google.",
+        "wiki": ">`.wiki <query>`" "\nUsage: Melakukan pencarian di Wikipedia.",
+        "ud": ">`.ud <query>`" "\nUsage: Melakukan pencarian di Urban Dictionary.",
         "tts": ">`.tts <text> [or reply]`"
-        "\nUsage: Translates text to speech for the language which is set."
-        "\nUse >`.lang tts <language code>` to set language for tts. (Default is English.)",
+        "\nUsage: Menerjemahkan teks ke ucapan untuk bahasa yang diatur."
+        "\nUse >`.lang tts <language code>` untuk mengatur bahasa untuk tts. (Default-nya adalah bahasa Inggris.)",
         "trt": ">`.trt <text> [or reply]`"
-        "\nUsage: Translates text to the language which is set."
-        "\nUse >`.lang trt <language code>` to set language for trt. (Default is English)",
-        "yt": ">`.yt <text>`" "\nUsage: Does a YouTube search.",
-        "imdb": ">`.imdb <movie-name>`" "\nUsage: Shows movie info and other stuff.",
+        "\nUsage: Menerjemahkan teks ke bahasa yang diatur."
+        "\nUse >`.lang trt <language code>` to set language for trt. (Default-nya adalah bahasa Inggris)",
+        "yt": ">`.yt <text>`" "\nUsage: melakukan pencarian YouTube.",
+        "imdb": ">`.imdb <movie-name>`" "\nUsage: Menampilkan info film dan hal lainnya.",
         "rip": ">`.aud <url> or vid <url>`"
-        "\nUsage: Download videos and songs from YouTube "
+        "\nUsage: Unduh video dan lagu dari YouTube "
         "(and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).",
         "wolfram": ".wolfram <query>"
-        "\nUsage: Get answers to questions using WolframAlpha Spoken Results API.",
+        "\nUsage: Dapatkan jawaban atas pertanyaan menggunakan WolframAlpha Spoken Results API.",
     }
 )
