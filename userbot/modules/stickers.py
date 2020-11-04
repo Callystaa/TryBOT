@@ -36,7 +36,7 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern=r"^\.kang")
+@register(outgoing=True, pattern=r"^\.kang|.curi")
 async def kang(args):
     user = await bot.get_me()
     if not user.username:
@@ -353,15 +353,15 @@ async def sticker_to_png(sticker):
 
 CMD_HELP.update(
     {
-        "stickers": ">`.kang [emoji('s)]?`"
-        "\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack "
-        "\nor specify the emoji you want to."
-        "\n\n>`.kang (emoji['s]]?` [number]?"
-        "\nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji "
-        "or choose the emoji you want to."
+        "stickers": ">`.kang/.curi [emoji('s)]?`"
+        "\nUsage: Balas .kang ke stiker atau gambar untuk ditempelkan ke paket userbot Anda "
+        "\natau tentukan emoji yang Anda inginkan."
+        "\n\n>`.kang/.curi (emoji['s]]?` [number]?"
+        "\nUsage: Mencuri stiker/gambar ke paket yang ditentukan tetapi menggunakan ⚫ sebagai emoji "
+        "atau pilih emoji yang Anda inginkan."
         "\n\n>`.stkrinfo`"
-        "\nUsage: Gets info about the sticker pack."
+        "\nUsage: Mendapat info tentang paket stiker."
         "\n\n>`.getsticker`"
-        "\nUsage: reply to a sticker to get 'PNG' file of sticker."
+        "\nUsage: membalas stiker untuk mendapatkan file 'PNG' dari stiker."
     }
 )
