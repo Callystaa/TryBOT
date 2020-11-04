@@ -18,32 +18,32 @@ from userbot.utils import progress
 @register(outgoing=True, pattern=r"^\.ssvideo(?: |$)(.*)")
 async def ssvideo(event):
     if not event.reply_to_msg_id:
-        await event.edit("`Reply to any media..`")
+        await event.edit("`Balas media apa pun..`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`reply to a video..`")
+        await event.edit("`balas ke video..`")
         return
     try:
         frame = int(event.pattern_match.group(1))
         if frame > 10:
-            return await event.edit("`hey..dont put that much`")
+            return await event.edit("`hey..jangan terlalu banyak`")
     except BaseException:
-        return await event.edit("`Please input number of frame!`")
+        return await event.edit("`Harap masukkan jumlah frame!`")
     if reply_message.photo:
-        return await event.edit("`Hey..this is an image!`")
+        return await event.edit("`Hei..ini adalah gambar!`")
     if (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
-        return await event.edit("`Unsupported files..`")
+        return await event.edit("`File tidak didukung..`")
     elif (
         DocumentAttributeFilename(file_name="sticker.webp")
         in reply_message.media.document.attributes
     ):
-        return await event.edit("`Unsupported files..`")
+        return await event.edit("`File tidak didukung..`")
     c_time = time.time()
-    await event.edit("`Downloading media..`")
+    await event.edit("`Mendownload media..`")
     ss = await bot.download_media(
         reply_message,
         "anu.mp4",
@@ -52,7 +52,7 @@ async def ssvideo(event):
         ),
     )
     try:
-        await event.edit("`Processing..`")
+        await event.edit("`Sedang mengambil screenshot..`")
         command = f"vcsi -g {frame}x{frame} {ss} -o ss.png "
         os.system(command)
         await event.client.send_file(
@@ -68,5 +68,5 @@ async def ssvideo(event):
 
 
 CMD_HELP.update(
-    {"ssvideo": "`>.ssvideo <frame>`" "\nUsage: to ss video frame per frame"}
+    {"ssvideo": "`>.ssvideo <frame>`" "\nUsage: untuk ss video frame per frame"}
 )
