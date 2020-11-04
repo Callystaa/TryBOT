@@ -3229,7 +3229,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "remixmemes": "`.eye`\
+        "morememes": "`.eye`\
 \nUsage: see it yourself.\
 \n\n`.earth`\
 \nusage: spins like earth 🌎🌎\
