@@ -15,7 +15,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.saylie (.*)")
+@register(outgoing=True, pattern="^.imp (.*)")
 async def f_load(message):
     clrs = {
         "red": 1,
@@ -87,12 +87,12 @@ async def bruh(message, user):
     ln = user.last_name
     name = fn + (" " + ln if ln else "")
     name = "***" + name
-    await message.edit(name + choice([" ", " não "]) + "era um impostor! ***")
+    await message.edit(name + choice([" ", " tidak "]) + "adalah seorang penipu! ***")
 
 
 CMD_HELP.update(
     {
-        "amongus": ".saylie\
+        "amongus": ".imp\
     \nKirimkan gambar seorang impostor Among US dengan kalimat dari Anda."
     }
 )
