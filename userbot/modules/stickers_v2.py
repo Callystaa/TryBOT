@@ -41,7 +41,7 @@ async def _(event):
             await event.client.delete_message(event.chat_id, [msg.id, response.id])
 
 
-@register(outgoing=True, pattern="^.get$")
+@register(outgoing=True, pattern="^.stoi$")
 async def _(event):
     if event.fwd_from:
         return
@@ -88,7 +88,7 @@ async def _(event):
         await bot.send_read_acknowledge(conv.chat_id)
 
 
-@register(outgoing=True, pattern="^.stoi$")
+@register(outgoing=True, pattern="^.get$")
 async def sticker_to_png(sticker):
     if not sticker.is_reply:
         await sticker.edit("`NULL information to feftch...`")
@@ -115,9 +115,9 @@ CMD_HELP.update(
     {
         "stickers_v2": ">`.itos`"
         "\nUsage: Reply .itos ke stiker atau gambar untuk di-kang ke userbot no pack Anda "
-        "\n\n>`.get`"
-        "\nUsage: balas ke stiker untuk mendapatkan preview stiker."
         "\n\n>`.stoi`"
+        "\nUsage: balas ke stiker untuk mendapatkan preview stiker."
+        "\n\n>`.get`"
         "\nUsage: balas ke stiker untuk mendapatkan file 'PNG' stiker."
     }
 )
