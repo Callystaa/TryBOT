@@ -159,7 +159,7 @@ async def update(event, repo, ups_rem, ac_br):
 
 @register(outgoing=True, pattern=r"^\.update( now| deploy|$)")
 async def upstream(event):
-    await event.edit("`Getting information....`")
+    await event.edit("`Mendapatkan informasi....`")
     conf = event.pattern_match.group(1).strip()
     off_repo = UPSTREAM_REPO_URL
     force_update = False
