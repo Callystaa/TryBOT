@@ -1,13 +1,12 @@
 from datetime import datetime
 from time import sleep
 
+from nana import Command, app
+from nana.helpers.PyroHelpers import ReplyCheck
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.raw import functions
 from pyrogram.types import User
-
-from nana import app, Command
-from nana.helpers.PyroHelpers import ReplyCheck
 
 __MODULE__ = "Whois"
 __HELP__ = """
@@ -19,7 +18,7 @@ To find information about a person.
 """
 
 WHOIS = (
-    "**WHO IS \"{full_name}\"?**\n"
+    '**WHO IS "{full_name}"?**\n'
     "[Link to profile](tg://user?id={user_id})\n"
     "════════════════\n"
     "UserID: `{user_id}`\n"
@@ -29,10 +28,11 @@ WHOIS = (
     "Last Online: `{last_online}`\n"
     "Common Groups: `{common_groups}`\n"
     "════════════════\n"
-    "Bio:\n{bio}")
+    "Bio:\n{bio}"
+)
 
 WHOIS_PIC = (
-    "**WHO IS \"{full_name}\"?**\n"
+    '**WHO IS "{full_name}"?**\n'
     "[Link to profile](tg://user?id={user_id})\n"
     "════════════════\n"
     "UserID: `{user_id}`\n"
@@ -45,32 +45,35 @@ WHOIS_PIC = (
     "Profile Pics: `{profile_pics}`\n"
     "Last Updated: `{profile_pic_update}`\n"
     "════════════════\n"
-    "Bio:\n{bio}")
+    "Bio:\n{bio}"
+)
 
 
 def LastOnline(user: User):
     if user.is_bot:
         return ""
-    elif user.status == 'recently':
+    elif user.status == "recently":
         return "Recently"
-    elif user.status == 'within_week':
+    elif user.status == "within_week":
         return "Within the last week"
-    elif user.status == 'within_month':
+    elif user.status == "within_month":
         return "Within the last month"
-    elif user.status == 'long_time_ago':
+    elif user.status == "long_time_ago":
         return "A long time ago :("
-    elif user.status == 'online':
+    elif user.status == "online":
         return "Currently Online"
-    elif user.status == 'offline':
-        return datetime.fromtimestamp(user.last_online_date).strftime("%a, %d %b %Y, %H:%M:%S")
+    elif user.status == "offline":
+        return datetime.fromtimestamp(user.last_online_date).strftime(
+            "%a, %d %b %Y, %H:%M:%S"
+        )
 
 
 async def GetCommon(client, get_user):
     common = await client.send(
         functions.messages.GetCommonChats(
-            user_id=await client.resolve_peer(get_user),
-            max_id=0,
-            limit=0))
+            user_id=await client.resolve_peer(get_user), max_id=0, limit=0
+        )
+    )
     return common
 
 
@@ -118,8 +121,10 @@ async def whois(client, message):
                 username=user.username if user.username else "",
                 last_online=LastOnline(user),
                 common_groups=len(common.chats),
-                bio=desc if desc else "`No bio set up.`"),
-            disable_web_page_preview=True)
+                bio=desc if desc else "`No bio set up.`",
+            ),
+            disable_web_page_preview=True,
+        )
     elif user.photo:
         await client.send_photo(
             message.chat.id,
@@ -134,7 +139,8 @@ async def whois(client, message):
                 profile_pics=pic_count,
                 common_groups=len(common.chats),
                 bio=desc if desc else "`No bio set up.`",
-                profile_pic_update=ProfilePicUpdate(user_pic)),
+                profile_pic_update=ProfilePicUpdate(user_pic),
+            ),
             reply_to_message_id=ReplyCheck(message),
             file_ref=user_pic[0].file_ref,
         )
