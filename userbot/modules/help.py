@@ -16,11 +16,11 @@ async def hep(event):
     if args:
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
-            await asyncio.sleep(15)
+            await asyncio.sleep(120)
             await event.delete()
         else:
             await event.edit("Masukin module yang bener ngab.")
-            await asyncio.sleep(10)
+            await asyncio.sleep(120)
             await event.delete()
     else:
         string1 = "Harap tentukan modul mana yang Anda ingin bantuannya !!\nUsage: .help <nama modul>\n\n"
