@@ -228,10 +228,10 @@ async def amireallyalive(alive):
         f"┏━━━━━━━━━━━━━━━━━━━━━━━━\n"
         f"┣[ 🕒 `Bot uptime :` {uptime}\n"
         f"┣[ 👤 `User       :` {DEFAULTUSER}\n"
-        f"┣[ 🐍 `Python     :` v{python_version()}\n"
+        f"┣[ 👁️‍🗨️ `Username   :` @{user.username}\n"
         f"┣[ ⚙️ `Telethon   :` v{version.__version__}\n"
-        f"┣[ 👁‍🗨 `Username   :` @{user.username}\n"
-        f"┣[ 🎮 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
+        f"┣[ 🐍 `Python     :` v{python_version()}\n"
+        f"┣[ 🤖 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
         f"┗━━━━━━━━━━━━━━━━━━━━━━━━\n"
         f"`Semua modul dimuat:` {len(modules)}"
     )
