@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/Ajibcdefgh/ProjectDark/actions?query=workflow%3AFailedChecker" > <img src="https://img.shields.io/github/workflow/status/Ajibcdefgh/ProjectDark/FailedChecker/master?label=Build&style=flat-square&logo=github-actions&logoColor=white&color=98CE00" alt="FailedChecker" /></a>
-    <a href="https://www.codacy.com/manual/Ajibcdefgh/One4uDark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Ajibcdefgh/ProjectDark&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/e758192aef1c4178be8777694409b248?style=flat-square&logo=codacy&color=17BEBB" alt="codacy badge"/></a>
+    <a href="https://www.codacy.com/manual/Ajibcdefgh/ProjectDark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Ajibcdefgh/ProjectDark&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/e758192aef1c4178be8777694409b248?style=flat-square&logo=codacy&color=17BEBB" alt="codacy badge"/></a>
     <a href="https://github.com/Ajibcdefgh/ProjectDark/actions?query=workflow%3APyLint"> <img src="https://img.shields.io/github/workflow/status/Ajibcdefgh/ProjectDark/PyLint/sql-extended?label=PyLint&style=flat-square&logo=github-actions&logoColor=white&color=98CE00" alt="Pylint" /></a><br>
     <a href="https://github.com/Ajibcdefgh/ProjectDark/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/Ajibcdefgh/ProjectDark/master?label=Last%20Commit&style=flat-square&logo=github&color=8C86AA" alt="Commit" /></a>
     <a href="https://github.com/Ajibcdefgh/ProjectDark/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/Ajibcdefgh/One4uDark?label=Contributors&style=flat-square&logo=github&color=FF4D80" alt="Contributors" /></a>
