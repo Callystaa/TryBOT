@@ -79,7 +79,7 @@ async def add_new_filter(new_handler):
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         await new_handler.edit(success.format(keyword, "sukses"))
     else:
-        await new_handler.edit(success.format(keyword, "diperbarui"))
+        await new_handler.edit(success.format(keyword, "diperbarui,dan"))
 
 
 @register(outgoing=True, pattern=r"^\.stop (.*)")
