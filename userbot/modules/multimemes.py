@@ -301,19 +301,19 @@ async def quotess(qotli):
     if qotli.fwd_from:
         return
     if not qotli.reply_to_msg_id:
-        await qotli.edit("```Reply to any user message.```")
+        await qotli.edit("```Balas pesan pengguna mana pun.```")
         return
     reply_message = await qotli.get_reply_message()
     if not reply_message.text:
-        await qotli.edit("```Reply to text message```")
+        await qotli.edit("```Balas pesan teks```")
         return
     chat = "@QuotLyBot"
     reply_message.sender
     if reply_message.sender.bot:
-        await qotli.edit("```Reply to actual users message.```")
+        await qotli.edit("```Balas pesan pengguna sebenarnya.```")
         return
     try:
-        await qotli.edit("`Processing..`")
+        await qotli.edit("`Membuat stiker..`")
         async with bot.conversation(chat) as conv:
             try:
                 response = conv.wait_event(
