@@ -59,6 +59,7 @@ Join [Userbotindo Support Group](https://t.me/userbotindo) for discussion, bug r
 *   [AidilAryanto](https://github.com/aidilaryanto) - ProjectDils 
 *   [AnggaR69s](https://github.com/GengKapak/DCLXVI) - DCLXVI
 *   [X-Newbie](https://github.com/X-Newbie) - Xbot-Remix
+*   [legenhand](https://github.com/legenhand) - Nana-Bot
 *   [others](https://github.com/alfianandaa/ProjectAlf/graphs/contributors) that help to make this userbot awesome.
 
 ## License
