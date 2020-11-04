@@ -1,153 +1,149 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-# The entire source code is OSSRPL except 'whois' which is MPL
-# License: MPL and OSSRPL
+from datetime import datetime
+from time import sleep
 
-import os
+from pyrogram import filters
+from pyrogram.errors import PeerIdInvalid
+from pyrogram.raw import functions
+from pyrogram.types import User
 
-from telethon.tl.functions.photos import GetUserPhotosRequest
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import MessageEntityMentionName
-from telethon.utils import get_input_location
+from nana import app, Command
+from nana.helpers.PyroHelpers import ReplyCheck
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
+__MODULE__ = "Whois"
+__HELP__ = """
+──「 **Whois** 」──
+-> `whois` @username
+-> `whois` "reply to a text"
+To find information about a person.
 
+"""
 
-@register(pattern=r"^\.whois(?: |$)(.*)", outgoing=True)
-async def who(event):
+WHOIS = (
+    "**WHO IS \"{full_name}\"?**\n"
+    "[Link to profile](tg://user?id={user_id})\n"
+    "════════════════\n"
+    "UserID: `{user_id}`\n"
+    "First Name: `{first_name}`\n"
+    "Last Name: `{last_name}`\n"
+    "Username: `{username}`\n"
+    "Last Online: `{last_online}`\n"
+    "Common Groups: `{common_groups}`\n"
+    "════════════════\n"
+    "Bio:\n{bio}")
 
-    await event.edit("`Tunggu saya sedang mencuri data dari Emak...`")
-
-    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
-
-    replied_user = await get_user(event)
-
-    try:
-        photo, caption = await fetch_info(replied_user, event)
-    except AttributeError:
-        return event.edit("`Could not fetch info of that user.`")
-
-    message_id_to_reply = event.message.reply_to_msg_id
-
-    if not message_id_to_reply:
-        message_id_to_reply = None
-
-    try:
-        await event.client.send_file(
-            event.chat_id,
-            photo,
-            caption=caption,
-            link_preview=False,
-            force_document=False,
-            reply_to=message_id_to_reply,
-            parse_mode="html",
-        )
-
-        if not photo.startswith("http"):
-            os.remove(photo)
-        await event.delete()
-
-    except TypeError:
-        await event.edit(caption, parse_mode="html")
+WHOIS_PIC = (
+    "**WHO IS \"{full_name}\"?**\n"
+    "[Link to profile](tg://user?id={user_id})\n"
+    "════════════════\n"
+    "UserID: `{user_id}`\n"
+    "First Name: `{first_name}`\n"
+    "Last Name: `{last_name}`\n"
+    "Username: `{username}`\n"
+    "Last Online: `{last_online}`\n"
+    "Common Groups: `{common_groups}`\n"
+    "════════════════\n"
+    "Profile Pics: `{profile_pics}`\n"
+    "Last Updated: `{profile_pic_update}`\n"
+    "════════════════\n"
+    "Bio:\n{bio}")
 
 
-async def get_user(event):
-    if event.reply_to_msg_id and not event.pattern_match.group(1):
-        previous_message = await event.get_reply_message()
-        replied_user = await event.client(GetFullUserRequest(previous_message.from_id))
-    else:
-        user = event.pattern_match.group(1)
+def LastOnline(user: User):
+    if user.is_bot:
+        return ""
+    elif user.status == 'recently':
+        return "Recently"
+    elif user.status == 'within_week':
+        return "Within the last week"
+    elif user.status == 'within_month':
+        return "Within the last month"
+    elif user.status == 'long_time_ago':
+        return "A long time ago :("
+    elif user.status == 'online':
+        return "Currently Online"
+    elif user.status == 'offline':
+        return datetime.fromtimestamp(user.last_online_date).strftime("%a, %d %b %Y, %H:%M:%S")
 
-        if user.isnumeric():
-            user = int(user)
 
-        if not user:
-            self_user = await event.client.get_me()
-            user = self_user.id
+async def GetCommon(client, get_user):
+    common = await client.send(
+        functions.messages.GetCommonChats(
+            user_id=await client.resolve_peer(get_user),
+            max_id=0,
+            limit=0))
+    return common
 
-        if event.message.entities is not None:
-            probable_user_mention_entity = event.message.entities[0]
 
-            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
-                user_id = probable_user_mention_entity.user_id
-                replied_user = await event.client(GetFullUserRequest(user_id))
-                return replied_user
+def FullName(user: User):
+    return user.first_name + " " + user.last_name if user.last_name else user.first_name
+
+
+def ProfilePicUpdate(user_pic):
+    return datetime.fromtimestamp(user_pic[0].date).strftime("%d.%m.%Y, %H:%M:%S")
+
+
+@app.on_message(filters.me & filters.command(["whois"], Command))
+async def whois(client, message):
+    cmd = message.command
+    if not message.reply_to_message and len(cmd) == 1:
+        get_user = message.from_user.id
+    elif message.reply_to_message and len(cmd) == 1:
+        get_user = message.reply_to_message.from_user.id
+    elif len(cmd) > 1:
+        get_user = cmd[1]
         try:
-            user_object = await event.client.get_entity(user)
-            replied_user = await event.client(GetFullUserRequest(user_object.id))
-        except (TypeError, ValueError) as err:
-            return await event.edit(str(err))
+            get_user = int(cmd[1])
+        except ValueError:
+            pass
+    try:
+        user = await client.get_users(get_user)
+    except PeerIdInvalid:
+        await message.edit("I don't know that User.")
+        sleep(2)
+        await message.delete()
+        return
+    desc = await client.get_chat(get_user)
+    desc = desc.description
+    user_pic = await client.get_profile_photos(user.id)
+    pic_count = await client.get_profile_photos_count(user.id)
+    common = await GetCommon(client, user.id)
 
-    return replied_user
-
-
-async def fetch_info(replied_user, event):
-    replied_user_profile_photos = await event.client(
-        GetUserPhotosRequest(
-            user_id=replied_user.user.id, offset=42, max_id=0, limit=80
+    if not user.photo:
+        await message.edit(
+            WHOIS.format(
+                full_name=FullName(user),
+                user_id=user.id,
+                first_name=user.first_name,
+                last_name=user.last_name if user.last_name else "",
+                username=user.username if user.username else "",
+                last_online=LastOnline(user),
+                common_groups=len(common.chats),
+                bio=desc if desc else "`No bio set up.`"),
+            disable_web_page_preview=True)
+    elif user.photo:
+        await client.send_photo(
+            message.chat.id,
+            user_pic[0].file_id,
+            caption=WHOIS_PIC.format(
+                full_name=FullName(user),
+                user_id=user.id,
+                first_name=user.first_name,
+                last_name=user.last_name if user.last_name else "",
+                username=user.username if user.username else "",
+                last_online=LastOnline(user),
+                profile_pics=pic_count,
+                common_groups=len(common.chats),
+                bio=desc if desc else "`No bio set up.`",
+                profile_pic_update=ProfilePicUpdate(user_pic)),
+            reply_to_message_id=ReplyCheck(message),
+            file_ref=user_pic[0].file_ref,
         )
-    )
-    replied_user_profile_photos_count = (
-        "Person needs help with uploading profile picture."
-    )
-    try:
-        replied_user_profile_photos_count = replied_user_profile_photos.count
-    except AttributeError:
-        pass
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
-    last_name = replied_user.user.last_name
-    try:
-        dc_id, location = get_input_location(replied_user.profile_photo)
-    except Exception as e:
-        dc_id = "Couldn't fetch DC ID!"
-        str(e)
-    common_chat = replied_user.common_chats_count
-    username = replied_user.user.username
-    user_bio = replied_user.about
-    is_bot = replied_user.user.bot
-    restricted = replied_user.user.restricted
-    verified = replied_user.user.verified
-    photo = await event.client.download_profile_photo(
-        user_id, TEMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg", download_big=True
-    )
-    first_name = (
-        first_name.replace("\u2060", "")
-        if first_name
-        else ("This User has no First Name")
-    )
-    last_name = (
-        last_name.replace("\u2060", "") if last_name else ("This User has no Last Name")
-    )
-    username = "@{}".format(username) if username else ("This User has no Username")
-    user_bio = "This User has no About" if not user_bio else user_bio
-
-    caption = "<b>🕵️Berikut yang saya dapat dari Emak:</b>\n\n"
-    caption += f"🗣️First Name: {first_name}\n"
-    caption += f"🗣️Last Name: {last_name}\n"
-    caption += f"👤Username: {username}\n"
-    caption += f"🏫Data Centre ID: {dc_id}\n"
-    caption += f"🖼️Number of Profile Pics: {replied_user_profile_photos_count}\n"
-    caption += f"🤖Is Bot: {is_bot}\n"
-    caption += f"🚫Is Restricted: {restricted}\n"
-    caption += f"☑️Is Verified by Telegram: {verified}\n"
-    caption += f"🆔ID: <code>{user_id}</code>\n\n"
-    caption += f"📝Bio: \n<code>{user_bio}</code>\n\n"
-    caption += f"💬Common Chats with this user: {common_chat}\n"
-    caption += "🔗Permanent Link To Profile: "
-    caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-
-    return photo, caption
+        await message.delete()
 
 
-CMD_HELP.update(
-    {
-        "whois": ">`.whois <username> atay balas ke pesan seseorang dengan .whois`"
-        "\nUsage: Membongkar kedok user."
-    }
-)
+# add_command_help(
+#     'whois', [
+#         ['.whois', 'Finds out who the person is. Reply to message sent by the person'
+#                    'you want information from and send the command. Without the dot also works.']
+#     ]
+# )
