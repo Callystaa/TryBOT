@@ -226,7 +226,6 @@ async def amireallyalive(alive):
     output = (
         f"`Layanan bot sedang berjalan... `\n"
         "------------------------------------\n"
-        "`Detail Userbot Saya` \n'
         f"🕒 `Bot uptime :` {uptime}\n"
         f"👤 `User       :` {DEFAULTUSER}\n"
         f"👁‍🗨 `Username   :` @{user.username}\n"
