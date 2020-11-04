@@ -1,6 +1,6 @@
 # ProjectDark UserBot
 
-![logo](https://telegra.ph/file/b2c599b59fe46303cb8cf.jpg)
+![logo](https://telegra.ph/file/4ee7a29f4aadbd41a089e.jpg)
 
 
 ```
