@@ -172,15 +172,15 @@ async def del_welcome(event):
 
 CMD_HELP.update(
     {
-        "welcome": ">`.setwelcome <welcome message> or reply to a message with .setwelcome`"
-        "\nUsage: Saves the message as a welcome note in the chat."
-        "\n\nAvailable variables for formatting welcome messages :"
+        "welcome": ">`.setwelcome <pesan selamat datang> atau membalas pesan dengan .setwelcome`"
+        "\nUsage: Menyimpan pesan sebagai catatan selamat datang di obrolan."
+        "\n\nVariabel yang tersedia untuk memformat pesan selamat datang :"
         "\n`{mention}, {time}, {title}, {count}, {first}, {last}, {fullname}, "
         "{userid}, {username}, {my_first}, {my_fullname}, {my_last}, "
         "{my_mention}, {my_username}`"
         "\n\n>`.checkwelcome`"
-        "\nUsage: Check whether you have a welcome note in the chat."
+        "\nUsage: Periksa apakah Anda memiliki catatan selamat datang di obrolan."
         "\n\n>`.rmwelcome`"
-        "\nUsage: Deletes the welcome note for the current chat."
+        "\nUsage: Menghapus catatan selamat datang untuk obrolan saat ini."
     }
 )
