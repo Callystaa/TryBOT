@@ -177,7 +177,7 @@ async def mim(event):
             "meme.png",
         )
     await event.edit(
-        "```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```"
+        "```Waktu Transfigurasi! Mwahaha Mengubah gambar ini! (」ﾟﾛﾟ)｣ ```"
     )
     await asyncio.sleep(5)
     text = event.pattern_match.group(1)
@@ -315,7 +315,7 @@ async def quotess(qotli):
         await qotli.edit("```Reply to actual users message.```")
         return
     try:
-        await qotli.edit("`Processing..`")
+        await qotli.edit("`Membuat stiker..`")
         async with bot.conversation(chat) as conv:
             try:
                 response = conv.wait_event(
@@ -664,7 +664,7 @@ CMD_HELP.update(
 CMD_HELP.update(
     {
         "sangmata": ".sg \
-          \nUsage: Steal ur or friend name."
+          \nUsage: Curi data dari emak."
     }
 )
 
@@ -673,7 +673,7 @@ CMD_HELP.update({"quotly": ">`.q`" "\nUsage: Enhance ur text to sticker."})
 CMD_HELP.update(
     {
         "hazmat": ">`.hz or .hz [flip, x2, rotate (degree), background (number), black]`"
-        "\nUsage: Reply to a image / sticker to suit up!"
+        "\nUsage: Balas gambar / stiker yang sesuai!"
     }
 )
 
@@ -690,6 +690,6 @@ CMD_HELP.update(
 CMD_HELP.update(
     {
         "waifu": ">`.waifu`"
-        "\nUsage: Enchance your text with beautiful anime girl templates."
+        "\nUsage: Tingkatkan teks Anda dengan templat gadis anime cantik."
     }
 )
