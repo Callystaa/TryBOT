@@ -39,5 +39,5 @@ async def _(event):
 
 
 CMD_HELP.update(
-    {"get_uid": "`.gid`" "\nUsage: Balas dalam pesan untuk mendapatkan ID pengguna."}
+    {"get_id": "`.gid`" "\nUsage: Balas dalam pesan untuk mendapatkan ID pengguna."}
 )
