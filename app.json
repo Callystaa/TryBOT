@@ -54,11 +54,11 @@
     },
     "BOTLOG": {
       "description": "Incase you want to turn off logging, put this to false",
-      "value": "True"
+      "value": "False"
     },
     "BOTLOG_CHATID": {
       "description": "ChatID of the Log group. Set it to '0' if BOTLOG = False and/or if LOGSPAMMER = False.",
-      "value": ""
+      "value": "0"
     },
     "CONSOLE_LOGGER_VERBOSE": {
       "description": "If you need verbosity on the console logging",
@@ -149,7 +149,7 @@
       "required": false 
     },
     "IMG_LIMIT": {
-      "description": "Tetapkan limit untuk modul .img,maksimal 10",
+      "description": "Tetapkan batas untuk modul .img,maksimal 10",
       "value": "6",
       "required": true
     },
@@ -175,9 +175,13 @@
       "description": "Get an API KEY from products.wolframalpha.com/api/",
       "required": false
     },
-    
+    "ALIVE_LOGO": {
+      "description": "Gambar dalam pesan .alive. Nilainya HARUS DIRECT LINK atau akan Crash!",
+      "value": "https://telegra.ph/file/877dcec4f285893880a81.jpg",
+      "required": false
+    },
     "USR_TOKEN_UPTOBOX": {
-      "description": "API for direct link uptobox, https://docs.uptobox.com/#how-to-find-my-api-token",
+      "description": "API untuk tautan langsung uptobox, https://docs.uptobox.com/#how-to-find-my-api-token",
       "required": false
     }
   },
