@@ -225,19 +225,12 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
         f"`Layanan bot sedang berjalan... `\n"
-
         f" 🕒 `Bot uptime :` {uptime}\n"
-
         f" 👤 **User      :** {DEFAULTUSER}\n"
-
         f" 👁‍🗨 **Username  :** @{user.username}\n"
-
         f" ⚙️ `Telethon   :` v{version.__version__}\n"
-
         f" 🐍 `Python     :` v{python_version()}\n"
-
         f" 🎮 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
-
         f"`Semua modul dimuat:` {len(modules)}"
     )
     if ALIVE_LOGO:
