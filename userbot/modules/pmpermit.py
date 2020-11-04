@@ -184,7 +184,7 @@ async def notifon(non_event):
     await non_event.edit("`Notifications from unapproved PM's unmuted!`")
 
 
-@register(outgoing=True, pattern=r"^\.approve$")
+@register(outgoing=True, pattern=r"^\.ok$")
 async def approvepm(apprvpm):
     try:
         from userbot.modules.sql_helper.globals import gvarstatus
@@ -230,7 +230,7 @@ async def approvepm(apprvpm):
         )
 
 
-@register(outgoing=True, pattern=r"^\.disapprove$")
+@register(outgoing=True, pattern=r"^\.nopm$")
 async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
@@ -370,9 +370,9 @@ async def add_pmsg(cust_msg):
 
 CMD_HELP.update(
     {
-        "pmpermit": ">`.approve`"
+        "pmpermit": ">`.ok`"
         "\nUsage: Menyetujui orang yang disebutkan/menjawab PM."
-        "\n\n>`.disapprove`"
+        "\n\n>`.nopm`"
         "\nUsage: Menolak orang yang disebutkan/membalas PM."
         "\n\n>`.block`"
         "\nUsage: Blokir orang tersebut."
