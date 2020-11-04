@@ -174,11 +174,7 @@
     "WOLFRAM_ID": {
       "description": "Get an API KEY from products.wolframalpha.com/api/",
       "required": false
-    },
-    "ALIVE_LOGO": {
-      "description": "Gambar dalam pesan .alive. Nilainya HARUS DIRECT LINK atau akan Crash!",
-      "value": "https://telegra.ph/file/877dcec4f285893880a81.jpg",
-      "required": false
+
     },
     "USR_TOKEN_UPTOBOX": {
       "description": "API untuk tautan langsung uptobox, https://docs.uptobox.com/#how-to-find-my-api-token",
