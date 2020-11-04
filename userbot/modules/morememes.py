@@ -563,7 +563,7 @@ async def _(event):
 
     input_str = event.pattern_match.group(1)
 
-    if input_str == "whatsapp":
+    if input_str == "wahack":
 
         await event.edit(input_str)
 
@@ -3281,7 +3281,7 @@ CMD_HELP.update(
 \nUsage: For throwing waste xD\
 \n\n`.hypno`\
 \nUsage: Oh fek my eyes 👀\
-\n\n`.whatsapp`\
+\n\n`.wahack`\
 \nUsage: Now you can hack whatsapp too 😂😂 \
 \n\n`.solar`\
 \nUsage: Our beautiful solar system 🌞🌞\
