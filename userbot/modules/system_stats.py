@@ -224,15 +224,15 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"`Layanan bot sedang berjalan... `\n"
-        "------------------------------------\n"
-        f"🕒 `Bot uptime :` {uptime}\n"
-        f"👤 `User       :` {DEFAULTUSER}\n"
-        f"👁‍🗨 `Username   :` @{user.username}\n"
-        f"⚙️ `Telethon   :` v{version.__version__}\n"
-        f"🐍 `Python     :` v{python_version()}\n"
-        f"🎮 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
-        "------------------------------------\n"
+        f"`ProjectDark siap melayani... `\n"
+        f"┏━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"┣[ 🕒 `Bot uptime :` {uptime}\n"
+        f"┣[ 👤 `User       :` {DEFAULTUSER}\n"
+        f"┣[ 🐍 `Python     :` v{python_version()}\n"
+        f"┣[ ⚙️ `Telethon   :` v{version.__version__}\n"
+        f"┣[ 👁‍🗨 `Username   :` @{user.username}\n"
+        f"┣[ 🎮 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
+        f"┗━━━━━━━━━━━━━━━━━━━━━━━━\n"
         f"`Semua modul dimuat:` {len(modules)}"
     )
     if ALIVE_LOGO:
@@ -285,8 +285,8 @@ CMD_HELP.update(
         "alive": ">`.alive`"
         "\nUsage: Ketik .alive untuk melihat apakah bot Anda berfungsi atau tidak."
         "\n\n>`.aliveu <text>`"
-        "\nUsage: Mengubah 'user' alive ke teks yang Anda inginkan."
+        "\nUsage: Mengubah 'user' di alive ke teks yang Anda inginkan."
         "\n\n>`.resetalive`"
-        "\nUsage: Mengatur ulang user ke default.",
+        "\nUsage: Mengatur ulang pengguna ke default.",
     }
 )
