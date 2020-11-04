@@ -224,15 +224,20 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"`Detail userbot saya `\n"
-        f"┏━━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"┣[ 🤖 `Bot uptime :` {uptime}\n"
-        f"┣[ 👤 `User       :` {DEFAULTUSER}\n"
-        f"┣[ 🐍 `Python     :` v{python_version()}\n"
-        f"┣[ ⚙️ `Telethon   :` v{version.__version__}\n"
-        f"┣[ 👁‍🗨 `Username   :` @{user.username}\n"
-        f"┣[ 🎮 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
-        f"┗━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"`Layanan bot sedang berjalan... `\n"
+
+        f" 🕒 `Bot uptime :` {uptime}\n"
+
+        f" 👤 **User      :** {DEFAULTUSER}\n"
+
+        f" 👁‍🗨 **Username  :** @{user.username}\n"
+
+        f" ⚙️ `Telethon   :` v{version.__version__}\n"
+
+        f" 🐍 `Python     :` v{python_version()}\n"
+
+        f" 🎮 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
+
         f"`Semua modul dimuat:` {len(modules)}"
     )
     if ALIVE_LOGO:
@@ -240,18 +245,18 @@ async def amireallyalive(alive):
             logo = ALIVE_LOGO
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(100)
+            await asyncio.sleep(120)
             await msg.delete()
         except BaseException:
             await alive.edit(
                 output + "\n\n *`The provided logo is invalid."
                 "\nMake sure the link is directed to the logo picture`"
             )
-            await asyncio.sleep(100)
+            await asyncio.sleep(120)
             await alive.delete()
     else:
         await alive.edit(output)
-        await asyncio.sleep(100)
+        await asyncio.sleep(120)
         await alive.delete()
 
 
