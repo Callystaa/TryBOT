@@ -175,11 +175,7 @@
       "description": "Get an API KEY from products.wolframalpha.com/api/",
       "required": false
     },
-    "ALIVE_LOGO": {
-      "description": "Image in .alive message. the value MUST A DIRECT LINK or Will Crash!",
-      "value": "https://telegra.ph/file/b2c599b59fe46303cb8cf.jpg",
-      "required": false
-    },
+    
     "USR_TOKEN_UPTOBOX": {
       "description": "API for direct link uptobox, https://docs.uptobox.com/#how-to-find-my-api-token",
       "required": false
