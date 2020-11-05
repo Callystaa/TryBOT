@@ -1,4 +1,4 @@
-name: FailCheck
+name: DarkChecker
 
 on: [push, pull_request]
 
