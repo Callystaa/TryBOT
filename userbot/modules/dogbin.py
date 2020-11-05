@@ -117,9 +117,7 @@ async def get_dogbin_content(dog_url):
         )
         return
 
-    reply_text = (
-        "`Berhasil mengambil konten URL dogbin!`" "\n\n`Konten:` " + resp.text
-    )
+    reply_text = "`Berhasil mengambil konten URL dogbin!`" "\n\n`Konten:` " + resp.text
 
     await dog_url.edit(reply_text)
     if BOTLOG:
