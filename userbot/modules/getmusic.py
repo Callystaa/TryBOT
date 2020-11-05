@@ -57,11 +57,11 @@ async def _(event):
     track = str(artist) + " - " + str(song)
     chat = "@WooMaiBot"
     link = f"/netease {track}"
-    await event.edit("`Searching...`")
+    await event.edit("`Mencari...`")
     try:
         async with bot.conversation(chat) as conv:
             await asyncio.sleep(2)
-            await event.edit("`Processing... Please wait`")
+            await event.edit("`Proses... Tunggu sebentar`")
             try:
                 msg = await conv.send_message(link)
                 response = await conv.get_response()
@@ -70,7 +70,7 @@ async def _(event):
             except YouBlockedUserError:
                 await event.reply("`Please unblock @WooMaiBot and try again`")
                 return
-            await event.edit("`Sending Your Music...`")
+            await event.edit("`Mengirim Musik Anda...`")
             await asyncio.sleep(3)
             await bot.send_file(event.chat_id, respond)
         await event.client.delete_messages(
@@ -91,19 +91,19 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-        await event.edit("`Wait..! I am finding your videosong..`")
+        await event.edit("`Tunggu..! Saya menemukan lagu video Anda..`")
     elif reply:
         query = str(reply.message)
-        await event.edit("`Wait..! I am finding your videosong..`")
+        await event.edit("`Tunggu..! Saya menemukan lagu video Anda..`")
     else:
-        await event.edit("`What I am Supposed to find?`")
+        await event.edit("`Apa yang Seharusnya saya temukan?`")
         return
     await getmusicvideo(query)
     l = glob.glob(("*.mp4")) + glob.glob(("*.mkv")) + glob.glob(("*.webm"))
     if l:
-        await event.edit("`Yeah..! i found something..`")
+        await event.edit("`Ya..! aku menemukan sesuatu..`")
     else:
-        await event.edit(f"`Sorry..! i can't find anything with` **{query}**")
+        await event.edit(f"`Maaf..! saya tidak dapat menemukan apa pun dengan` **{query}**")
         return
     try:
         loa = l[0]
@@ -143,7 +143,7 @@ async def _(event):
                 progress(d, t, event, c_time, "[UPLOAD]", loa)
             ),
         )
-        await event.edit(f"**{query}** `Uploaded Successfully..!`")
+        await event.edit(f"**{query}** `Berhasil Diupload..!`")
         os.remove(thumb_image)
         os.system("rm *.mkv *.mp4 *.webm")
     except BaseException:
@@ -158,10 +158,10 @@ async def _(event):
         return
     link = event.pattern_match.group(1)
     chat = "@SpotifyMusicDownloaderBot"
-    await event.edit("```Getting Your Music```")
+    await event.edit("```Mendapatkan Musik Anda```")
     async with bot.conversation(chat) as conv:
         await asyncio.sleep(2)
-        await event.edit("`Downloading music taking some times,  Stay Tuned.....`")
+        await event.edit("`Mendownload musik membutuhkan waktu,  Tetap disini.....`")
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=752979930)
@@ -192,10 +192,10 @@ async def _(event):
         "name": "DeezLoad",
         "arl_token_cfg_doc": "ARL Token for Deezer",
         "invalid_arl_token": "please set the required variables for this module",
-        "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session 🥺",
-        "server_error": "We're experiencing technical difficulties.",
-        "processing": "`Downloading..`",
-        "uploading": "`Uploading...`",
+        "wrong_cmd_syntax": "Bruh, sekarang kupikir seberapa jauh kita harus melangkah. tolong hentikan Sesi saya 🥺",
+        "server_error": "Kami mengalami kesulitan teknis.",
+        "processing": "`Mendownload..`",
+        "uploading": "`Mengupload...`",
     }
 
     ARL_TOKEN = DEEZER_ARL_TOKEN
@@ -327,15 +327,15 @@ async def upload_track(track_location, message):
 CMD_HELP.update(
     {
         "getmusic": ">`.netease <Artist - Song Title>`"
-        "\nUsage: Download music with @WooMaiBot"
+        "\nUsage: Unduh musik dengan @WooMaiBot"
         "\n\n>`.netease now`"
-        "\nUsage: Download current LastFM scrobble use `@WooMaiBot`."
+        "\nUsage: Unduh scrobble LastFM saat ini menggunakan `@WooMaiBot`."
         "\n\n>`.vsong` **Artist - Song Title**"
-        "\nUsage: Finding and uploading videoclip."
+        "\nUsage: Menemukan dan mengunggah video clip."
         "\n\n>`.smd <Artist - Song Title>`"
-        "\nUsage: Download music from Spotify"
+        "\nUsage: Unduh musik dari Spotify"
         "\n\n>`.deez <spotify/deezer link> FORMAT`"
-        "\nUsage: Download music from deezer."
+        "\nUsage: Unduh musik dari deezer."
         "\n*Format : `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`."
     }
 )
