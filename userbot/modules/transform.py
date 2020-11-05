@@ -17,13 +17,13 @@ Converted = TEMP_DOWNLOAD_DIRECTORY + "sticker.webp"
 @register(outgoing=True, pattern=r"^\.(mirror|flip|ghost|bw|poster)$")
 async def transform(event):
     if not event.reply_to_msg_id:
-        await event.edit("`Reply to Any media..`")
+        await event.edit("`Balas ke media apa saja..`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`reply to a image/sticker`")
+        await event.edit("`membalas gambar/stiker`")
         return
-    await event.edit("`Downloading Media..`")
+    await event.edit("`Mendownload Media..`")
     if reply_message.photo:
         transform = await bot.download_media(
             reply_message,
@@ -55,7 +55,7 @@ async def transform(event):
             "transform.png",
         )
     try:
-        await event.edit("`Transforming this media..`")
+        await event.edit("`Mentransformasi media ini..`")
         cmd = event.pattern_match.group(1)
         im = Image.open(transform).convert("RGB")
         if cmd == "mirror":
@@ -83,13 +83,13 @@ async def transform(event):
 @register(outgoing=True, pattern=r"^\.rotate(?: |$)(.*)")
 async def rotate(event):
     if not event.reply_to_msg_id:
-        await event.edit("`Reply to any media..`")
+        await event.edit("`Balas media apa pun..`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`reply to a image/sticker`")
+        await event.edit("`membalas gambar/stiker`")
         return
-    await event.edit("`Downloading Media..`")
+    await event.edit("`Mendownload Media..`")
     if reply_message.photo:
         rotate = await bot.download_media(
             reply_message,
@@ -126,7 +126,7 @@ async def rotate(event):
             raise ValueError
     except ValueError:
         value = 90
-    await event.edit("`Rotating your media..`")
+    await event.edit("`Memutar media Anda..`")
     im = Image.open(rotate).convert("RGB")
     IMG = im.rotate(value, expand=1)
     IMG.save(Converted, quality=95)
@@ -142,16 +142,16 @@ async def rotate(event):
 CMD_HELP.update(
     {
         "transform": ">`.ghost`"
-        "\nUsage: Enchance your image to become a ghost!."
+        "\nUsage: ubah foto teman  Anda menjadi hantu!."
         "\n\n>`.flip`"
-        "\nUsage: To flip your image"
+        "\nUsage: Untuk membalik gambar Anda"
         "\n\n>`.mirror`"
-        "\nUsage: To mirror your image"
+        "\nUsage: Untuk membalikkan posisi media Anda"
         "\n\n>`.bw`"
-        "\nUsage: To Change your colorized image to b/w image!"
+        "\nUsage: Untuk mengubah gambar berwarna Anda menjadi gambar b/w!"
         "\n\n>`.poster`"
-        "\nUsage: To posterize your image!"
+        "\nUsage: Untuk mem-poster gambar Anda!"
         "\n\n>`.rotate <value>`"
-        "\nUsage: To rotate your image\n* The value is range 1-360 if not it'll give default value which is 90"
+        "\nUsage: Untuk memutar gambar Anda\n* Nilainya berkisar 1-360 jika tidak akan memberikan nilai default yaitu 90"
     }
 )
