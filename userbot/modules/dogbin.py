@@ -54,7 +54,7 @@ async def paste(pstl):
 
         if response["isUrl"]:
             reply_text = (
-                "`Pasted successfully!`\n\n"
+                "`Berhasil ditempel!`\n\n"
                 f"[Shortened URL]({dogbin_final_url})\n\n"
                 "`Original(non-shortened) URLs`\n"
                 f"[Dogbin URL]({DOGBIN_URL}v/{key})\n"
@@ -62,18 +62,18 @@ async def paste(pstl):
             )
         else:
             reply_text = (
-                "`Pasted successfully!`\n\n"
+                "`Berhasil ditempel!`\n\n"
                 f"[Dogbin URL]({dogbin_final_url})\n"
                 f"[View RAW]({DOGBIN_URL}raw/{key})"
             )
     else:
-        reply_text = "`Failed to reach Dogbin`"
+        reply_text = "`Gagal menjangkau Dogbin`"
 
     await pstl.edit(reply_text)
     if BOTLOG:
         await pstl.client.send_message(
             BOTLOG_CHATID,
-            "Paste query was executed successfully",
+            "Kueri tempel berhasil dijalankan",
         )
 
 
@@ -81,7 +81,7 @@ async def paste(pstl):
 async def get_dogbin_content(dog_url):
     textx = await dog_url.get_reply_message()
     message = dog_url.pattern_match.group(1)
-    await dog_url.edit("`Getting dogbin content...`")
+    await dog_url.edit("`Mendapatkan isi dari Dogbin...`")
 
     if textx:
         message = str(textx.message)
@@ -104,7 +104,7 @@ async def get_dogbin_content(dog_url):
         resp.raise_for_status()
     except exceptions.HTTPError as HTTPErr:
         await dog_url.edit(
-            "Request returned an unsuccessful status code.\n\n" + str(HTTPErr)
+            "Permintaan mengembalikan kode status tidak berhasil.\n\n" + str(HTTPErr)
         )
         return
     except exceptions.Timeout as TimeoutErr:
@@ -118,14 +118,14 @@ async def get_dogbin_content(dog_url):
         return
 
     reply_text = (
-        "`Fetched dogbin URL content successfully!`" "\n\n`Content:` " + resp.text
+        "`Berhasil mengambil konten URL dogbin!`" "\n\n`Konten:` " + resp.text
     )
 
     await dog_url.edit(reply_text)
     if BOTLOG:
         await dog_url.client.send_message(
             BOTLOG_CHATID,
-            "Get dogbin content query was executed successfully",
+            "Dapatkan kueri konten dogbin berhasil dijalankan",
         )
 
 
@@ -137,7 +137,7 @@ async def neko(nekobin):
     reply_id = nekobin.reply_to_msg_id
 
     if not match and not reply_id:
-        return await pstl.edit("`Cannot paste text.`")
+        return await pstl.edit("`Tidak dapat menempelkan teks.`")
 
     if match:
         message = match
@@ -159,7 +159,7 @@ async def neko(nekobin):
             message = message.text
 
     # Nekobin
-    await nekobin.edit("`Pasting text . . .`")
+    await nekobin.edit("`Menempelkan teks . . .`")
     resp = post(NEKOBIN_URL + "api/documents", json={"content": message})
 
     if resp.status_code == 201:
@@ -167,28 +167,28 @@ async def neko(nekobin):
         key = response["result"]["key"]
         nekobin_final_url = NEKOBIN_URL + key
         reply_text = (
-            "`Pasted successfully!`\n\n"
+            "`Berhasil ditempel!`\n\n"
             f"[Nekobin URL]({nekobin_final_url})\n"
             f"[View RAW]({NEKOBIN_URL}raw/{key})"
         )
     else:
-        reply_text = "`Failed to reach Nekobin`"
+        reply_text = "`Gagal mencapai Nekobin`"
 
     await nekobin.edit(reply_text)
     if BOTLOG:
         await nekobin.client.send_message(
             BOTLOG_CHATID,
-            "Paste query was executed successfully",
+            "Kueri tempel berhasil dijalankan",
         )
 
 
 CMD_HELP.update(
     {
-        "dogbin": ">`.paste <text/reply>`"
-        "\nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)"
+        "dogbin": ">`.paste <teks/balas>`"
+        "\nUsage: Menempelkan teks atau url yang dipersingkat menggunakan dogbin (https://del.dog/)"
         "\n\n>`.getpaste`"
-        "\nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)"
+        "\nUsage: Mendapat konten pasta atau url yang dipersingkat dari dogbin (https://del.dog/)"
         "\n\n>`.neko <text/reply>`"
-        "\nUsage: Create a paste or a shortened url using nekobin (https://nekobin.com/)"
+        "\nUsage: Buat pasta atau url yang dipersingkat menggunakan nekobin (https://nekobin.com/)"
     }
 )
