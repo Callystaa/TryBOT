@@ -50,7 +50,7 @@ EMOJI_PATTERN = re.compile(
 )
 
 
-@register(outgoing=True, pattern=r"^\.glitch(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.glt(?: |$)(.*)")
 async def glitch(event):
     if not event.reply_to_msg_id:
         await event.edit("`I Wont Glitch A Ghost!`")
@@ -647,7 +647,7 @@ async def lastname(steal):
 
 CMD_HELP.update(
     {
-        "glitch": ">`.glitch <1-8>`"
+        "glitch": ">`.glt <1-8>`"
         "\nUsage: Reply a sticker/image and send with cmd.\nvalue is range 1-8 if doenst it will give default value which is 2"
     }
 )
