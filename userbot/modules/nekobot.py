@@ -282,15 +282,21 @@ async def tweet(event):
             if not reply_to_id.media:
                 text = reply_to_id.message
             else:
-                await event.edit("`Apa yang harus saya tweet? Berikan nama pengguna dan tweet Anda!`")
+                await event.edit(
+                    "`Apa yang harus saya tweet? Berikan nama pengguna dan tweet Anda!`"
+                )
                 return
         else:
-            await event.edit("Apa yang harus saya tweet? Berikan nama pengguna dan tweet Anda!`")
+            await event.edit(
+                "Apa yang harus saya tweet? Berikan nama pengguna dan tweet Anda!`"
+            )
             return
     if "." in text:
         username, text = text.split(".")
     else:
-        await event.edit("`Apa yang harus saya tweet? Berikan nama pengguna dan tweet Anda!`")
+        await event.edit(
+            "`Apa yang harus saya tweet? Berikan nama pengguna dan tweet Anda!`"
+        )
     await event.edit(f"`Meminta {username} untuk meng-tweet...`")
     text = deEmojify(text)
     img = await tweets(text, username)
