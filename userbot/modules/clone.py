@@ -119,6 +119,6 @@ CMD_HELP.update(
     {
         "cloneuser": "\
 .clone <nama pengguna> atau membalas pesan\
-\nUso: Salin foto profil target, nama ... dll dan atur sebagai milik Anda."
+\nUsage: Salin foto profil target, nama ... dll dan atur sebagai milik Anda."
     }
 )
