@@ -10,7 +10,7 @@
     <a href="https://github.com/Ajibcdefgh/ProjectDark/network/members"><img src="https://img.shields.io/github/forks/Ajibcdefgh/ProjectDark?label=Fork&style=flat-square&logo=github&color=E0777D" alt="Fork" /></a>
 </p>
 
-![logo](https://telegra.ph/file/683f416323c7786b2ad7c.jpg)
+![logo](https://telegra.ph/file/54a5466324934d3147622.jpg)
 
 
 ```
@@ -59,7 +59,6 @@ Join [Userbotindo Support Group](https://t.me/userbotindo) for discussion, bug r
 *   [AidilAryanto](https://github.com/aidilaryanto) - ProjectDils 
 *   [AnggaR69s](https://github.com/GengKapak/DCLXVI) - DCLXVI
 *   [X-Newbie](https://github.com/X-Newbie) - Xbot-Remix
-*   [legenhand](https://github.com/legenhand) - Nana-Bot
 *   [others](https://github.com/alfianandaa/ProjectAlf/graphs/contributors) that help to make this userbot awesome.
 
 ## License
