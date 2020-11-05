@@ -53,5 +53,5 @@ async def progress(
             f"`ETA:` {time_formatter(eta)}\n"
             f"`Durasi:` {time_formatter(elapsed_time)}"
         )
-    
+
         await gdrive.edit(f"`{prog_type}`\n\n" f"`Status`\n{tmp}")
