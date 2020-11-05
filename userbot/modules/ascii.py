@@ -20,13 +20,13 @@ bground = "black"
 @register(outgoing=True, pattern=r"^\.(ascii|asciis)$")
 async def ascii(event):
     if not event.reply_to_msg_id:
-        await event.edit("`Reply to Any media..`")
+        await event.edit("`Balas ke media apa saja..`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`reply to a image/sticker/video`")
+        await event.edit("`membalas ke gambar/stiker/video`")
         return
-    await event.edit("`Downloading Media..`")
+    await event.edit("`Mendownload Media..`")
     if reply_message.photo:
         IMG = await bot.download_media(
             reply_message,
@@ -56,7 +56,7 @@ async def ascii(event):
             "ascii.png",
         )
     try:
-        await event.edit("`Processing..`")
+        await event.edit("`Proses..`")
         list = await random_color()
         color1 = list[0]
         color2 = list[1]
@@ -132,17 +132,17 @@ async def _(event):
         global bground
         bground = BG
     else:
-        return await event.edit("`please insert bg of ascii`")
-    await event.edit(f"`Successfully set bg of ascii to` **{BG}**")
+        return await event.edit("`tolong masukkan bg dari ascii`")
+    await event.edit(f"`Berhasil menyetel bg dari ascii ke` **{BG}**")
 
 
 CMD_HELP.update(
     {
         "ascii": ">`.ascii`\n"
-        "Usage: create ascii art from media\n\n"
+        "Usage: membuat seni ascii dari media\n\n"
         ">`.asciis`\n"
-        "Usage: same but upload the result as sticker\n\n"
+        "Usage: sama tapi unggah hasilnya sebagai stiker\n\n"
         ">`.asciibg <color>`\n"
-        "Usage: to change background color of this ascii module"
+        "Usage: untuk mengubah warna latar belakang modul ascii ini"
     }
 )
