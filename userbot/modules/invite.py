@@ -37,12 +37,12 @@ async def _(event):
                     await event.edit(str(e))
                     return
 
-        await event.edit("`Invited Successfully`")
+        await event.edit("`Berhasil Diundang`")
 
 
 CMD_HELP.update(
     {
-        "invite": "\n\n`>.invite <username> [or id user]`"
-        "\nUsage: Invite user or bots if u want."
+        "invite": "\n\n`>.invite <nama pengguna> [atau pengguna id]`"
+        "\nUsage: Undang pengguna atau bot jika Anda mau."
     }
 )
