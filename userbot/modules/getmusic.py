@@ -103,7 +103,9 @@ async def _(event):
     if l:
         await event.edit("`Ya..! aku menemukan sesuatu..`")
     else:
-        await event.edit(f"`Maaf..! saya tidak dapat menemukan apa pun dengan` **{query}**")
+        await event.edit(
+            f"`Maaf..! saya tidak dapat menemukan apa pun dengan` **{query}**"
+        )
         return
     try:
         loa = l[0]
