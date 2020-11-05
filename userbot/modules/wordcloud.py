@@ -21,13 +21,13 @@ from userbot.events import register
 @register(outgoing=True, pattern=r"^\.(wc)$")
 async def _(event):
     if not event.reply_to_msg_id:
-        await event.edit("`Reply to Any media..`")
+        await event.edit("`Balas ke media apa saja..`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`reply to a image/sticker/video`")
+        await event.edit("`membalas gambar/stiker/video`")
         return
-    await event.edit("`Downloading Media..`")
+    await event.edit("`Mendownload Media..`")
     if reply_message.photo:
         await bot.download_media(
             reply_message,
@@ -55,7 +55,7 @@ async def _(event):
             "wc.png",
         )
     try:
-        await event.edit("`Processing..`")
+        await event.edit("`Proses..`")
         text = open("resources/alice.txt", encoding="utf-8").read()
         image_color = np.array(Image.open("wc.png"))
         image_color = image_color[::1, ::1]
@@ -92,4 +92,4 @@ async def _(event):
         return await event.edit(str(e))
 
 
-CMD_HELP.update({"wordcloud": ">`.wc`\n" "Usage: create wordcloud art from media\n\n"})
+CMD_HELP.update({"wordcloud": ">`.wc`\n" "Usage: membuat seni wordcloud dari media\n\n"})
