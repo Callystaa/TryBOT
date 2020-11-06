@@ -1,85 +1,113 @@
-"""
-imported from nicegrill
-modified by @mrconfused
-QuotLy: Avaible commands: .qbot
-"""
-import os
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
+# Port From UniBorg to UserBot by MoveAngel
+
+import random
+import requests
+from asyncio.exceptions import TimeoutError
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+from userbot import CMD_HELP, bot
+from userbot.events import register
 
-from .. import CMD_HELP, process
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+if 1 == 1:
+    strings = {
+        "name": "Quotes",
+        "api_token_cfg_doc": "API Key/Token for Quotes.",
+        "api_url_cfg_doc": "API URL for Quotes.",
+        "colors_cfg_doc": "Username colors",
+        "default_username_color_cfg_doc": "Default color for the username.",
+        "no_reply": "You didn't reply to a message.",
+        "no_template": "You didn't specify the template.",
+        "delimiter": "</code>, <code>",
+        "server_error": "Server error. Please report to developer.",
+        "invalid_token": "You've set an invalid token, get it from `http://antiddos.systems`.",
+        "unauthorized": "You're unauthorized to do this.",
+        "not_enough_permissions": "Wrong template. You can use only the default one.",
+        "templates": "Available Templates: <code>{}</code>",
+        "cannot_send_stickers": "You cannot send stickers in this chat.",
+        "admin": "admin",
+        "creator": "creator",
+        "hidden": "hidden",
+        "channel": "Channel"}
+
+    config = {"api_url": "http://api.antiddos.systems",
+              "username_colors": ["#fb6169", "#faa357", "#b48bf2", "#85de85",
+                                  "#62d4e3", "#65bdf3", "#ff5694"],
+              "default_username_color": "#b48bf2"}
 
 
-@bot.on(admin_cmd(pattern="q(?: |$)(.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="q(?: |$)(.*)", allow_sudo=True))
-async def stickerchat(catquotes):
-    if catquotes.fwd_from:
+@register(outgoing=True, pattern=r"^\.q")
+async def quotess(qotli):
+    if qotli.fwd_from:
         return
-    reply = await catquotes.get_reply_message()
-    if not reply:
-        await edit_or_reply(
-            catquotes, "`I cant quote the message . reply to a message`"
-        )
-        return
-    fetchmsg = reply.message
-    repliedreply = await reply.get_reply_message()
-    if reply.media and reply.media.document.mime_type in ("mp4"):
-        await edit_or_reply(catquotes, "`this format is not supported now`")
-        return
-    catevent = await edit_or_reply(catquotes, "`Making quote...`")
-    user = (
-        await event.client.get_entity(reply.forward.sender)
-        if reply.fwd_from
-        else reply.sender
-    )
-    res, catmsg = await process(fetchmsg, user, catquotes.client, reply, repliedreply)
-    if not res:
-        return
-    catmsg.save("./temp/sticker.webp")
-    await catquotes.client.send_file(
-        catquotes.chat_id, "./temp/sticker.webp", reply_to=reply
-    )
-    await catevent.delete()
-    os.remove("./temp/sticker.webp")
+    if not qotli.reply_to_msg_id:
+        return await qotli.edit("```Balas di Pesan Ngab!!.```")
+    reply_message = await qotli.get_reply_message()
+    if not reply_message.text:
+        return await qotli.edit("```Balas di Pesan Ngab!!```")
+    chat = "@QuotLyBot"
+    if reply_message.sender.bot:
+        return await qotli.edit("```Balas di Pesan Ngab!!.```")
+    await qotli.edit("```Membuat Sticker......```")
+    try:
+        async with bot.conversation(chat) as conv:
+            try:
+                response = conv.wait_event(
+                    events.NewMessage(
+                        incoming=True,
+                        from_users=1031952739))
+                msg = await bot.forward_messages(chat, reply_message)
+                response = await response
+                """ - don't spam notif - """
+                await bot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                return await qotli.reply("```Please unblock @QuotLyBot and try again```")
+            if response.text.startswith("Hi!"):
+                await qotli.edit("```Can you kindly disable your forward privacy settings for good?```")
+            else:
+                await qotli.delete()
+                await bot.forward_messages(qotli.chat_id, response.message)
+                await bot.send_read_acknowledge(qotli.chat_id)
+                """ - cleanup chat after completed - """
+                await qotli.client.delete_messages(conv.chat_id,
+                                                   [msg.id, response.id])
+    except TimeoutError:
+        await qotli.edit()
 
 
-@bot.on(admin_cmd(pattern="qbot(?: |$)(.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="qbot(?: |$)(.*)", allow_sudo=True))
-async def _(event):
+@register(outgoing=True, pattern="^.qbot(?: |$)(.*)")
+async def quote_search(event):
     if event.fwd_from:
         return
-    if not event.reply_to_msg_id:
-        await edit_or_reply(event, "```Reply to any user message.```")
-        return
-    reply_message = await event.get_reply_message()
-    if not reply_message.text:
-        await edit_or_reply(event, "```Reply to text message```")
-        return
-    chat = "@QuotLyBot"
-    catevent = await edit_or_reply(event, "```Making a Quote```")
-    async with event.client.conversation(chat) as conv:
-        try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=1031952739)
-            )
-            await event.client.forward_messages(chat, reply_message)
-            response = await response
-        except YouBlockedUserError:
-            await catevent.edit("```Please unblock me (@QuotLyBot) u Nigga```")
-            return
-        await event.client.send_read_acknowledge(conv.chat_id)
-        if response.text.startswith("Hi!"):
-            await catevent.edit(
-                "```Can you kindly disable your forward privacy settings for good?```"
-            )
-        else:
-            await catevent.delete()
-            await event.client.send_message(event.chat_id, response.message)
+    await event.edit("Proses...")
+    search_string = event.pattern_match.group(1)
+    input_url = "https://bots.shrimadhavuk.me/Telegram/GoodReadsQuotesBot/?q={}".format(
+        search_string)
+    headers = {"USER-AGENT": "UniBorg"}
+    try:
+        response = requests.get(input_url, headers=headers).json()
+    except BaseException:
+        response = None
+    if response is not None:
+        result = random.choice(response).get(
+            "input_message_content").get("message_text")
+    else:
+        result = None
+    if result:
+        await event.edit(result.replace("<code>", "`").replace("</code>", "`"))
+    else:
+        await event.edit("Zero results found")
 
 
-CMD_HELP.update(
-    {"quote": ".q <teks>" "\nUsage: membuat stiker dari kata kata yang kamu berikan "}
-)
-CMD_HELP.update({"qbot": ".qbot <teks/balas pesan>" "\nUsage: sama seperti quote "})
+CMD_HELP.update({
+    "quotly":
+    "`.q`\
+\nUsage: Sempurnakan teks Anda menjadi stiker.\
+\n\n`.qbot`\
+\nUsage: Sempurnakan teks Anda menjadi stiker."
+})
