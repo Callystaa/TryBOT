@@ -67,7 +67,7 @@ async def _(event):
         )
 
 
-@register(outgoing(pattern="revert$"))
+@register(outgoing=True, pattern="^\.revert ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
