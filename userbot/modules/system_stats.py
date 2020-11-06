@@ -224,7 +224,7 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"`ProjectDark is running... `\n"
+        f"`Detail Userbot Saya `\n"
         f"┏━━━━━━━━━━━━━━━━━━━━━━━━\n"
         f"┣[ 🕒 `Bot uptime :` {uptime}\n"
         f"┣[ 👤 `User       :` {DEFAULTUSER}\n"
