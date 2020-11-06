@@ -8,9 +8,8 @@ import html
 from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-
-from .. import ALIVE_NAME, AUTONAME, CMD_HELP, DEFAULT_BIO
-from ..utils
+from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY
+from userbot.events register
 
 DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
 DEFAULTUSERBIO = (
