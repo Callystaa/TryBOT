@@ -81,9 +81,14 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "quotly": "quotly <teks>"
-        "\nUsage: Buat stiker dari kata kata yang kamu berikan."
-        "\n\n.qbot" <balas ke pesan>`\
-        "\nUsage: __Jadikan pesan Anda sebagai kutipan stiker oleh @quotlybot__"
+        "quote": ".q <teks>"
+        "\nUsage: membuat stiker dari kata kata yang kamu berikan "
+
+    }
+)
+CMD_HELP.update(
+    {
+        "qbot": ".qbot <teks/balas pesan>"
+        "\nUsage: sama seperti quote "
     }
 )
