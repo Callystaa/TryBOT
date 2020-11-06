@@ -40,10 +40,9 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern="^.speed$")
+@register(outgoing=True, pattern=r"^\.speed$")
 async def speedtst(spd):
-    """ For .speed command, use SpeedTest to check server speeds. """
-    await spd.edit("`Running high speed test . . .`")
+    await spd.edit("`Running speed test . . .`")
     test = Speedtest()
 
     test.get_best_server()
@@ -52,20 +51,31 @@ async def speedtst(spd):
     test.results.share()
     result = test.results.dict()
 
-    await spd.edit(
-        "`"
-        "Dimulai pada "
-        f"{result['timestamp']} \n\n"
-        "Unduh "
-        f"{speed_convert(result['download'])} \n"
-        "Unggah "
-        f"{speed_convert(result['upload'])} \n"
-        "Ping "
-        f"{result['ping']} \n"
-        "ISP "
-        f"{result['client']['isp']}"
-        "`"
-    )
+    output = f"Dimulai pada `{result['timestamp']}`\n\n"
+    output += "`Client:`\n"
+    output += f"ISP: `{result['client']['isp']}`\n"
+    output += f"Negara: `{result['client']['country']}`\n\n"
+    output += "`Server:`\n"
+    output += f"Nama: `{result['server']['name']}`\n"
+    output += f"Negara: `{result['server']['country']}, {result['server']['cc']}`\n"
+    output += f"Sponsor: `{result['server']['sponsor']}`\n"
+    output += f"Latensi: `{result['server']['latency']}`\n\n"
+    output += "`Speed:`\n"
+    output += f"Ping: `{result['ping']}`\n"
+    output += f"Unduh: `{speed_convert(result['download'])}`\n"
+    output += f"Unggah: `{speed_convert(result['upload'])}` "
+    await spd.delete()
+    await spd.client.send_message(spd.chat_id, output)
+
+
+def speed_convert(size):
+    power = 2 ** 10
+    zero = 0
+    units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
+    while size > power:
+        size /= power
+        zero += 1
+    return f"{round(size, 2)} {units[zero]}"
 
 
 def speed_convert(size):
@@ -94,14 +104,14 @@ async def pingme(pong):
     )
 
 
-@register(outgoing=True, pattern="^.pong$")
-async def pingme(pong):
-    """ For .ping command, ping the userbot from any chat.  """
-    start = datetime.now()
-    await pong.edit("`ping!`")
-    end = datetime.now()
-    duration = (end - start).microseconds / 9000
-    await pong.edit("`Ping!\n%sms`" % (duration))
+@register(outgoing=True, pattern=r"^\.dc$")
+async def neardc(event):
+    result = await event.client(functions.help.GetNearestDcRequest())
+    await event.edit(
+        f"Country : `{result.country}`\n"
+        f"Nearest Datacenter : `{result.nearest_dc}`\n"
+        f"This Datacenter : `{result.this_dc}`"
+    )
 
 
 CMD_HELP.update(
@@ -110,7 +120,7 @@ CMD_HELP.update(
     \nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.\
     \n\n`.speed`\
     \nUsage: Melakukan speedtest dan menunjukkan hasilnya.\
-    \n\n`.pong`\
-    \nUsage: Tunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping bot Anda."
+    \n\n`.dc`\
+    \nUsage: Menemukan pusat data terdekat dari server Anda."
     }
 )
