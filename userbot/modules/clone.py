@@ -1,4 +1,4 @@
-# Copy That Plugin by @ViperAdnan
+# Plugin made by @ViperAdnan
 # Give credit if you are going to kang it.
 
 import html
@@ -57,7 +57,7 @@ async def _(event):
     #  )
     await event.delete()
     await bot.send_message(
-        event.chat_id, "**AYO MENJADI SATU**", reply_to=reply_message
+        event.chat_id, "**Kagebunshin No Jutsu**", reply_to=reply_message
     )
 
 
