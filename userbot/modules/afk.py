@@ -13,6 +13,7 @@ from telethon.events import StopPropagation
 from userbot.events import register
 
 from userbot import (  # noqa pylint: disable=unused-import isort:skip
+    ALIVE_LOGO,
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
