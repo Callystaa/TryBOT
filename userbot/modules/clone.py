@@ -13,9 +13,9 @@ from telethon.tl.types import MessageEntityMentionName
 
 from userbot import ALIVE_NAME, CMD_HELP, DEFAULT_BIO
 
-DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
+DEFAULTUSER = str(ALIVE_NAME)
 DEFAULTUSERBIO = (
-    str(DEFAULT_BIO) if DEFAULT_BIO else "Legends Says To @uSe_DaRk_PrInCe "
+    str(DEFAULT_BIO) if DEFAULT_BIO else "I love @abcdefvvck "
 )
 BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 BOTLOG = True
