@@ -67,7 +67,7 @@ async def _(event):
         )
 
 
-@borg.on(admin_cmd(pattern="revert$"))
+@register(admin_cmd(pattern="revert$"))
 async def _(event):
     if event.fwd_from:
         return
