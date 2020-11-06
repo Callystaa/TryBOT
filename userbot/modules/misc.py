@@ -127,7 +127,8 @@ CMD_HELP.update(
     {
         "random": ">`.random <item1> <item2> ... <itemN>`"
         "\nUsage: Dapatkan item acak dari daftar item.",
-        "sleep": ">`.sleep <seconds>`" "\nUsage: Biarkan punyamu tertidur selama beberapa detik.",
+        "sleep": ">`.sleep <seconds>`"
+        "\nUsage: Biarkan punyamu tertidur selama beberapa detik.",
         "shutdown": ">`.shutdown`" "\nUsage: Bunuh bot",
         "repo": ">`.repo`" "\nUsage: Github Repo dari bot ini",
         "readme": ">`.readme`"
