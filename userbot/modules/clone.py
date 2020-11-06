@@ -27,7 +27,7 @@ else:
     BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 
 
-@bot.on(outgoing=True, pattern="clone ?(.*)"))
+@register(outgoing=True, pattern="^\.clone ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
