@@ -121,9 +121,5 @@ async def get_full_user(event):
             except Exception as e:
                 return None, e
 
-CMD_HELP.update(
-    {
-        "cloneuser": ">`.clone`"
-        "\nUsage: meng-kloning orang lain"
-    }
-)
+
+CMD_HELP.update({"cloneuser": ">`.clone`" "\nUsage: meng-kloning orang lain"})
