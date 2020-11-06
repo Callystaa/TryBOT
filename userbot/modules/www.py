@@ -90,7 +90,7 @@ async def pingme(pong):
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     await pong.edit(
-        f"**PONG!! 🏓**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration)
+        f"**PONG!! 🏓**\n**Pinger** : %sms\n**Waktu Nyala** : {uptime}" % (duration)
     )
 
 
