@@ -6,15 +6,13 @@ Syntax: .clone @username"""
 # Give credit if you are going to kang it.
 
 import html
-import os
-from telethon.tl.functions.photos import GetUserPhotosRequest
+
+from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-from telethon.tl import functions
-from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
 
 from userbot import ALIVE_NAME, CMD_HELP, DEFAULT_BIO
+from userbot.events import register
 
 DEFAULTUSER = str(ALIVE_NAME)
 DEFAULTUSERBIO = str(DEFAULT_BIO) if DEFAULT_BIO else "I love @abcdefvvck "
