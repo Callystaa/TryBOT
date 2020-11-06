@@ -2,7 +2,7 @@
 and set as own profile.
 Syntax: .clone @username"""
 # Copy That Plugin by @ViperAdnan
-# modified by @No_OnE_Kn0wS_Me
+# modified by @abcdefvvck
 # Give credit if you are going to kang it.
 
 import html
@@ -15,7 +15,7 @@ from userbot import ALIVE_NAME, CMD_HELP, DEFAULT_BIO
 
 DEFAULTUSER = str(ALIVE_NAME)
 DEFAULTUSERBIO = str(DEFAULT_BIO) if DEFAULT_BIO else "I love @abcdefvvck "
-BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
+BOTLOG_CHATID = PRIVATE_GROUP_BOT_API_ID
 BOTLOG = True
 
 
