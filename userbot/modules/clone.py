@@ -9,7 +9,7 @@ from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 
-from userbot.utils import admin_cmd
+from userbot.utils import CMD_HELP
 
 
 @borg.on(admin_cmd(pattern="clone ?(.*)"))
@@ -120,3 +120,10 @@ async def get_full_user(event):
                 return replied_user, None
             except Exception as e:
                 return None, e
+
+CMD_HELP.update(
+    {
+        "cloneuser": ">`.clone`"
+        "\nUsage: meng-kloning orang lain"
+    }
+)
