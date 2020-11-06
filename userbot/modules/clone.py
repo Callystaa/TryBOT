@@ -67,7 +67,7 @@ async def _(event):
         )
 
 
-@register(admin_cmd(pattern="revert$"))
+@register(outgoing(pattern="revert$"))
 async def _(event):
     if event.fwd_from:
         return
@@ -81,10 +81,10 @@ async def _(event):
     )
     await borg(functions.account.UpdateProfileRequest(about=f"{bio}"))
     await borg(functions.account.UpdateProfileRequest(first_name=f"{name}"))
-    await event.edit("succesfully reverted to your account back")
+    await event.edit("berhasil dikembalikan ke akun Anda kembali")
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
+            BOTLOG_CHATID, f"#REVERT\nBerhasil dikembalikan ke profil Anda"
         )
 
 
