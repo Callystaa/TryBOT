@@ -91,17 +91,13 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-@register(outgoing=True, pattern="^.ping$")
+@register(outgoing=True, pattern=r"^\.ping$")
 async def pingme(pong):
-    """ For .ping command, ping the userbot from any chat.  """
-    uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    await pong.edit("`Ping...`")
+    await pong.edit("`PONG!!!`")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit(
-        f"**PONG!! 🏓**\n**Pinger** : %sms\n**Waktu Nyala** : {uptime}" % (duration)
-    )
+    await pong.edit("`PONG!!!\n%sms`" % (duration))
 
 
 @register(outgoing=True, pattern=r"^\.dc$")
@@ -116,11 +112,8 @@ async def neardc(event):
 
 CMD_HELP.update(
     {
-        "ping": "`.ping`\
-    \nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.\
-    \n\n`.speed`\
-    \nUsage: Melakukan speedtest dan menunjukkan hasilnya.\
-    \n\n`.dc`\
-    \nUsage: Menemukan pusat data terdekat dari server Anda."
+        "speed": ">`.speed`" "\nUsage: Melakukan speedtest dan menunjukkan hasilnya.",
+        "dc": ">`.dc`" "\nUsage: Menemukan pusat data terdekat dari server Anda.",
+        "ping": ">`.ping`" "\nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.",
     }
 )
