@@ -53,7 +53,7 @@ async def killthebot(event):
 
 @register(outgoing=True, pattern=r"^\.restart$")
 async def killdabot(event):
-    await event.edit("`*i would be back in a moment*`")
+    await event.edit("`*saya akan kembali sebentar lagi*`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
     await bot.disconnect()
@@ -67,7 +67,7 @@ async def killdabot(event):
 async def reedme(e):
     await e.edit(
         "Here's something for you to read:\n"
-        "\n[ProjectYrzzr's README.md file](https://github.com/alfianandaa/ProjectAlf/blob/master/README.md)"
+        "\n[ProjectDark's README.md file](https://github.com/alfianandaa/ProjectAlf/blob/master/README.md)"
         "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02)"
         "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
         "\n[Setup Guide - LastFM Module](https://telegra.ph/How-to-set-up-LastFM-module-for-Paperplane-userbot-11-02)"
@@ -95,7 +95,7 @@ async def repeat(rep):
 @register(outgoing=True, pattern=r"^\.repo$")
 async def repo_is_here(wannasee):
     await wannasee.edit(
-        "[Klik Disini](https://github.com/Ajibcdefgh/ProjectDark) untuk membuka ProjectDark."
+        "[Klik Disini](https://pornhub.com/) untuk membuka UserBot yang saya pakai."
     )
 
 
@@ -126,16 +126,16 @@ async def raw(event):
 CMD_HELP.update(
     {
         "random": ">`.random <item1> <item2> ... <itemN>`"
-        "\nUsage: Get a random item from the list of items.",
-        "sleep": ">`.sleep <seconds>`" "\nUsage: Let yours snooze for a few seconds.",
-        "shutdown": ">`.shutdown`" "\nUsage: Shutdown bot",
-        "repo": ">`.repo`" "\nUsage: Github Repo of this bot",
+        "\nUsage: Dapatkan item acak dari daftar item.",
+        "sleep": ">`.sleep <seconds>`" "\nUsage: Biarkan punyamu tertidur selama beberapa detik.",
+        "shutdown": ">`.shutdown`" "\nUsage: Bunuh bot",
+        "repo": ">`.repo`" "\nUsage: Github Repo dari bot ini",
         "readme": ">`.readme`"
-        "\nUsage: Provide links to setup the userbot and it's modules.",
+        "\nUsage: Berikan tautan untuk menyiapkan bot pengguna dan modulnya.",
         "repeat": ">`.repeat <no> <text>`"
-        "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.",
-        "restart": ">`.restart`" "\nUsage: Restarts the bot !!",
+        "\nUsage: Ulangi teks tersebut beberapa kali. Jangan bingung ini dengan spam.",
+        "restart": ">`.restart`" "\nUsage: Mulai ulang bot !!",
         "raw": ">`.raw`"
-        "\nUsage: Get detailed JSON-like formatted data about replied message.",
+        "\nUsage: Dapatkan data berformat seperti JSON mendetail tentang pesan yang dibalas.",
     }
 )
