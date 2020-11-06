@@ -6,12 +6,13 @@
 """ Userbot module containing commands related to the \
     Information Superhighway (yes, Internet). """
 
+import time
 from datetime import datetime
 
 from speedtest import Speedtest
+
 from userbot import CMD_HELP, StartTime
 from userbot.events import register
-import time
 
 
 async def get_readable_time(seconds: int) -> str:
@@ -22,9 +23,7 @@ async def get_readable_time(seconds: int) -> str:
 
     while count < 4:
         count += 1
-        remainder, result = divmod(
-            seconds, 60) if count < 3 else divmod(
-            seconds, 24)
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
         if seconds == 0 and remainder == 0:
             break
         time_list.append(int(result))
@@ -53,27 +52,29 @@ async def speedtst(spd):
     test.results.share()
     result = test.results.dict()
 
-    await spd.edit("`"
-                   "Dimulai pada "
-                   f"{result['timestamp']} \n\n"
-                   "Unduh "
-                   f"{speed_convert(result['download'])} \n"
-                   "Unggah "
-                   f"{speed_convert(result['upload'])} \n"
-                   "Ping "
-                   f"{result['ping']} \n"
-                   "ISP "
-                   f"{result['client']['isp']}"
-                   "`")
+    await spd.edit(
+        "`"
+        "Dimulai pada "
+        f"{result['timestamp']} \n\n"
+        "Unduh "
+        f"{speed_convert(result['download'])} \n"
+        "Unggah "
+        f"{speed_convert(result['upload'])} \n"
+        "Ping "
+        f"{result['ping']} \n"
+        "ISP "
+        f"{result['client']['isp']}"
+        "`"
+    )
 
 
 def speed_convert(size):
     """
     Hi human, you can't read bytes?
     """
-    power = 2**10
+    power = 2 ** 10
     zero = 0
-    units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
+    units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
     while size > power:
         size /= power
         zero += 1
@@ -88,7 +89,9 @@ async def pingme(pong):
     await pong.edit("`Ping...`")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit(f"**PONG!! 🏓**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration))
+    await pong.edit(
+        f"**PONG!! 🏓**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration)
+    )
 
 
 @register(outgoing=True, pattern="^.pong$")
@@ -100,11 +103,14 @@ async def pingme(pong):
     duration = (end - start).microseconds / 9000
     await pong.edit("`Ping!\n%sms`" % (duration))
 
+
 CMD_HELP.update(
-    {"ping": "`.ping`\
+    {
+        "ping": "`.ping`\
     \nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.\
     \n\n`.speed`\
     \nUsage: Melakukan speedtest dan menunjukkan hasilnya.\
     \n\n`.pong`\
     \nUsage: Tunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping bot Anda."
-     })
+    }
+)
