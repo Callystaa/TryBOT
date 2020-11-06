@@ -10,7 +10,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 
 from .. import ALIVE_NAME, AUTONAME, CMD_HELP, DEFAULT_BIO
-from ..utils import admin_cmd
+from ..utils
 
 DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
 DEFAULTUSERBIO = (
