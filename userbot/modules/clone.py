@@ -77,7 +77,7 @@ async def _(event):
         )
 
 
-@bot.on(admin_cmd(pattern="revert$"))
+@register(outgoing=True, pattern="revert$"))
 async def _(event):
     if event.fwd_from:
         return
@@ -101,7 +101,7 @@ async def _(event):
 
 
 """
-@bot.on(admin_cmd(pattern="fclone ?(.*)"))
+@register(outgoing=True, pattern="fclone ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -154,7 +154,7 @@ async def _(event):
         )
 
 
-@bot.on(admin_cmd(pattern="frevert$"))
+@register(outgoing=True, pattern="frevert$"))
 async def _(event):
     if event.fwd_from:
         return
