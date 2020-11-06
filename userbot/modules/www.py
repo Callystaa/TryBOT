@@ -6,12 +6,12 @@
 """ Userbot module containing commands related to the \
     Information Superhighway (yes, Internet). """
 
-import time
 from datetime import datetime
 
 from speedtest import Speedtest
+from telethon import functions
 
-from userbot import CMD_HELP, StartTime
+from userbot import CMD_HELP
 from userbot.events import register
 
 
