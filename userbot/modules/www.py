@@ -114,6 +114,7 @@ CMD_HELP.update(
     {
         "speed": ">`.speed`" "\nUsage: Melakukan speedtest dan menunjukkan hasilnya.",
         "dc": ">`.dc`" "\nUsage: Menemukan pusat data terdekat dari server Anda.",
-        "ping": ">`.ping`" "\nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.",
+        "ping": ">`.ping`"
+        "\nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.",
     }
 )
