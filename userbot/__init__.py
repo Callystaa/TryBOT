@@ -73,7 +73,7 @@ LOGSPAMMER = sb(os.environ.get("LOGSPAMMER") or "True")
 
 # Default .alive name
 ALIVE_NAME = os.environ.get("ALIVE_NAME") or None
-
+AUTONAME = os.environ.get("AUTONAME", None)
 # Default .alive logo
 ALIVE_LOGO = (
     os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/877dcec4f285893880a81.jpg"
