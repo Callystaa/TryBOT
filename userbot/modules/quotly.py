@@ -80,15 +80,6 @@ async def _(event):
 
 
 CMD_HELP.update(
-    {
-        "quote": ".q <teks>"
-        "\nUsage: membuat stiker dari kata kata yang kamu berikan "
-
-    }
+    {"quote": ".q <teks>" "\nUsage: membuat stiker dari kata kata yang kamu berikan "}
 )
-CMD_HELP.update(
-    {
-        "qbot": ".qbot <teks/balas pesan>"
-        "\nUsage: sama seperti quote "
-    }
-)
+CMD_HELP.update({"qbot": ".qbot <teks/balas pesan>" "\nUsage: sama seperti quote "})
