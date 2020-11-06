@@ -24,19 +24,19 @@ async def speedtst(spd):
     test.results.share()
     result = test.results.dict()
 
-    output = f"Started at `{result['timestamp']}`\n\n"
+    output = f"Dimulai pada `{result['timestamp']}`\n\n"
     output += "`Client:`\n"
     output += f"ISP: `{result['client']['isp']}`\n"
-    output += f"Country: `{result['client']['country']}`\n\n"
+    output += f"Negara: `{result['client']['country']}`\n\n"
     output += "`Server:`\n"
-    output += f"Name: `{result['server']['name']}`\n"
-    output += f"Country: `{result['server']['country']}, {result['server']['cc']}`\n"
+    output += f"Nama: `{result['server']['name']}`\n"
+    output += f"Negara: `{result['server']['country']}, {result['server']['cc']}`\n"
     output += f"Sponsor: `{result['server']['sponsor']}`\n"
-    output += f"Latency: `{result['server']['latency']}`\n\n"
+    output += f"Latensi: `{result['server']['latency']}`\n\n"
     output += "`Speed:`\n"
     output += f"Ping: `{result['ping']}`\n"
-    output += f"Download: `{speed_convert(result['download'])}`\n"
-    output += f"Upload: `{speed_convert(result['upload'])}` "
+    output += f"Unduh: `{speed_convert(result['download'])}`\n"
+    output += f"Unggah: `{speed_convert(result['upload'])}` "
     await spd.delete()
     await spd.client.send_message(spd.chat_id, output)
 
@@ -55,25 +55,25 @@ def speed_convert(size):
 async def neardc(event):
     result = await event.client(functions.help.GetNearestDcRequest())
     await event.edit(
-        f"Country : `{result.country}`\n"
-        f"Nearest Datacenter : `{result.nearest_dc}`\n"
-        f"This Datacenter : `{result.this_dc}`"
+        f"Negara : `{result.country}`\n"
+        f"Pusat Data Terdekat : `{result.nearest_dc}`\n"
+        f"Pusat Data ini : `{result.this_dc}`"
     )
 
 
 @register(outgoing=True, pattern=r"^\.ping$")
 async def pingme(pong):
     start = datetime.now()
-    await pong.edit("`Pong!`")
+    await pong.edit("""Pong!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit("`Pong!\n%sms`" % (duration))
+    await pong.edit("**Pong!\n%sms***" % (duration))
 
 
 CMD_HELP.update(
     {
-        "speed": ">`.speed`" "\nUsage: Does a speedtest and shows the results.",
-        "dc": ">`.dc`" "\nUsage: Finds the nearest datacenter from your server.",
-        "ping": ">`.ping`" "\nUsage: Shows how long it takes to ping your bot.",
+        "speed": ">`.speed`" "\nUsage: Melakukan speedtest dan menunjukkan hasilnya.",
+        "dc": ">`.dc`" "\nUsage: Menemukan pusat data terdekat dari server Anda.",
+        "ping": ">`.ping`" "\nUsage: Menunjukkan berapa lama waktu yang dibutuhkan untuk melakukan ping ke bot Anda.",
     }
 )
