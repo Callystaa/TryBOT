@@ -10,14 +10,22 @@ from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 
-from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, COUNT_PM, LASTMSG, LOGS,
-                     PM_AUTO_BAN)
+from userbot import (
+    BOTLOG,
+    BOTLOG_CHATID,
+    CMD_HELP,
+    COUNT_PM,
+    LASTMSG,
+    LOGS,
+    PM_AUTO_BAN,
+)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
 DEF_UNAPPROVED_MSG = (
     "Hei yang disana! Sayangnya, saya tidak menerima pesan pribadi dari orang asing.\n"
-    "Silakan hubungi saya di grup, atau tunggu saya menyetujui Anda.")
+    "Silakan hubungi saya di grup, atau tunggu saya menyetujui Anda."
+)
 # =================================================================
 
 
@@ -121,7 +129,10 @@ async def auto_accept(event):
     ):
         try:
             from userbot.modules.sql_helper.pm_permit_sql import (
-                approve, is_approved, gvarstatus)
+                approve,
+                gvarstatus,
+                is_approved,
+            )
         except AttributeError:
             return
 
@@ -183,8 +194,8 @@ async def notifon(non_event):
 async def approvepm(apprvpm):
     """ For .approve command, give someone the permissions to PM you. """
     try:
-        from userbot.modules.sql_helper.pm_permit_sql import approve
         from userbot.modules.sql_helper.globals import gvarstatus
+        from userbot.modules.sql_helper.pm_permit_sql import approve
     except AttributeError:
         return await apprvpm.edit("`Running on Non-SQL mode!`")
 
@@ -207,9 +218,9 @@ async def approvepm(apprvpm):
     else:
         UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
 
-    async for message in apprvpm.client.iter_messages(apprvpm.chat_id,
-                                                      from_user='me',
-                                                      search=UNAPPROVED_MSG):
+    async for message in apprvpm.client.iter_messages(
+        apprvpm.chat_id, from_user="me", search=UNAPPROVED_MSG
+    ):
         await message.delete()
 
     try:
@@ -221,7 +232,8 @@ async def approvepm(apprvpm):
 
     if BOTLOG:
         await apprvpm.client.send_message(
-            BOTLOG_CHATID, "#APPROVED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
+            BOTLOG_CHATID,
+            "#APPROVED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -282,7 +294,8 @@ async def blockpm(block):
 
     if BOTLOG:
         await block.client.send_message(
-            BOTLOG_CHATID, "#BLOCKED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
+            BOTLOG_CHATID,
+            "#BLOCKED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -341,8 +354,7 @@ async def add_pmsg(cust_msg):
 
         if BOTLOG:
             await cust_msg.client.send_message(
-                BOTLOG_CHATID,
-                f"***{status} PMPermit message :*** \n\n{msg}"
+                BOTLOG_CHATID, f"***{status} PMPermit message :*** \n\n{msg}"
             )
 
     if conf.lower() == "reset":
@@ -354,11 +366,15 @@ async def add_pmsg(cust_msg):
 
     if conf.lower() == "get":
         if custom_message is not None:
-            await cust_msg.edit("**This is your current PMPermit message:**"
-                                f"\n\n{custom_message}")
+            await cust_msg.edit(
+                "**This is your current PMPermit message:**" f"\n\n{custom_message}"
+            )
         else:
-            await cust_msg.edit("**You haven't set a custom PMPermit message yet.**\n"
-                                f"Using default message: \n\n`{DEF_UNAPPROVED_MSG}`")
+            await cust_msg.edit(
+                "**You haven't set a custom PMPermit message yet.**\n"
+                f"Using default message: \n\n`{DEF_UNAPPROVED_MSG}`"
+            )
+
 
 CMD_HELP.update(
     {
