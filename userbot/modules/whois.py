@@ -133,18 +133,18 @@ async def fetch_info(replied_user, event):
     user_bio = "This User has no About" if not user_bio else user_bio
 
     caption = "<b>Berikut yang saya dapat dari Emak:</b>\n\n"
-    caption += f"🗣️Nama depan: {first_name}\n"
-    caption += f"🗣️Nama belakang: {last_name}\n"
-    caption += f"👤Nama pengguna: {username}\n"
-    caption += f"🏫ID Pusat Data: {dc_id}\n"
-    caption += f"🖼️Number of Profile Pics: {replied_user_profile_photos_count}\n"
-    caption += f"🤖Apakah Bot: {is_bot}\n"
-    caption += f"🚫Apakah Dibatasi: {restricted}\n"
-    caption += f"☑️Diverifikasi oleh Telegram: {verified}\n"
-    caption += f"🆔ID: <code>{user_id}</code>\n\n"
-    caption += f"📝Bio: \n<code>{user_bio}</code>\n\n"
+    caption += f"🗣️ Nama depan: {first_name}\n"
+    caption += f"🗣️ Nama belakang: {last_name}\n"
+    caption += f"👤 Nama pengguna: {username}\n"
+    caption += f"🏫 ID Pusat Data: {dc_id}\n"
+    caption += f"🖼️ Jumlah Foto Profil: {replied_user_profile_photos_count}\n"
+    caption += f"🤖 Apakah Bot: {is_bot}\n"
+    caption += f"🚫 Apakah Dibatasi: {restricted}\n"
+    caption += f"☑️ Diverifikasi oleh Telegram: {verified}\n"
+    caption += f"🆔 ID: <code>{user_id}</code>\n\n"
+    caption += f"📝 Bio: \n<code>{user_bio}</code>\n\n"
     caption += f"💬Obrolan Umum dengan pengguna ini: {common_chat}\n"
-    caption += f"🔗Tautan Permanen Ke Profil: "
+    caption += f"🔗 Tautan Permanen Ke Profil: "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
 
     return photo, caption
