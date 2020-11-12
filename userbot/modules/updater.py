@@ -209,7 +209,7 @@ async def upstream(event):
 
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if conf == "deploy":
-        await event.edit("`Deploying userbot, please wait....`")
+        await event.edit("`Mendeploy userbot, tunggu sebentar....`")
         await deploy(event, repo, ups_rem, ac_br, txt)
         await asyncio.sleep(15)
         await event.delete()
@@ -217,7 +217,7 @@ async def upstream(event):
 
     if changelog == "" and not force_update:
         await event.edit(
-            "\n`ProjectDark sudah`  **up-to-date**  `dengan`  "
+            "\n`ProjectDark sudah`  **Ter-Update**  `dengan`  "
             f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         await asyncio.sleep(15)
