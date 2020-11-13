@@ -114,7 +114,7 @@ async def sticker_to_png(sticker):
 CMD_HELP.update(
     {
         "stickers_v2": ">`.itos`"
-        "\nUsage: Reply .itos ke stiker atau gambar untuk di-kang ke userbot no pack Anda "
+        "\nUsage: balas .itos ke gambar untuk mengubahnya menjadi stiker  "
         "\n\n>`.stoi`"
         "\nUsage: balas ke stiker untuk mendapatkan preview stiker."
         "\n\n>`.get`"
