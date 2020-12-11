@@ -42,7 +42,7 @@ async def get_readable_time(seconds: int) -> str:
 
 @register(outgoing=True, pattern=r"^\.speed$")
 async def speedtst(spd):
-    await spd.edit("`Running speed test . . .`")
+    await spd.edit("`Tes kecepatan . . .`")
     test = Speedtest()
 
     test.get_best_server()
