@@ -53,7 +53,7 @@ async def killthebot(event):
 
 @register(outgoing=True, pattern=r"^\.restart$")
 async def killdabot(event):
-    await event.edit("`*saya akan kembali sebentar lagi*`")
+    await event.edit("`*Memulai ulang ProjectDark...*`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
     await bot.disconnect()
@@ -95,7 +95,7 @@ async def repeat(rep):
 @register(outgoing=True, pattern=r"^\.repo$")
 async def repo_is_here(wannasee):
     await wannasee.edit(
-        "[Klik Disini](https://pornhub.com/) untuk membuka UserBot yang saya pakai."
+        "Klik [Disini](https://github.com/Ajibcdefgh/ProjectDark) untuk membuka ProjectDark."
     )
 
 
