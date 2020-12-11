@@ -1084,7 +1084,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "remixmisc": "`.app`\
+        "moremisc": "`.app`\
 \nUsage: type .app name and get app details.\
 \n\n`.undlt`\
 \nUsage: undo deleted message but u need admin permission.\
@@ -1113,10 +1113,6 @@ CMD_HELP.update(
 \n\n<`.ph` or `.threat` or `.trash` or `.trap` >\
 \nUsage: Reply to image or sticker and see magik.\
 \n\n`.glitch` reply to media file\
-\nUsage:glitches the given mediafile(gif , stickers , image, videos) to a gif and glitch range is from 1 to 8.\
-If nothing is mentioned then by default it is 2\
-\n\n`.glitchs` reply to media file\
 \nUsage:glitches the given mediafile(gif , stickers , image, videos) to a sticker and glitch range is from 1 to 8.\
 If nothing is mentioned then by default it is 2."
-    }
-)
+})
