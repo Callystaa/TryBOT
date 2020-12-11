@@ -57,5 +57,6 @@ async def _(event):
         return await event.edit("`@SaitamaShikenRobot tidak menanggapi..`")
 
 
-CMD_HELP.update({"wallpaper": ">`.wall <query>`"
-                 "\nUsage: cari gambar wallpaper yang indah."})
+CMD_HELP.update(
+    {"wallpaper": ">`.wall <query>`" "\nUsage: cari gambar wallpaper yang indah."}
+)
