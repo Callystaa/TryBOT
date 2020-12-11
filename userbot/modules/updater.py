@@ -105,7 +105,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
                 f"{txt}\n" "`Invalid Heroku credentials for deploying userbot dyno.`"
             )
             return repo.__del__()
-        await event.edit("`Userbot dyno build dalam proses, tunggu sebentar...`")
+        await event.edit("**Userbot dyno build dalam proses, tunggu sebentar...**")
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
         heroku_git_url = heroku_app.git_url.replace(
@@ -233,7 +233,7 @@ async def upstream(event):
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
     if conf == "now":
-        await event.edit("`Memperbarui ProjectDark, harap tunggu....`")
+        await event.edit("**Memperbarui ProjectDark, harap tunggu....**")
         await update(event, repo, ups_rem, ac_br)
         await asyncio.sleep(15)
         await event.delete()
