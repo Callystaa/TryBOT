@@ -9,6 +9,7 @@
 
 import io
 import os
+import re
 import urllib
 
 import requests
@@ -34,7 +35,7 @@ async def okgoogle(img):
         photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
-        await img.edit("`Balas di Gambar!!.`")
+        await img.edit("`Balas foto atau stiker ngab.`")
         return
 
     if photo:
@@ -42,7 +43,7 @@ async def okgoogle(img):
         try:
             image = Image.open(photo)
         except OSError:
-            await img.edit("`Gambar tidak di dukung, Cari yg lain!!.`")
+            await img.edit("`Unsupported sexuality, most likely.`")
             return
         name = "okgoogle.png"
         image.save(name, "PNG")
@@ -121,12 +122,27 @@ async def ParseSauce(googleurl):
 async def scam(results, lim):
 
     single = opener.open(results["similar_images"]).read()
-    single.decode("utf-8")
+    decoded = single.decode("utf-8")
+
+    imglinks = []
+    counter = 0
+
+    pattern = r"^,\[\"(.*[.png|.jpg|.jpeg])\",[0-9]+,[0-9]+\]$"
+    oboi = re.findall(pattern, decoded, re.I | re.M)
+
+    for imglink in oboi:
+        counter += 1
+        if not counter >= int(lim):
+            imglinks.append(imglink)
+        else:
+            break
+
+    return imglinks
 
 
 CMD_HELP.update(
     {
         "reverse": ".reverse\
-        \nUsage: Balas gambar/stiker untuk melakukan pencarian terbalik di Gambar Google !!"
+        \nUsage: Balas gambar / stiker untuk melakukan pencarian terbalik di Gambar Google !!"
     }
 )
