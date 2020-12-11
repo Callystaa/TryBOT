@@ -10,7 +10,7 @@
     <a href="https://github.com/Ajibcdefgh/ProjectDark/network/members"><img src="https://img.shields.io/github/forks/Ajibcdefgh/ProjectDark?label=Fork&style=flat-square&logo=github&color=E0777D" alt="Fork" /></a>
 </p>
 
-![logo](https://telegra.ph/file/d3c936e227f10a4792151.jpg)
+![logo](https://telegra.ph/file/b0c8e6a05caa556b24278.jpg)
 
 
 ```
