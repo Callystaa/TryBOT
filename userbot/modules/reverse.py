@@ -40,7 +40,7 @@ async def okgoogle(img):
         return await img.edit("`Reply to photo or sticker nigger.`")
 
     if photo:
-        await img.edit("`Processing...`")
+        await img.edit("`Mencari gambar...`")
         try:
             image = Image.open(photo)
         except OSError:
@@ -56,8 +56,8 @@ async def okgoogle(img):
 
         if response != 400:
             await img.edit(
-                "`Image successfully uploaded to Google. Maybe.`"
-                "\n`Parsing source now. Maybe.`"
+                "`Gambar berhasil diunggah ke Google. Mungkin.`"
+                "\n`Parsing sumber sekarang. Mungkin.`"
             )
         else:
             return await img.edit("`Google told me to fuck off.`")
@@ -68,7 +68,7 @@ async def okgoogle(img):
         imgspage = match["similar_images"]
 
         if guess and imgspage:
-            await img.edit(f"[{guess}]({fetchUrl})\n\n`Looking for images...`")
+            await img.edit(f"[{guess}]({fetchUrl})\n\n`Mencari gambar...`")
         else:
             return await img.edit("`Couldn't find anything for your uglyass.`")
 
@@ -87,7 +87,7 @@ async def okgoogle(img):
         except TypeError:
             pass
         await img.edit(
-            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})"
+            f"[{guess}]({fetchUrl})\n\n[Gambar yang mirip secara visual]({imgspage})"
         )
 
 
