@@ -2,10 +2,10 @@
 #
 # Thanks to @kandnub, for this awesome module !!
 #
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for reverse searching stickers and images on Google """
+"""Userbot module for reverse searching stickers and images on Google"""
 
 import io
 import os
@@ -20,13 +20,17 @@ from userbot import CMD_HELP, bot
 from userbot.events import register
 
 opener = urllib.request.build_opener()
-useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.70 Mobile Safari/537.36"
+useragent = (
+    "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/80.0.3987.149 Mobile Safari/537.36"
+)
 opener.addheaders = [("User-agent", useragent)]
 
 
-@register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
+@register(outgoing=True, pattern=r"^\.reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """ For .reverse command, Google search images and stickers. """
+    """For .reverse command, Google search images and stickers."""
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -35,16 +39,14 @@ async def okgoogle(img):
         photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
-        await img.edit("`Balas foto atau stiker ngab.`")
-        return
+        return await img.edit("`Balas foto atau stiker ngab.`")
 
     if photo:
-        await img.edit("`Proses...`")
+        await img.edit("`Processing...`")
         try:
             image = Image.open(photo)
         except OSError:
-            await img.edit("`Unsupported sexuality, most likely.`")
-            return
+            return await img.edit("`Unsupported sexuality, most likely.`")
         name = "okgoogle.png"
         image.save(name, "PNG")
         image.close()
@@ -60,8 +62,7 @@ async def okgoogle(img):
                 "\n`Parsing sumber sekarang. Mungkin.`"
             )
         else:
-            await img.edit("`Google told me to fuck off.`")
-            return
+            return await img.edit("`Google told me to fuck off.`")
 
         os.remove(name)
         match = await ParseSauce(fetchUrl + "&preferences?hl=en&fg=1#languages")
@@ -71,13 +72,9 @@ async def okgoogle(img):
         if guess and imgspage:
             await img.edit(f"[{guess}]({fetchUrl})\n\n`Mencari gambar...`")
         else:
-            await img.edit("`Couldn't find anything for your uglyass.`")
-            return
+            return await img.edit("`Couldn't find anything for your uglyass.`")
 
-        if img.pattern_match.group(1):
-            lim = img.pattern_match.group(1)
-        else:
-            lim = 3
+        lim = img.pattern_match.group(1) if img.pattern_match.group(1) else 3
         images = await scam(match, lim)
         yeet = []
         for i in images:
@@ -132,7 +129,7 @@ async def scam(results, lim):
 
     for imglink in oboi:
         counter += 1
-        if not counter >= int(lim):
+        if counter < int(lim):
             imglinks.append(imglink)
         else:
             break
@@ -142,7 +139,7 @@ async def scam(results, lim):
 
 CMD_HELP.update(
     {
-        "reverse": ".reverse\
-        \nUsage: Balas gambar / stiker untuk melakukan pencarian terbalik di Gambar Google !!"
+        "reverse": ">`.reverse`"
+        "\nUsage: Balas gambar / stiker untuk melakukan pencarian terbalik di Gambar Google !!"
     }
 )
