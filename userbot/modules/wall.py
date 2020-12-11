@@ -54,7 +54,7 @@ async def _(event):
         await event.delete()
         os.system("rm *.png *.jpg")
     except TimeoutError:
-        return await event.edit("`@SaitamaShikenRobot tidak menanggapi..`")
+        return await event.edit("`tidak merespon..`")
 
 
 CMD_HELP.update(
