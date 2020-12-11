@@ -5,7 +5,6 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-"""Userbot module for reverse searching stickers and images on Google"""
 
 import io
 import os
@@ -30,7 +29,6 @@ opener.addheaders = [("User-agent", useragent)]
 
 @register(outgoing=True, pattern=r"^\.reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """For .reverse command, Google search images and stickers."""
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -39,7 +37,7 @@ async def okgoogle(img):
         photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
-        return await img.edit("`Balas foto atau stiker ngab.`")
+        return await img.edit("`Reply to photo or sticker nigger.`")
 
     if photo:
         await img.edit("`Processing...`")
@@ -58,8 +56,8 @@ async def okgoogle(img):
 
         if response != 400:
             await img.edit(
-                "`Gambar berhasil diunggah ke Google. Mungkin.`"
-                "\n`Parsing sumber sekarang. Mungkin.`"
+                "`Image successfully uploaded to Google. Maybe.`"
+                "\n`Parsing source now. Maybe.`"
             )
         else:
             return await img.edit("`Google told me to fuck off.`")
@@ -70,7 +68,7 @@ async def okgoogle(img):
         imgspage = match["similar_images"]
 
         if guess and imgspage:
-            await img.edit(f"[{guess}]({fetchUrl})\n\n`Mencari gambar...`")
+            await img.edit(f"[{guess}]({fetchUrl})\n\n`Looking for images...`")
         else:
             return await img.edit("`Couldn't find anything for your uglyass.`")
 
@@ -89,12 +87,11 @@ async def okgoogle(img):
         except TypeError:
             pass
         await img.edit(
-            f"[{guess}]({fetchUrl})\n\n[Gambar yang mirip secara visual]({imgspage})"
+            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})"
         )
 
 
 async def ParseSauce(googleurl):
-    """Parse/Scrape the HTML code for the info we want."""
 
     source = opener.open(googleurl).read()
     soup = BeautifulSoup(source, "html.parser")
@@ -129,7 +126,7 @@ async def scam(results, lim):
 
     for imglink in oboi:
         counter += 1
-        if counter < int(lim):
+        if not counter >= int(lim):
             imglinks.append(imglink)
         else:
             break
