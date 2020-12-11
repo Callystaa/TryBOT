@@ -3,12 +3,9 @@ Created by @Jisan7509
 Plugin for CatUserbot
 #credit @GulfysHalfyyyy
 """
-import io
 
-from telethon import events
-from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, bot
+from userbot import bot
 from userbot.events import register
 
 # ==================================================================
