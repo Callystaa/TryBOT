@@ -60,7 +60,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "emojigames": "`.dice` 1-6 atay `.dart`1-6 atau `.ball`1-5\
+        "emojigames": "`.dice`1-6 atau `.dart`1-6 atau `.ball`1-5\
 \nUsage: hahaha hanya sebuah keajaiban.\nWarning:`Jangan gunakan nilai lain atau bot akan mogok`"
     }
 )
