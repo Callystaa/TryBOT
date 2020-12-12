@@ -58,7 +58,7 @@ Join [Userbotindo Support Group](https://t.me/userbotindo) for discussion, bug r
 *   [MoveAngel](https://github.com/MoveAngel) - One4uBot
 *   [AidilAryanto](https://github.com/aidilaryanto) - ProjectDils 
 *   [AnggaR69s](https://github.com/GengKapak/DCLXVI) - DCLXVI
-*   [X-Newbie](https://github.com/X-Newbie) - Xbot-Remix
+*   [BianSepang](https://github.com/BianSepang) - WeebProject
 *   [others](https://github.com/alfianandaa/ProjectAlf/graphs/contributors) that help to make this userbot awesome.
 
 ## License
