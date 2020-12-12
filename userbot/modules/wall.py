@@ -33,7 +33,7 @@ async def _(event):
             else:
                 img = await event.client.download_media(r1)
                 img2 = await event.client.download_media(r2)
-                await event.edit("`Uploading..`")
+                await event.edit("`Mengupload..`")
                 p = await event.client.send_file(
                     event.chat_id,
                     img,
