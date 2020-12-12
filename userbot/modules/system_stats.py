@@ -138,7 +138,7 @@ async def amireallyalive(alive):
         f"🐍 `Python         :` v{python_version()}\n"
         f"⚙️ `Telethon       :` v{version.__version__}\n"
         f"👤 `User           :` {DEFAULTUSER}\n"
-        "`▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱\n"
+        "`▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱`\n"
     )
     if ALIVE_LOGO:
         try:
