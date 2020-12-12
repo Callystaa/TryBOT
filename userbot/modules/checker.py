@@ -71,7 +71,9 @@ async def _(event):
             return
         else:
             await event.edit(f"{response.message.message}")
-            await event.client.delete_messages(httpheader, response.message.message, message_ids)
+            await event.client.delete_messages(
+                httpheader, response.message.message, message_ids
+            )
 
 
 @register(outgoing=True, pattern=r"^\.bin(?: |$)(.*)")
