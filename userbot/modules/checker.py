@@ -25,7 +25,7 @@ async def _(event):
             return
         else:
             await event.edit(f"{response.message.message}")
-            await event.client.delete_messages(response.message.message)
+            await event.client.delete_messages(message_ids, response.message.message)
 
 
 @register(outgoing=True, pattern=r"^\.subd(?: |$)(.*)")
@@ -48,7 +48,7 @@ async def _(event):
             return
         else:
             await event.edit(f"{response.message.message}")
-            await event.client.delete_messages(response.message.message)
+            await event.client.delete_messages(message_ids, response.message.message)
 
 
 @register(outgoing=True, pattern=r"^\.cek(?: |$)(.*)")
@@ -71,7 +71,7 @@ async def _(event):
             return
         else:
             await event.edit(f"{response.message.message}")
-            await event.client.delete_messages(httpheader, response.message.message)
+            await event.client.delete_messages(httpheader, response.message.message, message_ids)
 
 
 @register(outgoing=True, pattern=r"^\.bin(?: |$)(.*)")
@@ -94,7 +94,7 @@ async def _(event):
             return
         else:
             await event.edit(f"{response.message.message}")
-            await event.client.delete_messages(response.message.message)
+            await event.client.delete_messages(message_ids, response.message.message)
 
 
 @register(outgoing=True, pattern=r"^\.cc(?: |$)(.*)")
@@ -117,7 +117,7 @@ async def _(event):
             return
         else:
             await event.edit(f"{response.message.message}")
-            await event.client.delete_messages(response.message.message)
+            await event.client.delete_messages(message_ids, response.message.message)
 
 
 CMD_HELP.update(
