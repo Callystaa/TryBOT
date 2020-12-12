@@ -224,16 +224,16 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"`Detail Userbot Saya `\n"
-        f"┏━━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"┣[ 🕒 `Bot uptime :` {uptime}\n"
-        f"┣[ 👤 `User       :` {DEFAULTUSER}\n"
-        f"┣[ 👁️‍🗨️ `Username   :` @{user.username}\n"
-        f"┣[ ⚙️ `Telethon   :` v{version.__version__}\n"
-        f"┣[ 🐍 `Python     :` v{python_version()}\n"
-        f"┣[ 🤖 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
-        f"┗━━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"`Semua modul dimuat:` {len(modules)}"
+        f"`ProjectDark dalam layanan... `\n"
+        f"==============================\n"
+        f"=> 🕒 `Bot uptime :` {uptime}\n"
+        f"=> 👤 `User       :` {DEFAULTUSER}\n"
+        f"=> 👁️‍🗨️ `Username   :` @{user.username}\n"
+        f"=> ⚙️ `Telethon   :` v{version.__version__}\n"
+        f"=> 🐍 `Python     :` v{python_version()}\n"
+        f"=> 🤖 `Running on :` {UPSTREAM_REPO_BRANCH}\n"
+        f"==============================\n"
+        f"`Module yang dimuat:` {len(modules)}"
     )
     if ALIVE_LOGO:
         try:
