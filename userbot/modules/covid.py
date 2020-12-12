@@ -23,7 +23,7 @@ async def corona(event):
     try:
         country_data = covid.get_status_by_country_name(country)
         output_text = (
-            f"`ℹ️ Dikonfirmasi     : {format_integer(country_data['confirmed'])}`\n"
+            f"`ℹ️ Dikonfirmasi    : {format_integer(country_data['confirmed'])}`\n"
             + f"`😁 Hidup          : {format_integer(country_data['active'])}`\n"
             + f"`⚰️ Meninggal      : {format_integer(country_data['deaths'])}`\n"
             + f"`💉 Dipulihkan     : {format_integer(country_data['recovered'])}`\n\n"
@@ -33,10 +33,10 @@ async def corona(event):
             + f"`📝 Tes Total      : {format_integer(country_data['total_tests'])}`\n\n"
             + f"🌐 Data disediakan oleh [Worldometer](https://www.worldometers.info/coronavirus/country/{country})"
         )
-        await event.edit(f"Corona Virus Info in {country}:\n\n{output_text}")
+        await event.edit(f"Info Virus Corona di {country}:\n\n{output_text}")
     except ValueError:
         await event.edit(
-            f"No information found for: {country}!\nCheck your spelling and try again."
+            f"Tidak ada informasi yang ditemukan untuk: {country}!\nPeriksa ejaan Anda dan coba lagi."
         )
 
 
