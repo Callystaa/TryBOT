@@ -19,14 +19,14 @@ async def help(event):
         if args in CMD_HELP:
             msg = await event.edit(str(CMD_HELP[args]))
         else:
-            msg = await event.edit("Harap tentukan nama modul yang valid.")
+            msg = await event.edit("Masukin module yang bener ngab.")
     else:
         string = "Tentukan modul mana yang Anda ingin bantuannya !!\n**Usage:** `.help` <nama modul>\n\n"
         for i in sorted(CMD_HELP):
             string += "`" + str(i) + "`"
-            string += "\t\t\t[]\t\t\t "
+            string += "\t\t\t||\t\t\t "
         msg = await event.edit(string)
-    await asyncio.sleep(45)
+    await asyncio.sleep(60)
     try:
         await msg.delete()
     except BaseException:
