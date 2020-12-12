@@ -23,14 +23,14 @@ async def corona(event):
     try:
         country_data = covid.get_status_by_country_name(country)
         output_text = (
-            f"`ℹ️ Dikonfirmasi   : {format_integer(country_data['confirmed'])}`\n"
-            + f"`😁 Hidup      : {format_integer(country_data['active'])}`\n"
-            + f"`⚰️Meninggal      : {format_integer(country_data['deaths'])}`\n"
-            + f"`💉Dipulihkan   : {format_integer(country_data['recovered'])}`\n\n"
-            + f"`💼 Kasus Baru   : {format_integer(country_data['new_cases'])}`\n"
+            f"`ℹ️ Dikonfirmasi     : {format_integer(country_data['confirmed'])}`\n"
+            + f"`😁 Hidup          : {format_integer(country_data['active'])}`\n"
+            + f"`⚰️ Meninggal      : {format_integer(country_data['deaths'])}`\n"
+            + f"`💉 Dipulihkan     : {format_integer(country_data['recovered'])}`\n\n"
+            + f"`💼 Kasus Baru     : {format_integer(country_data['new_cases'])}`\n"
             + f"`😵 Kematian Baru  : {format_integer(country_data['new_deaths'])}`\n"
-            + f"`🤕Kritis    : {format_integer(country_data['critical'])}`\n"
-            + f"`📝Tes Total : {format_integer(country_data['total_tests'])}`\n\n"
+            + f"`🤕 Kritis         : {format_integer(country_data['critical'])}`\n"
+            + f"`📝 Tes Total      : {format_integer(country_data['total_tests'])}`\n\n"
             + f"🌐 Data disediakan oleh [Worldometer](https://www.worldometers.info/coronavirus/country/{country})"
         )
         await event.edit(f"Corona Virus Info in {country}:\n\n{output_text}")
