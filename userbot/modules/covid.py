@@ -23,7 +23,7 @@ async def corona(event):
     try:
         country_data = covid.get_status_by_country_name(country)
         output_text = (
-            f"`ℹ️ Dikonfirmasi    : {format_integer(country_data['confirmed'])}`\n"
+            f"`ℹ️ Dikonfirmasi   : {format_integer(country_data['confirmed'])}`\n"
             + f"`😁 Hidup          : {format_integer(country_data['active'])}`\n"
             + f"`⚰️ Meninggal      : {format_integer(country_data['deaths'])}`\n"
             + f"`💉 Dipulihkan     : {format_integer(country_data['recovered'])}`\n\n"
