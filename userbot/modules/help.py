@@ -1,8 +1,9 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
+"""Userbot help command"""
 
 import asyncio
 
@@ -10,28 +11,23 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.help(?: |$)(.*)")
-async def hep(event):
+@register(outgoing=True, pattern="^.help(?: |$)(.*)")
+async def help(event):
+    """For .help command"""
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]))
-            await asyncio.sleep(120)
-            await event.delete()
+            msg = await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Masukin module yang bener ngab.")
-            await asyncio.sleep(120)
-            await event.delete()
+            msg = await event.edit("Harap tentukan nama modul yang valid.")
     else:
-        string1 = "Harap tentukan modul mana yang Anda ingin bantuannya !!\nUsage: .help <nama modul>\n\n"
-        string = "[ "
-        string3 = "Daftar untuk semua perintah yang tersedia di bawah ini: "
-        string2 = "-------------------------------------------------------------"
-        for i in CMD_HELP:
-            string += "`" + str(i)
-            string += "`  ][  "
-        await event.edit(
-            f"{string1}" f"{string3}" f"{string2}\n" f"{string}" f"{string2}"
-        )
-        await asyncio.sleep(120)
-        await event.delete()
+        string = "Tentukan modul mana yang Anda ingin bantuannya !!\n**Usage:** `.help` <nama modul>\n\n"
+        for i in sorted(CMD_HELP):
+            string += "`" + str(i) + "`"
+            string += "\t\t\t[]\t\t\t "
+        msg = await event.edit(string)
+    await asyncio.sleep(45)
+    try:
+        await msg.delete()
+    except BaseException:
+        return  # just in case if msg deleted first
