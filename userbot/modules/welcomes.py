@@ -146,15 +146,21 @@ async def show_welcome(event):
         return await event.edit("`Running on Non-SQL mode!`")
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        return await event.edit("`Tidak ada pesan selamat datang yang disimpan di sini.`")
+        return await event.edit(
+            "`Tidak ada pesan selamat datang yang disimpan di sini.`"
+        )
     elif cws.f_mesg_id:
         msg_o = await event.client.get_messages(
             entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
         )
-        await event.edit("`Saat ini saya menyambut pengguna baru dengan catatan selamat datang ini.`")
+        await event.edit(
+            "`Saat ini saya menyambut pengguna baru dengan catatan selamat datang ini.`"
+        )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws.reply:
-        await event.edit("`Saat ini saya menyambut pengguna baru dengan catatan selamat datang ini.`")
+        await event.edit(
+            "`Saat ini saya menyambut pengguna baru dengan catatan selamat datang ini.`"
+        )
         await event.reply(cws.reply)
 
 
