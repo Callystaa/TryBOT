@@ -75,12 +75,12 @@ async def mention_afk(mention):
         if mention.sender_id not in USERS or chat_title not in USERS:
             if AFKREASON:
                 await mention.reply(
-                    f"**Saya tidak ada sekarang.** (Since: {afk_str})"
+                    f"**Saya sedang offline.** (Sejak: {afk_str})"
                     f"\nKarena: `{AFKREASON}`."
                 )
             else:
                 await mention.reply(
-                    f"**Saya tidak ada sekarang.** (Since: {afk_str})"
+                    f"**Saya sedang offline.** (Sejak: {afk_str})"
                     "\n**Silakan kembali lagi nanti.**"
                 )
             if mention.sender_id is not None:
@@ -91,12 +91,12 @@ async def mention_afk(mention):
             if USERS[mention.sender_id] % randint(2, 4) == 0:
                 if AFKREASON:
                     await mention.reply(
-                        f"**Saya tidak ada sekarang.** (Since: {afk_str})"
+                        f"**Saya sedang offline.** (Sejak: {afk_str})"
                         f"\nKarena: `{AFKREASON}`."
                     )
                 else:
                     await mention.reply(
-                        f"**Saya tidak tersedia sekarang.** (Since: {afk_str})"
+                        f"**Saya sedang offline sekarang.** (Sejak: {afk_str})"
                         "\n**Silakan kembali lagi nanti.**"
                     )
             if mention.sender_id is not None:
@@ -162,12 +162,12 @@ async def afk_on_pm(sender):
             if sender.sender_id not in USERS:
                 if AFKREASON:
                     await sender.reply(
-                        f"**Saya tidak ada sekarang.** (Since: {afk_str})"
+                        f"**Saya sedang offline.** (Sejak: {afk_str})"
                         f"\nKarena: `{AFKREASON}`."
                     )
                 else:
                     await sender.reply(
-                        f"**Saya tidak ada sekarang.** (Since: {afk_str})"
+                        f"**Saya sedang offline sekarang.** (Sejak: {afk_str})"
                         "\n**Silakan kembali lagi nanti.**"
                     )
                 USERS.update({sender.sender_id: 1})
@@ -176,12 +176,12 @@ async def afk_on_pm(sender):
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await sender.reply(
-                            "**Saya tidak ada sekarang.** (Since: {afk_str})"
+                            "**Saya sedang offline.** (Sejak: {afk_str})"
                             f"\nKarena: `{AFKREASON}`."
                         )
                     else:
                         await sender.reply(
-                            "**Saya tidak ada sekarang.** (Since: {afk_str})"
+                            "**Saya sedang offline sekarang.** (Sejak: {afk_str})"
                             "\n**Silakan kembali lagi nanti.**"
                         )
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
@@ -239,9 +239,9 @@ async def type_afk_is_not_true(notafk):
                 BOTLOG_CHATID,
                 "You've received "
                 + str(COUNT_MSG)
-                + " messages from "
+                + " pesan dari "
                 + str(len(USERS))
-                + " chats while you were away",
+                + " obrolan saat Anda pergi",
             )
             for i in USERS:
                 if str(i).isnumeric():
@@ -262,12 +262,12 @@ async def type_afk_is_not_true(notafk):
                 else:  # anon admin
                     await notafk.client.send_message(
                         BOTLOG_CHATID,
-                        "Anonymous admin in `"
+                        "Admin anonim di `"
                         + i
-                        + "` sent you "
+                        + "` mengirimimu "
                         + "`"
                         + str(USERS[i])
-                        + " message(s)`",
+                        + " pesan`",
                     )
         COUNT_MSG = 0
         USERS = {}
