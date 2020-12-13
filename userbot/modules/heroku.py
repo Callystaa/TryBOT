@@ -104,20 +104,18 @@ async def set_var(var):
     heroku_var[variable] = value
 
 
-@register(outgoing=True, pattern=r"^\.usage(?: |$)")
+@register(outgoing=True, pattern=r"^\.usage$")
 async def dyno_usage(dyno):
     """
-    Get your account Dyno Usage
+        Get your account Dyno Usage
     """
-    await dyno.edit("`Mendapatkan informasi...`")
+    await dyno.edit("**Mengambil informasi...**")
     user_id = Heroku.account().id
     path = "/accounts/" + user_id + "/actions/get-quota"
     async with aiohttp.ClientSession() as session:
-        useragent = (
-            "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/81.0.4044.117 Mobile Safari/537.36"
-        )
+        useragent = ("Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+                     "AppleWebKit/537.36 (KHTML, like Gecko) "
+                     "Chrome/81.0.4044.117 Mobile Safari/537.36")
         headers = {
             "User-Agent": useragent,
             "Authorization": f"Bearer {HEROKU_API_KEY}",
@@ -125,26 +123,27 @@ async def dyno_usage(dyno):
         }
         async with session.get(heroku_api + path, headers=headers) as r:
             if r.status != 200:
-                await dyno.client.send_message(
-                    dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
-                )
-                await dyno.edit("`Can't get information...`")
+                await dyno.client.send_message(dyno.chat_id,
+                                               f"`{r.reason}`",
+                                               reply_to=dyno.id)
+                await dyno.edit("**Error: Heroku is being Heroku.**")
                 return False
             result = await r.json()
             quota = result["account_quota"]
             quota_used = result["quota_used"]
-
+            """ - User Quota Limit and Used - """
             remaining_quota = quota - quota_used
             percentage = math.floor(remaining_quota / quota * 100)
             minutes_remaining = remaining_quota / 60
             hours = math.floor(minutes_remaining / 60)
             minutes = math.floor(minutes_remaining % 60)
-
+            """ - User App Used Quota - """
             Apps = result["apps"]
             for apps in Apps:
                 if apps.get("app_uuid") == app.id:
                     AppQuotaUsed = apps.get("quota_used") / 60
-                    AppPercentage = math.floor(apps.get("quota_used") * 100 / quota)
+                    AppPercentage = math.floor(
+                        apps.get("quota_used") * 100 / quota)
                     break
             else:
                 AppQuotaUsed = 0
@@ -154,14 +153,9 @@ async def dyno_usage(dyno):
             AppMinutes = math.floor(AppQuotaUsed % 60)
 
             await dyno.edit(
-                "**Penggunaan Dyno**:\n\n"
-                f"-> `Penggunaan Dyno untuk`  **{app.name}**:\n"
-                f"     •  **{AppHours} hour(s), "
-                f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
-                "\n\n"
-                "-> `Sisa Dyno bulan ini`:\n"
-                f"     •  **{hours} hour(s), {minutes} minute(s)  "
-                f"-  {percentage}%**"
+                "**Statistik jam Heroku dyno untuk bulan ini**\n\n"
+                f"**Pemakaian ({app.name}):** {AppHours} jam), {AppMinutes} menit) - {AppPercentage}%\n"
+                f"**Sisa (total):** {hours} jam), {minutes} menit) - {percentage}%"
             )
             return True
 
