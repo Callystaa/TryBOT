@@ -28,7 +28,7 @@ async def variable(var):
         await var.edit("`Please setup your`  **HEROKU_APP_NAME**.")
         return False
     if exe == "get":
-        await var.edit("`Getting information...`")
+        await var.edit("`Mendapatkan informasi...`")
         variable = var.pattern_match.group(2)
         if variable != "":
             if variable in heroku_var:
@@ -39,13 +39,13 @@ async def variable(var):
                         "**ConfigVar**:\n"
                         f"`{variable}` = `{heroku_var[variable]}`\n",
                     )
-                    await var.edit("`Received to BOTLOG_CHATID...`")
+                    await var.edit("`Diterima ke BOTLOG_CHATID...`")
                     return True
                 else:
-                    await var.edit("`Please set BOTLOG to True...`")
+                    await var.edit("`Harap setel BOTLOG ke True...`")
                     return False
             else:
-                await var.edit("`Information don't exists...`")
+                await var.edit("`Informasi tidak ada...`")
                 return True
         else:
             configvars = heroku_var.to_dict()
@@ -62,16 +62,16 @@ async def variable(var):
                 await var.edit("`Harap setel BOTLOG ke True...`")
                 return False
     elif exe == "del":
-        await var.edit("`Deleting information...`")
+        await var.edit("`Menghapus informasi...`")
         variable = var.pattern_match.group(2)
         if variable == "":
-            await var.edit("`Specify ConfigVars you want to del...`")
+            await var.edit("`Tentukan Config Vars yang ingin Anda hapus...`")
             return False
         if variable in heroku_var:
             if BOTLOG:
                 await var.client.send_message(
                     BOTLOG_CHATID,
-                    "#DELCONFIGVAR\n\n" "**Delete ConfigVar**:\n" f"`{variable}`",
+                    "#DELCONFIGVAR\n\n" "**Hapus ConfigVar**:\n" f"`{variable}`",
                 )
             await var.edit("`Informasi dihapus...`")
             del heroku_var[variable]
@@ -82,7 +82,7 @@ async def variable(var):
 
 @register(outgoing=True, pattern=r"^\.set var (\w*) ([\s\S]*)")
 async def set_var(var):
-    await var.edit("`Setting information...`")
+    await var.edit("`Mengatur informasi...`")
     variable = var.pattern_match.group(1)
     value = var.pattern_match.group(2)
     if variable in heroku_var:
@@ -90,17 +90,17 @@ async def set_var(var):
             await var.client.send_message(
                 BOTLOG_CHATID,
                 "#SETCONFIGVAR\n\n"
-                "**Change ConfigVar**:\n"
+                "**Ubah ConfigVar**:\n"
                 f"`{variable}` = `{value}`",
             )
-        await var.edit("`Information sets...`")
+        await var.edit("`Informasi diterapkan...`")
     else:
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID,
-                "#ADDCONFIGVAR\n\n" "**Add ConfigVar**:\n" f"`{variable}` = `{value}`",
+                "#ADDCONFIGVAR\n\n" "**Menambahkan ConfigVar**:\n" f"`{variable}` = `{value}`",
             )
-        await var.edit("`Information added...`")
+        await var.edit("`Informasi ditambahkan...`")
     heroku_var[variable] = value
 
 
@@ -109,7 +109,7 @@ async def dyno_usage(dyno):
     """
     Get your account Dyno Usage
     """
-    await dyno.edit("`Getting Information...`")
+    await dyno.edit("`Mendapatkan informasi...`")
     user_id = Heroku.account().id
     path = "/accounts/" + user_id + "/actions/get-quota"
     async with aiohttp.ClientSession() as session:
@@ -155,7 +155,7 @@ async def dyno_usage(dyno):
 
             await dyno.edit(
                 "**Penggunaan Dyno**:\n\n"
-                f"-> `Penggunaan Dyno untuk`  **{app.name}**:\n"
+                f"-> `Penggunaan Dyno untuk  **{app.name}**:\n"
                 f"     •  **{AppHours} hour(s), "
                 f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
                 "\n\n"
@@ -175,7 +175,7 @@ async def _(dyno):
         return await dyno.reply(
             "`Please make sure your Heroku API Key, Your App name are configured correctly in the heroku var.`"
         )
-    await dyno.edit("`Getting Logs....`")
+    await dyno.edit("`Mendapatkan Log....`")
     with open("logs.txt", "w") as log:
         log.write(app.get_log())
     fd = codecs.open("logs.txt", "r", encoding="utf-8")
