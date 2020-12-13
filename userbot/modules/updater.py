@@ -1,9 +1,13 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
+# Import from https://github.com/KenHV/KensurBot
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 # credits to @AvinashReddy3108
 #
+"""
+This module updates the userbot based on upstream revision
+"""
 
 import asyncio
 import sys
@@ -12,18 +16,12 @@ from os import environ, execle, path, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import (
-    CMD_HELP,
-    HEROKU_API_KEY,
-    HEROKU_APP_NAME,
-    UPSTREAM_REPO_BRANCH,
-    UPSTREAM_REPO_URL,
-)
+from userbot import (CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME,
+                     UPSTREAM_REPO_BRANCH, UPSTREAM_REPO_URL)
 from userbot.events import register
 
 requirements_path = path.join(
-    path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
-)
+    path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt")
 
 
 async def gen_chlog(repo, diff):
@@ -31,40 +29,23 @@ async def gen_chlog(repo, diff):
     d_form = "%d/%m/%y"
     for c in repo.iter_commits(diff):
         ch_log += (
-            f"•[{c.committed_datetime.strftime(d_form)}]: "
-            f"{c.summary} <{c.author}>\n"
+            f"- {c.summary} ({c.committed_datetime.strftime(d_form)}) <{c.author}>\n"
         )
     return ch_log
 
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**UPDATE baru tersedia untuk [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
+        f"**Pembaruan tersedia di {ac_br} branch!\n\nChangelog:**\n`{changelog}`"
     )
     if len(changelog_str) > 4096:
-        await event.edit("`Changelog terlalu besar, lihat file untuk melihatnya.`")
-        file = open("output.txt", "w+")
-        file.write(changelog_str)
-        file.close()
-        await event.client.send_file(
-            event.chat_id,
-            "output.txt",
-            reply_to=event.id,
-        )
+        await event.edit("**Changelog terlalu besar, dikirim sebagai file.**")
+        with open("output.txt", "w+") as file:
+            file.write(changelog_str)
+        await event.client.send_file(event.chat_id, "output.txt")
         remove("output.txt")
     else:
-        cl = await event.client.send_message(
-            event.chat_id,
-            changelog_str,
-            reply_to=event.id,
-        )
-        await event.delete()
-        msg = await event.respond(
-            'ketik "`.update now` atau `.update deploy`" untuk memperbaharui.'
-        )
-        await asyncio.sleep(15)
-        await cl.delete()
-        await msg.delete()
+        await event.client.send_message(event.chat_id, changelog_str)
     return True
 
 
@@ -91,9 +72,8 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         heroku_applications = heroku.apps()
         if HEROKU_APP_NAME is None:
             await event.edit(
-                "`Please set up HEROKU_APP_NAME variable"
-                " to be able to deploy your userbot...`"
-            )
+                "**Harap siapkan** `HEROKU_APP_NAME` **variabel"
+                " untuk dapat mendeploy userbot Anda.**")
             repo.__del__()
             return
         for app in heroku_applications:
@@ -102,15 +82,13 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
                 break
         if heroku_app is None:
             await event.edit(
-                f"{txt}\n" "`Invalid Heroku credentials for deploying userbot dyno.`"
-            )
+                f"{txt}\n"
+                "**Kredensial Heroku tidak valid untuk men-deploy dyno userbot.**")
             return repo.__del__()
-        await event.edit("**Userbot dyno build dalam proses, tunggu sebentar...**")
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
         heroku_git_url = heroku_app.git_url.replace(
-            "https://", "https://api:" + HEROKU_API_KEY + "@"
-        )
+            "https://", "https://api:" + HEROKU_API_KEY + "@")
         if "heroku" in repo.remotes:
             remote = repo.remote("heroku")
             remote.set_url(heroku_git_url)
@@ -119,23 +97,20 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         try:
             remote.push(refspec="HEAD:refs/heads/master", force=True)
         except Exception as error:
-            await event.edit(f"{txt}\n`Here is the error log:\n{error}`")
+            await event.edit(f"{txt}\nHere is the error log:\n`{error}`")
             return repo.__del__()
         build = app.builds(order_by="created_at", sort="desc")[0]
         if build.status == "failed":
             await event.edit(
-                "`Build failed!\n" "Cancelled or there were some errors...`"
-            )
+                "**Build gagal!**\nDibatalkan atau ada beberapa kesalahan.`")
             await asyncio.sleep(5)
             return await event.delete()
         else:
             await event.edit(
-                "`Berhasil diterapkan!\n" "Sedang memulai ulang, harap tunggu...`"
+                "**Berhasil diperbarui!**\nProjectDark sedang memulai ulang, akan kembali dalam beberapa detik."
             )
-            await asyncio.sleep(15)
-            await event.delete()
     else:
-        await event.edit("`Please set up HEROKU_API_KEY variable...`")
+        await event.edit("**Harap siapkan** `HEROKU_API_KEY` **variabel.**")
     return
 
 
@@ -146,11 +121,8 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     await event.edit(
-        "`Berhasil diperbarui!\n"
-        "ProjectDark sedang memulai ulang... Tunggu sebentar!`"
+        "**Berhasil diperbarui!**\nProjectDark sedang memulai ulang, akan kembali dalam beberapa detik."
     )
-    await asyncio.sleep(15)
-    await event.delete()
     # Spin a new instance of bot
     args = [sys.executable, "-m", "userbot"]
     execle(sys.executable, *args, environ)
@@ -159,28 +131,28 @@ async def update(event, repo, ups_rem, ac_br):
 
 @register(outgoing=True, pattern=r"^\.update( now| deploy|$)")
 async def upstream(event):
-    await event.edit("`Mendapatkan informasi....`")
+    "For .update command, check if the bot is up to date, update if specified"
+    await event.edit("**Checking for updates, please wait...**")
     conf = event.pattern_match.group(1).strip()
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     try:
-        txt = "`Oops.. Updater cannot continue due to "
-        txt += "some problems occured`\n\n**LOGTRACE:**\n"
+        txt = "**Ups .. Updater tidak dapat melanjutkan karena "
+        txt += "beberapa masalah**\n`LOGTRACE:`\n"
         repo = Repo()
     except NoSuchPathError as error:
-        await event.edit(f"{txt}\n`directory {error} is not found`")
+        await event.edit(f"{txt}\n**Direktori** `{error}` **tidak ditemukan.**")
         return repo.__del__()
     except GitCommandError as error:
-        await event.edit(f"{txt}\n`Early failure! {error}`")
+        await event.edit(f"{txt}\n**Kegagalan awal!** `{error}`")
         return repo.__del__()
     except InvalidGitRepositoryError as error:
         if conf is None:
             return await event.edit(
-                f"`Unfortunately, the directory {error} "
-                "does not seem to be a git repository.\n"
-                "But we can fix that by force updating the userbot using "
-                ".update now.`"
-            )
+                f"**Sayangnya, direktori {ada kesalahan} "
+                "tampaknya bukan repositori git.\n"
+                "Tapi kamu bisa memperbaikinya dengan memperbarui paksa userbot menggunakan **"
+                "`.update now.`")
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
@@ -192,12 +164,8 @@ async def upstream(event):
     ac_br = repo.active_branch.name
     if ac_br != UPSTREAM_REPO_BRANCH:
         await event.edit(
-            "**[UPDATER]:**\n"
-            f"`Looks like you are using your own custom branch ({ac_br}). "
-            "in that case, Updater is unable to identify "
-            "which branch is to be merged. "
-            "please checkout to any official branch`"
-        )
+            f"**Sepertinya Anda menggunakan branch kustom Anda sendiri: ({ac_br}). \n"
+            "Silakan beralih ke** `master` **branch.**")
         return repo.__del__()
     try:
         repo.create_remote("upstream", off_repo)
@@ -208,48 +176,42 @@ async def upstream(event):
     ups_rem.fetch(ac_br)
 
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
+    """ - Special case for deploy - """
     if conf == "deploy":
-        await event.edit("`Mendeploy userbot, tunggu sebentar....`")
+        await event.edit(
+            "**Melakukan pembaruan penuh...**\nIni biasanya membutuhkan waktu kurang dari 5 menit, mohon tunggu."
+        )
         await deploy(event, repo, ups_rem, ac_br, txt)
-        await asyncio.sleep(15)
-        await event.delete()
         return
 
     if changelog == "" and not force_update:
         await event.edit(
-            "\n`ProjectDark sudah`  **Ter-Update**  `dengan`  "
-            f"**{UPSTREAM_REPO_BRANCH}**\n"
-        )
-        await asyncio.sleep(15)
-        await event.delete()
+            f"**Userbot Anda sudah diperbarui dengan `{UPSTREAM_REPO_BRANCH}`!**")
         return repo.__del__()
 
     if conf == "" and not force_update:
         await print_changelogs(event, ac_br, changelog)
-        return
+        await event.delete()
+        return await event.respond(
+            "**Lakukan** `.update now` **atau** `.update deploy` **untuk memperbaharui.**")
 
     if force_update:
         await event.edit(
-            "`Force-Syncing to latest stable userbot code, please wait...`"
-        )
+            "**Sinkronisasi paksa ke kode userbot stabil terbaru, harap tunggu...**")
+
     if conf == "now":
-        await event.edit("**Memperbarui ProjectDark, harap tunggu....**")
+        await event.edit("**Melakukan pembaruan cepat, harap tunggu...**")
         await update(event, repo, ups_rem, ac_br)
-        await asyncio.sleep(15)
-        await event.delete()
     return
 
 
-CMD_HELP.update(
-    {
-        "update": ">`.update`"
-        "\nUsage: Memeriksa apakah repositori userbot utama memiliki pembaruan "
-        "dan menunjukkan log perubahan jika demikian."
-        "\n\n>`.update now`"
-        "\nUsage: Perbarui bot pengguna Anda, "
-        "jika ada pembaruan di repositori userbot Anda."
-        "\n\n>`.update deploy`"
-        "\nUsage: Re-Deploy bot pengguna Anda"
-        "\nIni akan selalu memicu Deploy, bahkan ketika tidak ada pembaruan."
-    }
-)
+CMD_HELP.update({
+    "update":
+    ">`.update`"
+    "\nUsage: Memeriksa apakah repositori userbot utama memiliki pembaruan "
+    "dan menunjukkan log perubahan jika demikian."
+    "\n\n>`.update now`"
+    "\nUsage: Melakukan pembaruan cepat."
+    "\n\n>`.update deploy`"
+    "\nUsage: Melakukan pembaruan penuh (direkomendasikan)."
+})
