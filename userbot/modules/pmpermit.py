@@ -81,10 +81,10 @@ async def permitpm(event):
             else:
                 COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-            if COUNT_PM[event.chat_id] > 4:
+            if COUNT_PM[event.chat_id] > 3:
                 await event.respond(
-                    "`You were spamming my Führer's PM, which I didn't like.`\n"
-                    "`You have been BLOCKED and reported as spam, until further notice.`"
+                    "`Anda melakukan spamming pada PM saya, dan itu tidak saya sukai.`\n"
+                    "`Anda telah DIBLOKIR dan dilaporkan sebagai spam, sampai pemberitahuan lebih lanjut.`"
                 )
 
                 try:
@@ -111,7 +111,7 @@ async def permitpm(event):
                         + "](tg://user?id="
                         + str(event.chat_id)
                         + ")"
-                        + " was just another retarded nibba",
+                        + " hanya seorang spammer",
                     )
 
 
@@ -176,7 +176,7 @@ async def notifoff(noff_event):
     except AttributeError:
         return await noff_event.edit("`Running on Non-SQL mode!`")
     addgvar("NOTIF_OFF", True)
-    await noff_event.edit("`Notifications from unapproved PM's are silenced!`")
+    await noff_event.edit("`Pemberitahuan dari PM yang tidak disetujui dibungkam!`")
 
 
 @register(outgoing=True, pattern=r"^\.notifon$")
@@ -187,7 +187,7 @@ async def notifon(non_event):
     except AttributeError:
         return await non_event.edit("`Running on Non-SQL mode!`")
     delgvar("NOTIF_OFF")
-    await non_event.edit("`Notifications from unapproved PM's unmuted!`")
+    await non_event.edit("`Notifikasi dari PM yang tidak disetujui disuarakan!`")
 
 
 @register(outgoing=True, pattern=r"^\.ok$")
@@ -263,7 +263,7 @@ async def disapprovepm(disapprvpm):
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={disapprvpm.chat_id})"
-            " was disapproved to PM you.",
+            " tidak disetujui untuk PM Anda.",
         )
 
 
@@ -295,7 +295,7 @@ async def blockpm(block):
     if BOTLOG:
         await block.client.send_message(
             BOTLOG_CHATID,
-            "#BLOCKED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
+            "#BLOCKED\n" + "Pengguna: " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -312,7 +312,7 @@ async def unblockpm(unblock):
     if BOTLOG:
         await unblock.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={replied_user.id})" " was unblocc'd!.",
+            f"[{name0}](tg://user?id={replied_user.id})" " tidak diblokir lagi!.",
         )
 
 
@@ -327,19 +327,19 @@ async def add_pmsg(cust_msg):
         await cust_msg.edit("`Running on Non-SQL mode!`")
         return
 
-    await cust_msg.edit("`Processing...`")
+    await cust_msg.edit("`Proses...`")
     conf = cust_msg.pattern_match.group(1)
 
     custom_message = sql.gvarstatus("unapproved_msg")
 
     if conf.lower() == "set":
         message = await cust_msg.get_reply_message()
-        status = "Saved"
+        status = "Disimpan"
 
         # check and clear user unapproved message first
         if custom_message is not None:
             sql.delgvar("unapproved_msg")
-            status = "Updated"
+            status = "Diperbarui"
 
         if message:
             # TODO: allow user to have a custom text formatting
@@ -348,53 +348,53 @@ async def add_pmsg(cust_msg):
             msg = message.message  # get the plain text
             sql.addgvar("unapproved_msg", msg)
         else:
-            return await cust_msg.edit("`Reply to a message.`")
+            return await cust_msg.edit("`Balas pesan.`")
 
-        await cust_msg.edit("`Message saved as PMPermit message.`")
+        await cust_msg.edit("`Pesan disimpan sebagai pesan PMPermit.`")
 
         if BOTLOG:
             await cust_msg.client.send_message(
-                BOTLOG_CHATID, f"***{status} PMPermit message :*** \n\n{msg}"
+                BOTLOG_CHATID, f"***{status} Pesan PMPermit :*** \n\n{msg}"
             )
 
     if conf.lower() == "reset":
         if custom_message is not None:
             sql.delgvar("unapproved_msg")
-            await cust_msg.edit("`Pmpermit message has been reset to default.`")
+            await cust_msg.edit("`Pesan pmpermit telah disetel ulang ke default.`")
         else:
-            await cust_msg.edit("`You haven't set a custom PMPermit message yet.`")
+            await cust_msg.edit("`Anda belum menyetel pesan PMPermit kustom.`")
 
     if conf.lower() == "get":
         if custom_message is not None:
             await cust_msg.edit(
-                "**This is your current PMPermit message:**" f"\n\n{custom_message}"
+                "**Ini adalah pesan PMPermit Anda saat ini:**" f"\n\n{custom_message}"
             )
         else:
             await cust_msg.edit(
-                "**You haven't set a custom PMPermit message yet.**\n"
-                f"Using default message: \n\n`{DEF_UNAPPROVED_MSG}`"
+                "**Anda belum menyetel pesan PMPermit kustom.**\n"
+                f"Menggunakan pesan default: \n\n`{DEF_UNAPPROVED_MSG}`"
             )
 
 
 CMD_HELP.update(
     {
         "pmpermit": ">`.ok`"
-        "\nUsage: Approves the mentioned/replied person to PM."
+        "\nUsage: Menyetujui orang yang disebutkan/menjawab PM."
         "\n\n>`.nopm`"
-        "\nUsage: Disapproves the mentioned/replied person to PM."
+        "\nUsage: Menolak orang yang disebutkan/membalas PM."
         "\n\n>`.block`"
-        "\nUsage: Blocks the person."
+        "\nUsage: Blokir orang tersebut."
         "\n\n>`.unblock`"
-        "\nUsage: Unblocks the person so they can PM you."
+        "\nUsage: Batalkan pemblokiran orang tersebut agar dapat mem-PM Anda."
         "\n\n>`.notifoff`"
-        "\nUsage: Clears/Disables any notifications of unapproved PMs."
+        "\nUsage: Menghapus/Menonaktifkan pemberitahuan apa pun dari PM yang tidak disetujui."
         "\n\n>`.notifon`"
-        "\nUsage: Allows notifications for unapproved PMs."
-        "\n\n`.set pmpermit` <reply to msg>"
-        "\nUsage: Sets a custom PMPermit message."
+        "\nUsage: Izinkan pemberitahuan untuk PM yang tidak disetujui."
+        "\n\n`.set pmpermit` <balas pesan>"
+        "\nUsage: Mengatur pesan PMPermit kustom."
         "\n\n`.get pmpermit`"
-        "\nUsage: Shows your current PMPermit message."
+        "\nUsage: Menampilkan pesan PMPermit Anda saat ini."
         "\n\n`.reset pmpermit`"
-        "\nUsage: Resets PMPermit message to default."
+        "\nUsage: Mereset pesan PMPermit ke default."
     }
 )
