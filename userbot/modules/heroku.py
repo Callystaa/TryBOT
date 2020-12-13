@@ -89,16 +89,16 @@ async def set_var(var):
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID,
-                "#SETCONFIGVAR\n\n"
-                "**Ubah ConfigVar**:\n"
-                f"`{variable}` = `{value}`",
+                "#SETCONFIGVAR\n\n" "**Ubah ConfigVar**:\n" f"`{variable}` = `{value}`",
             )
         await var.edit("`Informasi diterapkan...`")
     else:
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID,
-                "#ADDCONFIGVAR\n\n" "**Menambahkan ConfigVar**:\n" f"`{variable}` = `{value}`",
+                "#ADDCONFIGVAR\n\n"
+                "**Menambahkan ConfigVar**:\n"
+                f"`{variable}` = `{value}`",
             )
         await var.edit("`Informasi ditambahkan...`")
     heroku_var[variable] = value
