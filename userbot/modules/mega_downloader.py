@@ -54,7 +54,7 @@ async def subprocess_run(megadl, cmd):
 
 @register(outgoing=True, pattern=r"^\.mega(?: |$)(.*)")
 async def mega_downloader(megadl):
-    await megadl.edit("`Collecting information...`")
+    await megadl.edit("`Mengumpulkan informasi...`")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     msg_link = await megadl.get_reply_message()
@@ -71,17 +71,17 @@ async def mega_downloader(megadl):
         if "file" in link:
             link = link.replace("#", "!").replace("file/", "#!")
         elif "folder" in link or "#F" in link or "#N" in link:
-            await megadl.edit("`folder download support are removed...`")
+            await megadl.edit("`dukungan unduhan folder dihapus...`")
             return
     except IndexError:
-        await megadl.edit("`MEGA.nz link not found...`")
+        await megadl.edit("`Tautan MEGA.nz tidak ditemukan...`")
         return None
     cmd = f"bin/megadown -q -m {link}"
     result = await subprocess_run(megadl, cmd)
     try:
         data = json.loads(result[0])
     except json.JSONDecodeError:
-        await megadl.edit("**JSONDecodeError**: `failed to extract link...`")
+        await megadl.edit("**JSONDecodeError**: `gagal mengekstrak tautan...`")
         return None
     except (IndexError, TypeError):
         return
@@ -124,10 +124,10 @@ async def mega_downloader(megadl):
             current_message = (
                 f"`{file_name}`\n"
                 f"{progress_str}\n"
-                f"`Size:` {humanbytes(downloaded)} of {humanbytes(total_length)}\n"
-                f"`Speed:` {speed}\n"
+                f"`Ukuran:` {humanbytes(downloaded)} of {humanbytes(total_length)}\n"
+                f"`Kecepatan:` {speed}\n"
                 f"`ETA:` {time_formatter(estimated_total_time)}\n"
-                f"`Duration:` {time_formatter(round(diff))}"
+                f"`Durasi:` {time_formatter(round(diff))}"
             )
             if round(diff % 15.00) == 0 and (
                 display_message != current_message or total_length == downloaded
@@ -158,13 +158,13 @@ async def mega_downloader(megadl):
         else:
             await megadl.edit(
                 f"`{file_name}`\n\n"
-                f"Successfully downloaded in: '`{file_path}`'.\n"
-                f"Download took: {time_formatter(download_time)}."
+                f"Berhasil diunduh di: '`{file_path}`'.\n"
+                f"Durasi download: {time_formatter(download_time)}."
             )
             return None
     else:
         await megadl.edit(
-            "`Failed to download, " "check heroku Logs for more details.`"
+            "`Failed to download, " "periksa Log heroku untuk lebih jelasnya.`"
         )
         for e in downloader.get_errors():
             LOGS.info(str(e))
@@ -185,7 +185,7 @@ async def decrypt_file(megadl, file_path, temp_file_path, hex_key, hex_raw_key):
 CMD_HELP.update(
     {
         "mega": ">`.mega <MEGA.nz link>`"
-        "\nUsage: Reply to a MEGA.nz link or paste your MEGA.nz link to "
-        "download the file into your userbot server."
+        "\nUsage: Balas tautan MEGA.nz atau tempel tautan MEGA.nz Anda untuk "
+        "Mengunduh file ke server userbot Anda."
     }
 )
