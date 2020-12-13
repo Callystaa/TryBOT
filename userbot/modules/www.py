@@ -94,7 +94,7 @@ def speed_convert(size):
 @register(outgoing=True, pattern=r"^\.ping$")
 async def pingme(pong):
     start = datetime.now()
-    await pong.edit("`PONG!!!`")
+    await pong.edit("**PONG!**")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     await pong.edit("`PONG!!!\n%sms`" % (duration))
@@ -104,9 +104,9 @@ async def pingme(pong):
 async def neardc(event):
     result = await event.client(functions.help.GetNearestDcRequest())
     await event.edit(
-        f"Country : `{result.country}`\n"
-        f"Nearest Datacenter : `{result.nearest_dc}`\n"
-        f"This Datacenter : `{result.this_dc}`"
+        f"Negara : `{result.country}`\n"
+        f"Pusat Data Terdekat : `{result.nearest_dc}`\n"
+        f"Pusat Data ini : `{result.this_dc}`"
     )
 
 
