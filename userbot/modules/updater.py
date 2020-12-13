@@ -149,7 +149,7 @@ async def upstream(event):
     except InvalidGitRepositoryError as error:
         if conf is None:
             return await event.edit(
-                f"**Sayangnya, direktori {ada kesalahan} "
+                f"**Sayangnya, direktori {error} "
                 "tampaknya bukan repositori git.\n"
                 "Tapi kamu bisa memperbaikinya dengan memperbarui paksa userbot menggunakan **"
                 "`.update now.`")
