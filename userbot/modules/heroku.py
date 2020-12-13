@@ -107,15 +107,17 @@ async def set_var(var):
 @register(outgoing=True, pattern=r"^\.usage$")
 async def dyno_usage(dyno):
     """
-        Get your account Dyno Usage
+    Get your account Dyno Usage
     """
     await dyno.edit("**Mengambil informasi...**")
     user_id = Heroku.account().id
     path = "/accounts/" + user_id + "/actions/get-quota"
     async with aiohttp.ClientSession() as session:
-        useragent = ("Mozilla/5.0 (Linux; Android 10; SM-G975F) "
-                     "AppleWebKit/537.36 (KHTML, like Gecko) "
-                     "Chrome/81.0.4044.117 Mobile Safari/537.36")
+        useragent = (
+            "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/81.0.4044.117 Mobile Safari/537.36"
+        )
         headers = {
             "User-Agent": useragent,
             "Authorization": f"Bearer {HEROKU_API_KEY}",
@@ -123,9 +125,9 @@ async def dyno_usage(dyno):
         }
         async with session.get(heroku_api + path, headers=headers) as r:
             if r.status != 200:
-                await dyno.client.send_message(dyno.chat_id,
-                                               f"`{r.reason}`",
-                                               reply_to=dyno.id)
+                await dyno.client.send_message(
+                    dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
+                )
                 await dyno.edit("**Error: Heroku is being Heroku.**")
                 return False
             result = await r.json()
@@ -142,8 +144,7 @@ async def dyno_usage(dyno):
             for apps in Apps:
                 if apps.get("app_uuid") == app.id:
                     AppQuotaUsed = apps.get("quota_used") / 60
-                    AppPercentage = math.floor(
-                        apps.get("quota_used") * 100 / quota)
+                    AppPercentage = math.floor(apps.get("quota_used") * 100 / quota)
                     break
             else:
                 AppQuotaUsed = 0

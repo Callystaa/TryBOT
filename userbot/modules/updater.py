@@ -16,12 +16,18 @@ from os import environ, execle, path, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import (CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME,
-                     UPSTREAM_REPO_BRANCH, UPSTREAM_REPO_URL)
+from userbot import (
+    CMD_HELP,
+    HEROKU_API_KEY,
+    HEROKU_APP_NAME,
+    UPSTREAM_REPO_BRANCH,
+    UPSTREAM_REPO_URL,
+)
 from userbot.events import register
 
 requirements_path = path.join(
-    path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt")
+    path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
+)
 
 
 async def gen_chlog(repo, diff):
@@ -73,7 +79,8 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         if HEROKU_APP_NAME is None:
             await event.edit(
                 "**Harap siapkan** `HEROKU_APP_NAME` **variabel"
-                " untuk dapat mendeploy userbot Anda.**")
+                " untuk dapat mendeploy userbot Anda.**"
+            )
             repo.__del__()
             return
         for app in heroku_applications:
@@ -83,12 +90,14 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         if heroku_app is None:
             await event.edit(
                 f"{txt}\n"
-                "**Kredensial Heroku tidak valid untuk men-deploy dyno userbot.**")
+                "**Kredensial Heroku tidak valid untuk men-deploy dyno userbot.**"
+            )
             return repo.__del__()
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
         heroku_git_url = heroku_app.git_url.replace(
-            "https://", "https://api:" + HEROKU_API_KEY + "@")
+            "https://", "https://api:" + HEROKU_API_KEY + "@"
+        )
         if "heroku" in repo.remotes:
             remote = repo.remote("heroku")
             remote.set_url(heroku_git_url)
@@ -102,7 +111,8 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         build = app.builds(order_by="created_at", sort="desc")[0]
         if build.status == "failed":
             await event.edit(
-                "**Build gagal!**\nDibatalkan atau ada beberapa kesalahan.`")
+                "**Build gagal!**\nDibatalkan atau ada beberapa kesalahan.`"
+            )
             await asyncio.sleep(5)
             return await event.delete()
         else:
@@ -152,7 +162,8 @@ async def upstream(event):
                 f"**Sayangnya, direktori {error} "
                 "tampaknya bukan repositori git.\n"
                 "Tapi kamu bisa memperbaikinya dengan memperbarui paksa userbot menggunakan **"
-                "`.update now.`")
+                "`.update now.`"
+            )
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
@@ -165,7 +176,8 @@ async def upstream(event):
     if ac_br != UPSTREAM_REPO_BRANCH:
         await event.edit(
             f"**Sepertinya Anda menggunakan branch kustom Anda sendiri: ({ac_br}). \n"
-            "Silakan beralih ke** `master` **branch.**")
+            "Silakan beralih ke** `master` **branch.**"
+        )
         return repo.__del__()
     try:
         repo.create_remote("upstream", off_repo)
@@ -186,18 +198,21 @@ async def upstream(event):
 
     if changelog == "" and not force_update:
         await event.edit(
-            f"**Userbot Anda sudah diperbarui dengan `{UPSTREAM_REPO_BRANCH}`!**")
+            f"**Userbot Anda sudah diperbarui dengan `{UPSTREAM_REPO_BRANCH}`!**"
+        )
         return repo.__del__()
 
     if conf == "" and not force_update:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            "**Lakukan** `.update now` **atau** `.update deploy` **untuk memperbaharui.**")
+            "**Lakukan** `.update now` **atau** `.update deploy` **untuk memperbaharui.**"
+        )
 
     if force_update:
         await event.edit(
-            "**Sinkronisasi paksa ke kode userbot stabil terbaru, harap tunggu...**")
+            "**Sinkronisasi paksa ke kode userbot stabil terbaru, harap tunggu...**"
+        )
 
     if conf == "now":
         await event.edit("**Melakukan pembaruan cepat, harap tunggu...**")
@@ -205,13 +220,14 @@ async def upstream(event):
     return
 
 
-CMD_HELP.update({
-    "update":
-    ">`.update`"
-    "\nUsage: Memeriksa apakah repositori userbot utama memiliki pembaruan "
-    "dan menunjukkan log perubahan jika demikian."
-    "\n\n>`.update now`"
-    "\nUsage: Melakukan pembaruan cepat."
-    "\n\n>`.update deploy`"
-    "\nUsage: Melakukan pembaruan penuh (direkomendasikan)."
-})
+CMD_HELP.update(
+    {
+        "update": ">`.update`"
+        "\nUsage: Memeriksa apakah repositori userbot utama memiliki pembaruan "
+        "dan menunjukkan log perubahan jika demikian."
+        "\n\n>`.update now`"
+        "\nUsage: Melakukan pembaruan cepat."
+        "\n\n>`.update deploy`"
+        "\nUsage: Melakukan pembaruan penuh (direkomendasikan)."
+    }
+)
