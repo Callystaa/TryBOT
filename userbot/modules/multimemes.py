@@ -140,15 +140,15 @@ async def glitch(event):
 async def mim(event):
     if not event.reply_to_msg_id:
         await event.edit(
-            "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
+            "`Syntax: balas gambar dengan .mmf` 'teks di atas' ; 'teks di bawah' "
         )
         return
 
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("```reply to a image/sticker/gif```")
+        await event.edit("```membalas gambar/stiker/gif```")
         return
-    await event.edit("`Downloading Media..`")
+    await event.edit("`Mendownload Media..`")
     if reply_message.photo:
         dls_loc = await bot.download_media(
             reply_message,
@@ -179,7 +179,7 @@ async def mim(event):
             downloaded_file_name,
         )
     await event.edit(
-        "```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```"
+        "```Waktu Transfigurasi! Mwahaha Mengubah gambar ini! (」ﾟﾛﾟ)｣ ```"
     )
     await asyncio.sleep(5)
     text = event.pattern_match.group(1)
@@ -305,19 +305,19 @@ async def quotess(qotli):
     if qotli.fwd_from:
         return
     if not qotli.reply_to_msg_id:
-        await qotli.edit("```Reply to any user message.```")
+        await qotli.edit("```Balas pesan pengguna mana pun.```")
         return
     reply_message = await qotli.get_reply_message()
     if not reply_message.text:
-        await qotli.edit("```Reply to text message```")
+        await qotli.edit("```Balas pesan teks```")
         return
     chat = "@QuotLyBot"
     reply_message.sender
     if reply_message.sender.bot:
-        await qotli.edit("```Reply to actual users message.```")
+        await qotli.edit("```Balas pesan pengguna sebenarnya.```")
         return
     try:
-        await qotli.edit("`Membuat stiker..`")
+        await qotli.edit("`Membuat stiker...`")
         async with bot.conversation(chat) as conv:
             try:
                 response = conv.wait_event(
@@ -351,22 +351,22 @@ async def quotess(qotli):
 
 @register(outgoing=True, pattern=r"^\.hz(:? |$)(.*)?")
 async def hazz(hazmat):
-    await hazmat.edit("`Sending information...`")
+    await hazmat.edit("`Mengirim informasi...`")
     level = hazmat.pattern_match.group(2)
     if hazmat.fwd_from:
         return
     if not hazmat.reply_to_msg_id:
-        await hazmat.edit("`WoWoWo Capt!, we are not going suit a ghost!...`")
+        await hazmat.edit("`WoWoWo Kapten!, kami tidak akan cocok dengan hantu!...`")
         return
     reply_message = await hazmat.get_reply_message()
     if not reply_message.media:
-        await hazmat.edit("`Word can destroy anything Capt!...`")
+        await hazmat.edit("`Kata bisa menghancurkan apapun Kapten!...`")
         return
     if reply_message.sender.bot:
-        await hazmat.edit("`Reply to actual user...`")
+        await hazmat.edit("`Balas ke pengguna sebenarnya...`")
         return
     chat = "@hazmat_suit_bot"
-    await hazmat.edit("```Suit Up Capt!, We are going to purge some virus...```")
+    await hazmat.edit("```Pakai seragam kapten!, Kami akan membersihkan beberapa virus...```")
     message_id_to_reply = hazmat.message.reply_to_msg_id
     msg_reply = None
     try:
@@ -487,7 +487,7 @@ async def deepfryer(event):
         frycount = 1
     reply_message = await event.get_reply_message()
     image = io.BytesIO()
-    await event.edit("`Downloading media..`")
+    await event.edit("`Mendownload media..`")
     if reply_message.photo:
         image = await bot.download_media(
             reply_message,
@@ -579,7 +579,7 @@ async def waifu(animu):
         if animu.is_reply:
             text = (await animu.get_reply_message()).message
         else:
-            await animu.answer("`No text given, hence the waifu ran away.`")
+            await animu.answer("`Tidak ada teks yang diberikan, maka waifu mu kabur.`")
             return
     animus = [20, 32, 33, 40, 41, 42, 58]
     sticcers = await bot.inline_query(
@@ -603,7 +603,7 @@ async def lastname(steal):
     if steal.fwd_from:
         return
     if not steal.reply_to_msg_id:
-        await steal.edit("```Reply to any user message.```")
+        await steal.edit("```Balas pesan pengguna mana pun.```")
         return
     message = await steal.get_reply_message()
     chat = "@SangMataInfo_bot"
@@ -612,7 +612,7 @@ async def lastname(steal):
     if message.sender.bot:
         await steal.edit("```Balas pesan ngab woi.```")
         return
-    await steal.edit("```Bentar gua tanya emak```")
+    await steal.edit("```Bentar gua tanya emak..```")
     try:
         async with bot.conversation(chat) as conv:
             try:
@@ -652,37 +652,37 @@ async def lastname(steal):
 CMD_HELP.update(
     {
         "glitch": ">`.glt <1-8>`"
-        "\nUsage: Reply a sticker/image and send with cmd.\nvalue is range 1-8 if doenst it will give default value which is 2"
+        "\nUsage: Balas stiker / gambar dan kirim dengan cmd.\nnilainya berkisar 1-8 jika tidak maka akan memberikan nilai default yaitu 2"
     }
 )
 
 CMD_HELP.update(
     {
         "memify": ">`.mmf texttop ; textbottom`"
-        "\nUsage: Reply a sticker/image/gif and send with cmd."
+        "\nUsage: Balas stiker/gambar/gif dan kirim dengan cmd."
     }
 )
 
 CMD_HELP.update(
     {
         "sangmata": ".sg \
-          \nUsage: Curi data dari emak."
+          \nUsage: Curi data temen lu dari emak."
     }
 )
 
-CMD_HELP.update({"quotly": ">`.q`" "\nUsage: Enhance ur text to sticker."})
+CMD_HELP.update({"quotly": ">`.q`" "\nUsage: Mengubah teks Anda menjadi stiker."})
 
 CMD_HELP.update(
     {
-        "hazmat": ">`.hz or .hz [flip, x2, rotate (degree), background (number), black]`"
-        "\nUsage: Balas gambar / stiker yang sesuai!"
+        "hazmat": ">`.hz atau .hz [flip, x2, rotate (degree), background (number), black]`"
+        "\nUsage: Balas gambar/stiker yang sesuai!"
     }
 )
 
 CMD_HELP.update(
     {
-        "deepfry": ">`.df or .df [level(1-8)]`"
-        "\nUsage: deepfry image/sticker from the reply."
+        "deepfry": ">`.df atau .df [level(1-8)]`"
+        "\nUsage: gambar/stiker krispi dari balasan."
         "\n@image_deepfrybot"
         "\n\n>`.deepfry`"
         "\nUsage: krispi image"
@@ -692,6 +692,6 @@ CMD_HELP.update(
 CMD_HELP.update(
     {
         "waifu": ">`.waifu`"
-        "\nUsage: Tingkatkan teks Anda dengan templat gadis anime cantik."
+        "\nUsage: Ubah teks Anda dengan templat gadis anime cantik."
     }
 )
