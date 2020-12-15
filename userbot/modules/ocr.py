@@ -46,7 +46,9 @@ async def ocr(event):
     try:
         ParsedText = test_file["ParsedResults"][0]["ParsedText"]
     except BaseException:
-        await event.edit("`Tidak bisa membacanya.`\n`Saya rasa saya perlu kacamata baru.`")
+        await event.edit(
+            "`Tidak bisa membacanya.`\n`Saya rasa saya perlu kacamata baru.`"
+        )
     else:
         await event.edit(f"`Inilah yang bisa saya baca dari itu:`\n\n{ParsedText}")
     os.remove(downloaded_file_name)
