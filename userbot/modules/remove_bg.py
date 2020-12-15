@@ -30,7 +30,7 @@ async def kbg(remob):
     if remob.reply_to_msg_id:
         message_id = remob.reply_to_msg_id
         reply_message = await remob.get_reply_message()
-        await remob.edit("`Processing..`")
+        await remob.edit("`Menghapus latar belakang..`")
         try:
             if isinstance(
                 reply_message.media, MessageMediaPhoto
