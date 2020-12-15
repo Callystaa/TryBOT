@@ -316,7 +316,7 @@ CMD_HELP.update(
         ">`.cmm` <text>"
         "\nUsage: Buat spanduk untuk Change My Mind.\n\n"
         ">`.kanna` <text>"
-        "\nUsage: Kann menulis teks yang Anda berikan.\n\n"
+        "\nUsage: Kanna menulis teks yang Anda berikan.\n\n"
         ">`.ph` <text/reply with or w/o text>"
         "\nUsage: menulis komentar di P*RNHUB XD"
     }
