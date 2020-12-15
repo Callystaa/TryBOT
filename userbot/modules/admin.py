@@ -883,7 +883,9 @@ async def get_bots(show):
     mentions = f"<b>Bots in {title}:</b>\n"
     try:
         if isinstance(show.to_id, PeerChat):
-            return await show.edit("`Saya mendengar bahwa hanya SuperGroup yang dapat memiliki bot.`")
+            return await show.edit(
+                "`Saya mendengar bahwa hanya SuperGroup yang dapat memiliki bot.`"
+            )
         else:
             async for user in show.client.iter_participants(
                 show.chat_id, filter=ChannelParticipantsBots
