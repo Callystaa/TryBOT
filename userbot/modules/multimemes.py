@@ -178,9 +178,7 @@ async def mim(event):
             reply_message,
             downloaded_file_name,
         )
-    await event.edit(
-        "```Waktu Transfigurasi! Mwahaha Mengubah gambar ini! (」ﾟﾛﾟ)｣ ```"
-    )
+    await event.edit("```Waktu Transfigurasi! Mwahaha Mengubah gambar ini! (」ﾟﾛﾟ)｣ ```")
     await asyncio.sleep(5)
     text = event.pattern_match.group(1)
     webp_file = await draw_meme_text(dls_loc, text)
@@ -366,7 +364,9 @@ async def hazz(hazmat):
         await hazmat.edit("`Balas ke pengguna sebenarnya...`")
         return
     chat = "@hazmat_suit_bot"
-    await hazmat.edit("```Pakai seragam kapten!, Kami akan membersihkan beberapa virus...```")
+    await hazmat.edit(
+        "```Pakai seragam kapten!, Kami akan membersihkan beberapa virus...```"
+    )
     message_id_to_reply = hazmat.message.reply_to_msg_id
     msg_reply = None
     try:
@@ -690,8 +690,5 @@ CMD_HELP.update(
 )
 
 CMD_HELP.update(
-    {
-        "waifu": ">`.waifu`"
-        "\nUsage: Ubah teks Anda dengan templat gadis anime cantik."
-    }
+    {"waifu": ">`.waifu`" "\nUsage: Ubah teks Anda dengan templat gadis anime cantik."}
 )
