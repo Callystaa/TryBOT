@@ -1158,7 +1158,8 @@ async def google_drive(gdrive):
         result = await upload(gdrive, service, file_path, file_name, mimeType)
     except CancelProcess:
         gdrive.respond(
-            "`[FILE - DIBATALKAN]`\n\n" "`Status` : **OK** - menerima sinyal dibatalkan."
+            "`[FILE - DIBATALKAN]`\n\n"
+            "`Status` : **OK** - menerima sinyal dibatalkan."
         )
     if result:
         await gdrive.respond(
@@ -1192,7 +1193,8 @@ async def set_upload_folder(gdrive):
                 del parent_Id
             except NameError:
                 await gdrive.edit(
-                    "`[FOLDER - SET]`\n\n" "`Status` : **BAD** - Parent_ID tidak di set."
+                    "`[FOLDER - SET]`\n\n"
+                    "`Status` : **BAD** - Parent_ID tidak di set."
                 )
                 return False
             else:
@@ -1227,7 +1229,8 @@ async def set_upload_folder(gdrive):
             return None
         else:
             await gdrive.edit(
-                "`[PARENT - FOLDER]`\n\n" "`Status` : **PERINGATAN** - penggunaan paksa..."
+                "`[PARENT - FOLDER]`\n\n"
+                "`Status` : **PERINGATAN** - penggunaan paksa..."
             )
             parent_Id = inp
     else:
