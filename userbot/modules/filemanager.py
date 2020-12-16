@@ -19,14 +19,14 @@ async def lst(event):
     path = cat if cat else os.getcwd()
     if not exists(path):
         await event.edit(
-            f"**There is no such directory or file with the name `{cat}` check again!**"
+            f"**Disini tidak ada direktori atau file dengan nama `{cat}` cek lagi plox!**"
         )
         return
     if isdir(path):
         if cat:
-            msg = "**Folders and Files in `{}`** :\n\n".format(path)
+            msg = "**Folder dan file di `{}`** :\n\n".format(path)
         else:
-            msg = "**Folders and Files in Current Directory** :\n\n"
+            msg = "**Folder dan file di Direktori saat ini** :\n\n"
         lists = os.listdir(path)
         files = ""
         folders = ""
@@ -89,11 +89,11 @@ async def lst(event):
         time.ctime(os.path.getctime(path))
         time2 = time.ctime(os.path.getmtime(path))
         time3 = time.ctime(os.path.getatime(path))
-        msg += f"**Location :** `{path}`\n"
-        msg += f"**Icon :** `{mode}`\n"
-        msg += f"**Size :** `{humanbytes(size)}`\n"
-        msg += f"**Last Modified Time:** `{time2}`\n"
-        msg += f"**Last Accessed Time:** `{time3}`"
+        msg += f"**Lokasi :** `{path}`\n"
+        msg += f"**Ikon :** `{mode}`\n"
+        msg += f"**Ukuran :** `{humanbytes(size)}`\n"
+        msg += f"**Waktu Modifikasi Terakhir:** `{time2}`\n"
+        msg += f"**Waktu Diakses Terakhir:** `{time3}`"
 
     if len(msg) > MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(msg)) as out_file:
@@ -111,5 +111,5 @@ async def lst(event):
 
 
 CMD_HELP.update(
-    {"file": ">`.ls` <directory>" "\nUsage: Get list file inside directory.\n"}
+    {"file": ">`.ls` <direktori>" "\nUsage: Dapatkan daftar didalam direktori.\n"}
 )
