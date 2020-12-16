@@ -115,8 +115,8 @@ logger.setLevel(logging.ERROR)
 async def generate_credentials(gdrive):
     """ - Only generate once for long run - """
     if helper.get_credentials(str(gdrive.from_id)) is not None:
-        await gdrive.edit("`You already authorized token...`")
-        await asyncio.sleep(1.5)
+        await gdrive.edit("`Anda sudah mengotorisasi token...`")
+        await asyncio.sleep(2.5)
         await gdrive.delete()
         return False
     """ - Generate credentials - """
@@ -125,9 +125,9 @@ async def generate_credentials(gdrive):
             configs = json.loads(G_DRIVE_DATA)
         except json.JSONDecodeError:
             await gdrive.edit(
-                "`[AUTHENTICATE - ERROR]`\n\n"
+                "`[OTENTIKASI - ERROR]`\n\n"
                 "`Status` : **BAD**\n"
-                "`Reason` : **G_DRIVE_DATA** entity is not valid!"
+                "`Reason` : **G_DRIVE_DATA** entity tidak valid!"
             )
             return False
     else:
@@ -136,8 +136,8 @@ async def generate_credentials(gdrive):
             await gdrive.edit(
                 "`[OTENTIKASI - ERROR]`\n\n"
                 "`Status` : **BAD**\n"
-                "`Reason` : please get your **G_DRIVE_DATA** "
-                "[here](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
+                "`Reason` : harap dapatkan **G_DRIVE_DATA** anda "
+                "[Disini](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
             )
             return False
         configs = {
