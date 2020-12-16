@@ -237,7 +237,7 @@ async def type_afk_is_not_true(notafk):
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
-                "You've received "
+                "Kamu menerima "
                 + str(COUNT_MSG)
                 + " pesan dari "
                 + str(len(USERS))
@@ -276,7 +276,7 @@ async def type_afk_is_not_true(notafk):
 
 CMD_HELP.update(
     {
-        "afk": ">`.off [Optional Reason]`"
+        "afk": ">`.off [Alasan Opsional]`"
         "\nUsage: Menetapkan Anda sebagai afk. \ NBalas kepada siapa saja yang memberi tag/PM's "
         "Anda memberi tahu mereka bahwa Anda AFK(reason)."
         "\n\n>`.unoff`"
