@@ -26,7 +26,7 @@ from userbot.utils import humanbytes, progress
 
 @register(pattern=r"\.dl(?: |$)(.*)", outgoing=True)
 async def download(target_file):
-    await target_file.edit("Processing ...")
+    await target_file.edit("Mendownload...")
     input_str = target_file.pattern_match.group(1)
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -63,7 +63,7 @@ async def download(target_file):
                     f"{file_name} - {status}\n"
                     f"{progress_str}"
                     f"`Size:` {humanbytes(downloaded)} of {humanbytes(total_length)}"
-                    f"`Speed:` {speed}"
+                    f"`Kecepatan:` {speed}"
                     f"\n`ETA:` {estimated_total_time}"
                 )
 
@@ -74,7 +74,7 @@ async def download(target_file):
                 LOGS.info(str(e))
         if downloader.isSuccessful():
             await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
+                "Diunduh ke `{}` sukses !!".format(downloaded_file_name)
             )
         else:
             await target_file.edit("Incorrect URL\n{}".format(url))
@@ -92,17 +92,17 @@ async def download(target_file):
             await target_file.edit(str(e))
         else:
             await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
+                "Diunduh ke `{}` sukses !!".format(downloaded_file_name)
             )
     else:
-        await target_file.edit("Reply to a message to download to my local server.")
+        await target_file.edit("Balas ke pesan untuk unduh ke lokal server.")
 
 
 @register(pattern=r"\.upldir (.*)", outgoing=True)
 async def uploadir(udir_event):
     input_str = udir_event.pattern_match.group(1)
     if os.path.exists(input_str):
-        await udir_event.edit("Processing ...")
+        await udir_event.edit("Mengunggah ...")
         lst_of_files = []
         for r, d, f in os.walk(input_str):
             for file in f:
@@ -112,7 +112,7 @@ async def uploadir(udir_event):
         LOGS.info(lst_of_files)
         uploaded = 0
         await udir_event.edit(
-            "Found {} files. Uploading will start soon. Please wait!".format(
+            "Menemukan {} file. Mengunggah akan mulai tahun depan. Mohon tunggu!".format(
                 len(lst_of_files)
             )
         )
@@ -169,14 +169,14 @@ async def uploadir(udir_event):
                     )
                 os.remove(single_file)
                 uploaded += 1
-        await udir_event.edit("Uploaded {} files successfully !!".format(uploaded))
+        await udir_event.edit("Mengunggah {} file sukses !!".format(uploaded))
     else:
-        await udir_event.edit("404: Directory Not Found")
+        await udir_event.edit("404: Direktori Tidak Ditemukan")
 
 
-@register(pattern=r"\.upl (.*)", outgoing=True)
+@register(pattern=r"\.up (.*)", outgoing=True)
 async def upload(u_event):
-    await u_event.edit("Processing ...")
+    await u_event.edit("Mengunggah ...")
     input_str = u_event.pattern_match.group(1)
     if input_str in ("userbot.session", "config.env"):
         return await u_event.edit("`That's a dangerous operation! Not Permitted!`")
@@ -194,7 +194,7 @@ async def upload(u_event):
         )
         await u_event.edit("Berhasil diunggah !!")
     else:
-        await u_event.edit("404: File Not Found")
+        await u_event.edit("404: File Tidak Ditemukan")
 
 
 def get_video_thumb(file, output=None, width=90):
@@ -249,7 +249,7 @@ def extract_w_h(file):
 
 @register(pattern=r"^\.uploadas(stream|vn|all) (.*)", outgoing=True)
 async def uploadas(uas_event):
-    await uas_event.edit("Processing ...")
+    await uas_event.edit("Mengunggah ...")
     type_of_upload = uas_event.pattern_match.group(1)
     supports_streaming = False
     round_message = False
@@ -340,9 +340,9 @@ async def uploadas(uas_event):
 
 CMD_HELP.update(
     {
-        "download": ">`.dl <link|filename> atau balas media`"
+        "download": ">`.dl <tautan|nama file> atau balas media`"
         "\nUsage: Unduh file ke server."
-        "\n\n>`.upl <jalur di server>`"
+        "\n\n>`.up <jalur di server>`"
         "\nUsage: Mengunggah file yang disimpan secara lokal ke obrolan."
     }
 )
