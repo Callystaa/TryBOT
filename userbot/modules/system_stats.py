@@ -226,7 +226,7 @@ async def amireallyalive(alive):
     output = (
         f"`ProjectDark berjalan di {UPSTREAM_REPO_BRANCH}`\n"
         f"▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱\n"
-        f"👤 `User       :` {uptime}\n"
+        f"👤 `User       :` {DEFAULTUSER}\n"
         f"👁‍🗨 `Username   :` @{user.username}\n"
         f"🐍 `Python     :` v{python_version()}\n"
         f"⚙️ `Telethon   :` v{version.__version__}\n"
