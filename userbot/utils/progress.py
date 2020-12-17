@@ -36,9 +36,9 @@ async def progress(
         elapsed_time = round(diff)
         eta = round((total - current) / speed)
         if "upload" in prog_type.lower():
-            status = "Mengupload"
+            status = "Mengunggah"
         elif "download" in prog_type.lower():
-            status = "Mendownload"
+            status = "Mengunduh"
         else:
             status = "Unknown"
         progress_str = "[{0}{1}] `{2}%`".format(
