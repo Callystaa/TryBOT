@@ -1,3 +1,5 @@
+# Imported from https://github.com/sandy1709/catuserbot
+
 import io
 
 from telethon import events
@@ -12,14 +14,14 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.edit("sir this is not a image message reply to image message")
+        await event.edit("ngab ini bukan gambar balas ke gambar_-")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("sir, This is not a image ")
+        await event.edit("ngab!, Ini bukan gambar!!! ")
         return
     chat = "@buildstickerbot"
-    await event.edit("Membuat Sticker..")
+    await event.edit("Membuat Sticker...")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -53,7 +55,7 @@ async def _(event):
         await event.edit("Balas di Sticker Tolol!!")
         return
     chat = "@stickers_to_image_bot"
-    await event.edit("Convert to image..")
+    await event.edit("Mengubah ke gambar..")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -64,7 +66,7 @@ async def _(event):
         except YouBlockedUserError:
             await event.reply("unblock me (@stickers_to_image_bot) to work")
             return
-        if response.text.startswith("I understand only stickers"):
+        if response.text.startswith("Aku hanya paham stiker"):
             await event.edit(
                 "Sorry i cant't convert it check wheter is non animated sticker or not"
             )
