@@ -76,7 +76,7 @@ async def kang(args):
             is_anim = True
             photo = 1
         else:
-            return await args.edit("`Unsupported File!`")
+            return await args.edit("`File Tidak Didukung!`")
     else:
         return await args.edit("`Itu ga bisa dicolong...`")
 
@@ -133,9 +133,9 @@ async def kang(args):
                     packname = f"a{user.id}_by_{user.username}_{pack}"
                     packnick = f"@{user.username}'s kang pack Vol.{pack}"
                     await args.edit(
-                        "`Switching to Pack "
+                        "`Beralih ke pack "
                         + str(pack)
-                        + " due to insufficient space`"
+                        + " karena pack sebelumnya penuh`"
                     )
                     await conv.send_message(packname)
                     x = await conv.get_response()
@@ -246,7 +246,7 @@ async def kang(args):
                 await bot.send_read_acknowledge(conv.chat_id)
 
         await args.edit(
-            "`Sticker Sukses Tercolong!`"
+            "`Stiker Sukses Tercolong!`"
             f"\nKlik [disini](t.me/addstickers/{packname}) kalo mau pake pack stikerku",
             parse_mode="md",
         )
