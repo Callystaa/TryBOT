@@ -224,12 +224,12 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     await get_readable_time((time.time() - StartTime))
     output = (
-        f"`ProjectDark berjalan di {UPSTREAM_REPO_BRANCH}`\n"
+        f"**ProjectDark** berjalan di {UPSTREAM_REPO_BRANCH}\n"
         f"▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱\n"
-        f"👤 `User       :` {DEFAULTUSER}\n"
-        f"👁‍🗨 `Username   :` @{user.username}\n"
-        f"🐍 `Python     :` v{python_version()}\n"
-        f"⚙️ `Telethon   :` v{version.__version__}\n"
+        f"👤 `User     :` {DEFAULTUSER}\n"
+        f"👁‍🗨 `Username :` @{user.username}\n"
+        f"🐍 `Python   :` v{python_version()}\n"
+        f"⚙️ `Telethon :` v{version.__version__}\n"
         f"▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱"
     )
     if ALIVE_LOGO:
