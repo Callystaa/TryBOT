@@ -129,7 +129,9 @@ async def _(event):
     if l:
         await event.edit("`Yeah..! aku menemukan sesuatu..`")
     else:
-        await event.edit(f"`Maaf:(..! aku tidak bisa menemukan apapun dengan` **{query}**")
+        await event.edit(
+            f"`Maaf:(..! aku tidak bisa menemukan apapun dengan` **{query}**"
+        )
         return
     try:
         loa = l[0]
@@ -185,7 +187,9 @@ async def _(event):
     if event.pattern_match.group(1) == "now":
         playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
         if playing is None:
-            return await event.edit("`Error: Tidak ada data scrobbling yang ditemukan.`")
+            return await event.edit(
+                "`Error: Tidak ada data scrobbling yang ditemukan.`"
+            )
         artist = playing.get_artist()
         song = playing.get_title()
     else:
