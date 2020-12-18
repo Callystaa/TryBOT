@@ -198,7 +198,7 @@ async def upstream(event):
 
     if changelog == "" and not force_update:
         await event.edit(
-            f"**Userbot Anda sudah diperbarui dengan `{UPSTREAM_REPO_BRANCH}`!**"
+            f"**ProjectDark sudah diperbarui dengan `{UPSTREAM_REPO_BRANCH}`!**"
         )
         return repo.__del__()
 
