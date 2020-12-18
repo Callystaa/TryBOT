@@ -228,7 +228,7 @@ async def ban(bon):
         return
 
     # Announce that we're going to whack the pest
-    await bon.edit("`Memblokir seseorang...!`")
+    await bon.edit("`Membanned seseorang...!`")
 
     try:
         await bon.client(EditBannedRequest(bon.chat_id, user.id, BANNED_RIGHTS))
@@ -248,11 +248,11 @@ async def ban(bon):
     # Shout out the ID, so that fedadmins can fban later
     if reason:
         await bon.edit(
-            f"`PENGGUNA:` [{user.first_name}](tg://user?id={user.id})\n`ID:` `{str(user.id)}` was banned !!\n`Reason:` {reason}"
+            f"`PENGGUNA:` [{user.first_name}](tg://user?id={user.id})\n`ID:` `{str(user.id)}` sudah terbanned !!\n`Karena:` {reason}"
         )
     else:
         await bon.edit(
-            f"`PENGGUNA:` [{user.first_name}](tg://user?id={user.id})\n`ID:` `{str(user.id)}` was banned !!"
+            f"`PENGGUNA:` [{user.first_name}](tg://user?id={user.id})\n`ID:` `{str(user.id)}` sudah dibanned !!"
         )
     # Announce to the logging group if we have banned the person
     # successfully!
@@ -277,7 +277,7 @@ async def nothanos(unbon):
         return await unbon.edit(NO_ADMIN)
 
     # If everything goes well...
-    await unbon.edit("`Membatalkan pemblokiran...`")
+    await unbon.edit("`Membuka banned...`")
 
     user = await get_user_from_event(unbon)
     user = user[0]
@@ -880,7 +880,7 @@ async def get_userdel_from_id(user, event):
 async def get_bots(show):
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = f"<b>Bots in {title}:</b>\n"
+    mentions = f"<b>Bot yang ada di {title}:</b>\n"
     try:
         if isinstance(show.to_id, PeerChat):
             return await show.edit(
