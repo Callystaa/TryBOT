@@ -60,9 +60,7 @@ async def get_chatinfo(event):
             await event.edit("`channel/grup tidak valid`")
             return None
         except ChannelPrivateError:
-            await event.edit(
-                "`Ini adalah channel/grup private atau Aku terbanned ya?`"
-            )
+            await event.edit("`Ini adalah channel/grup private atau Aku terbanned ya?`")
             return None
         except ChannelPublicGroupNaError:
             await event.edit("`Channel atau supergroup tidak ada_-`")
