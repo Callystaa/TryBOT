@@ -65,7 +65,7 @@ async def lst(event):
         msg = msg + folders + files if files or folders else msg + "__empty path__"
     else:
         size = os.stat(path).st_size
-        msg = "**The details of given file** :\n\n"
+        msg = "**Detail file yang diberikan** :\n\n"
         if path.endswith((".mp3", ".flac", ".wav", ".m4a")):
             mode = "🎵 "
         if path.endswith((".opus")):
