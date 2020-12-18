@@ -220,14 +220,14 @@ async def fetch_info(chat, event):
     caption = "<b>INFO GRUP:</b>\n"
     caption += f"ID: <code>{chat_obj_info.id}</code>\n"
     if chat_title is not None:
-        caption += f"{chat_type} Nama: {chat_title}\n"
+        caption += f"Nama {chat_type}: {chat_title}\n"
     if former_title is not None:  # Meant is the very first title
         caption += f"Nama Sebelumnya: {former_title}\n"
     if username is not None:
-        caption += f"{chat_type} tipe: Public\n"
+        caption += f"tipe {chat_type}: Public\n"
         caption += f"Tautan: {username}\n"
     else:
-        caption += f"{chat_type} tipe: Private\n"
+        caption += f"tipe {chat_type}: Private\n"
     if creator_username is not None:
         caption += f"Pembuat: {creator_username}\n"
     elif creator_valid:
@@ -241,7 +241,7 @@ async def fetch_info(chat, event):
     caption += f"ID Pusat Data: {dc_id}\n"
     if exp_count is not None:
         chat_level = int((1 + sqrt(1 + 7 * exp_count / 14)) / 2)
-        caption += f"{chat_type} level: <code>{chat_level}</code>\n"
+        caption += f"level {chat_type}: <code>{chat_level}</code>\n"
     if messages_viewable is not None:
         caption += f"Pesan yang dapat dilihat: <code>{messages_viewable}</code>\n"
     if messages_sent:
@@ -261,7 +261,7 @@ async def fetch_info(chat, event):
     if banned_users is not None:
         caption += f"Pengguna yang dibanned: <code>{banned_users}</code>\n"
     if group_stickers is not None:
-        caption += f'{chat_type} stiker: <a href="t.me/addstickers/{chat.full_chat.stickerset.short_name}">{group_stickers}</a>\n'
+        caption += f'stiker {chat_type}: <a href="t.me/addstickers/{chat.full_chat.stickerset.short_name}">{group_stickers}</a>\n'
     caption += "\n"
     if not broadcast:
         caption += f"Mode lambat: {slowmode}"
