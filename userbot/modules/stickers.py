@@ -177,9 +177,9 @@ async def kang(args):
                         # Ensure user doesn't get spamming notifications
                         await bot.send_read_acknowledge(conv.chat_id)
                         return await args.edit(
-                            "`Sticker ditambahkan ke pack ynag berbeda !"
+                            "`Sticker ditambahkan ke pack yang berbeda !"
                             "\nIni pack yang baru saja kamu buat!"
-                            f"\nKlik [disini](t.me/addstickers/{packname}) untuk liat pack kamj",
+                            f"\nKlik [disini](t.me/addstickers/{packname}) untuk liat pack barumu",
                             parse_mode="md",
                         )
                 if is_anim:
