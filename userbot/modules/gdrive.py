@@ -153,10 +153,10 @@ async def generate_credentials(gdrive):
         configs, SCOPES, redirect_uri=REDIRECT_URI
     )
     auth_url, _ = flow.authorization_url(access_type="offline", prompt="consent")
-    msg = await gdrive.respond("`Go to your BOTLOG group to authenticate token...`")
+    msg = await gdrive.respond("`Buka grup BOTLOG Anda untuk mengautentikasi token...`")
     async with gdrive.client.conversation(BOTLOG_CHATID) as conv:
         url_msg = await conv.send_message(
-            "Please go to this URL:\n" f"{auth_url}\nauthorize then reply the code"
+            "Silakan buka URL ini:\n" f"{auth_url}\notorisasi dengan cara reply url"
         )
         r = conv.wait_event(events.NewMessage(outgoing=True, chats=BOTLOG_CHATID))
         r = await r
@@ -168,7 +168,7 @@ async def generate_credentials(gdrive):
         await gdrive.client.delete_messages(BOTLOG_CHATID, [url_msg.id, r.id])
         """ - Unpack credential objects into strings - """
         creds = base64.b64encode(pickle.dumps(creds)).decode()
-        await gdrive.edit("`Credentials created...`")
+        await gdrive.edit("`Kredensial dibuat...`")
     helper.save_credentials(str(gdrive.from_id), creds)
     await gdrive.delete()
     return
