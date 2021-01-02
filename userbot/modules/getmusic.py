@@ -1,5 +1,6 @@
 # Copyright (C) 2020 Aidil Aryanto.
 # Deezload ported from UniBorg by AnggaR96s
+# Translated by Ajibcdefgh
 # All rights reserved.
 
 import asyncio
@@ -63,10 +64,10 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-        await event.edit("`Tunggu..! Aku menemukan lagunya..`")
+        await event.edit("`Tunggu..! Sedang mencari lagunya..`")
     elif reply.message:
         query = reply.message
-        await event.edit("`Tunggu..! Aku menemukan lagunya..`")
+        await event.edit("`Oke dapat..! Bersiap mengunggah lagu..`")
     else:
         await event.edit("`Apa yang seharusnya saya temukan?`")
         return
