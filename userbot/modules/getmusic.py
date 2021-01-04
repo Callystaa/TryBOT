@@ -130,9 +130,7 @@ async def _(event):
     if l:
         await event.edit("`Yeah..! I found something..`")
     else:
-        await event.edit(
-            f"`Sorry:(..! I couldn't find anything with` **{query}**"
-        )
+        await event.edit(f"`Sorry:(..! I couldn't find anything with` **{query}**")
         return
     try:
         loa = l[0]
