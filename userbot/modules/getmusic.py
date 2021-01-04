@@ -1,6 +1,6 @@
-# Copyright (C) 2020 Aidil Aryanto.
-# Deezload ported from UniBorg by AnggaR96s
-# Translated by Ajibcdefgh
+# Copyright (C) 2020 WAHYU TRY
+# Deezload ported from Why
+# Translated by Wahyu Try
 # All rights reserved.
 
 import asyncio
@@ -64,12 +64,12 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-        await event.edit("`Tunggu..! Sedang mencari lagunya..`")
+        await event.edit("`Wait..! Was looking for the song..`")
     elif reply.message:
         query = reply.message
-        await event.edit("`Oke dapat..! Bersiap mengunggah lagu..`")
+        await event.edit("`I got it..! Prepare to upload songs..`")
     else:
-        await event.edit("`Apa yang seharusnya saya temukan?`")
+        await event.edit("`What should i find?`")
         return
 
     await getmusic(str(query))
@@ -88,7 +88,7 @@ async def _(event):
         if any(fn_img.endswith(ext_img) for ext_img in img_extensions)
     ]
     thumb_image = img_filenames[0]
-    await event.edit("`Yeah.. Mengunggah lagunya..`")
+    await event.edit("`Okey.. Upload song..`")
     c_time = time.time()
     await event.client.send_file(
         event.chat_id,
@@ -118,20 +118,20 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-        await event.edit("`Tunggu..! Aku menemukan video song nya..`")
+        await event.edit("`Wait..! I found the video of the song..`")
     elif reply:
         query = str(reply.message)
-        await event.edit("`Tunggu..! Aku menemukan video song nya..`")
+        await event.edit("`Wait..! I found the video of the song..`")
     else:
-        await event.edit("`Apa yang seharusnya saya temukan?`")
+        await event.edit("`What should i find?`")
         return
     await getmusicvideo(query)
     l = glob.glob(("*.mp4")) + glob.glob(("*.mkv")) + glob.glob(("*.webm"))
     if l:
-        await event.edit("`Yeah..! aku menemukan sesuatu..`")
+        await event.edit("`Yeah..! I found something..`")
     else:
         await event.edit(
-            f"`Maaf:(..! aku tidak bisa menemukan apapun dengan` **{query}**"
+            f"`Sorry:(..! I couldn't find anything with` **{query}**"
         )
         return
     try:
@@ -172,7 +172,7 @@ async def _(event):
                 progress(d, t, event, c_time, "[UPLOAD]", loa)
             ),
         )
-        await event.edit(f"**{query}** `Mengunggah sukses..!`")
+        await event.edit(f"**{query}** `Upload success..!`")
         os.remove(thumb_image)
         os.system("rm *.mkv *.mp4 *.webm")
     except BaseException:
@@ -199,10 +199,10 @@ async def _(event):
     track = str(artist) + " - " + str(song)
     chat = "@SpotifyMusicDownloaderBot"
     try:
-        await event.edit("`Mendapatkan Musiknya`")
+        await event.edit("`Get the Music`")
         async with bot.conversation(chat) as conv:
             await asyncio.sleep(2)
-            await event.edit("`Mengunduh...`")
+            await event.edit("`Download...`")
             try:
                 response = conv.wait_event(
                     events.NewMessage(incoming=True, from_users=752979930)
@@ -222,7 +222,7 @@ async def _(event):
         await event.delete()
     except TimeoutError:
         return await event.edit(
-            "`Error: `@SpotifyMusicDownloaderBot` tidak merespon atau lagu tidak ditemukan!.`"
+            "`Error: `@SpotifyMusicDownloaderBot` did not respond or song was not found!.`"
         )
 
 
@@ -242,20 +242,20 @@ async def _(event):
     track = str(artist) + " - " + str(song)
     chat = "@WooMaiBot"
     link = f"/netease {track}"
-    await event.edit("`Mencari...`")
+    await event.edit("`Search...`")
     try:
         async with bot.conversation(chat) as conv:
             await asyncio.sleep(2)
-            await event.edit("`Memproses... Mohon tunggu`")
+            await event.edit("`Process... Please Wait`")
             try:
                 msg = await conv.send_message(link)
                 response = await conv.get_response()
                 respond = await conv.get_response()
                 await bot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
-                await event.reply("`Tolong unblok @WooMaiBot dan coba lagi`")
+                await event.reply("`Please unblok @WooMaiBot and try again`")
                 return
-            await event.edit("`Mengirim musiknya...`")
+            await event.edit("`Send the music...`")
             await asyncio.sleep(3)
             await bot.send_file(event.chat_id, respond)
         await event.client.delete_messages(
@@ -264,7 +264,7 @@ async def _(event):
         await event.delete()
     except TimeoutError:
         return await event.edit(
-            "`Error: `@WooMaiBot` tidak merespon atau lagu tidak ditemukan!.`"
+            "`Error: `@WooMaiBot` did not respond or song was not found!.`"
         )
 
 
@@ -274,9 +274,9 @@ async def _(event):
         return
     d_link = event.pattern_match.group(1)
     if ".com" not in d_link:
-        await event.edit("`Masukkan tautan valid untuk unduh dari`")
+        await event.edit("`Enter a valid link to download from`")
     else:
-        await event.edit("`Memproses...`")
+        await event.edit("`Process...`")
     chat = "@MusicsHunterBot"
     try:
         async with bot.conversation(chat) as conv:
@@ -297,7 +297,7 @@ async def _(event):
             await event.delete()
     except TimeoutError:
         return await event.edit(
-            "`Error: `@MusicsHunterBot` tidak merespon atau lagu tidak ditemukan!.`"
+            "`Error: `@MusicsHunterBot` did not respond or song was not found!.`"
         )
 
 
