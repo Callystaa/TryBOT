@@ -1,7 +1,7 @@
 {
-  "name": "Telegram ProjectDark",
-  "description": "[ProjectDark] A modular Telegram userbot running on Python 3.7+ with an sqlalchemy database.",
-  "logo": "https://telegra.ph/file/0fc16a28038ec32811dc6.jpg",
+  "name": "Telegram TryBOT",
+  "description": "[TryBOT] A modular Telegram userbot running on Python 3.7+ with an sqlalchemy database.",
+  "logo": "https://i.ibb.co/3zm1mR1/WAHYUTRY.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/Ajibcdefgh/ProjectDark",
+  "repository": "https://github.com/wahyuty-bot/TryBOT",
   "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02",
   "success_url": "https://t.me/userbotindo",
   "stack": "container",
