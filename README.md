@@ -36,10 +36,6 @@ Based on RaphielGang's [Telegram-Paperplane](https://github.com/RaphielGang/Tele
 The easiest way to deploy this userbot
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/wahyutry-bot/TryBOT/tree/master"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="210" height="34.45"/></a></p>
 
-## Generate String
-Generate string using repl.it
-<p align="center"><a href="https://string.projectalf.repl.run/"> <img src="https://img.shields.io/badge/Generate%20Session-lightgrey?style=for-the-badge&logo=repl.it" width="210" height="34.45"/></a></p>
-
 ## Usefull guides
 How to deploy this UserBot
 <p align="center"><a href="https://telegra.ph/Host-a-Telegram-Userbot-05-07"> <img src="https://img.shields.io/badge/how%20to%20deploy-important?style=for-the-badge&logo=github" width="210" height="34.45"/></a></p>
